@@ -19,10 +19,15 @@
 input{
     text-align:center; 
     display:flexbox;
-    justify-content:center;
+    /* justify-content:center; */
     /* flex-direction:row; */
 }
 
+input::grammar-error{
+    text-decoration:underline;
+}
+
 *{
-    background-color:rgb(255, 255, 255);
+    background-color:rgb(250, 205, 194);
+    font-family: sans-serif;
 }
