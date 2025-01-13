@@ -1,13 +1,25 @@
 const express= require('express');
-const app=express();
 const mongoose= require('mongoose');
 const config= require('./config');
+const authRoutes= require('./routes/authroutes');
+const cookieParser= require('cookie-parser');
+const { requireAuth, checkUser } = require('./middleware/authMid');
 
+const app=express();
 
-//mongoose.connect(config.db.connection);
+// middleware
+app.use(express.static('public'));
+app.use(express.json());
+app.use(cookieParser());
 
+//view engine
 app.set("view engine", "ejs");
-app.use(express.static("public"));
+
+mongoose.connect(config.db.connection);
+
+//routes
+app.get('*', checkUser);
+app.use(authRoutes);
 
 app.listen(5000, ()=>{
     console.log("Let's roll.");
