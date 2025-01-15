@@ -1,53 +1,56 @@
-.container{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    /* height:100vh; */
+main {
+    box-shadow: 5px 5px 100px 5px pink;
+    margin-top: 80px;
+    width: 380px;
+    /* text-align:center; */
 }
 
-.personal_details{
-    margin:2px;
-    padding:2px;
-    height:50px;
-    box-sizing:border-box;
+.container {
+    display: flex;
+    justify-content: center;
+    /* box-shadow:5px 5px 100px 5px pink; */
 }
 
-#top_heading{
-    margin:25px;
-    text-align:center;
-    font-size:30px;
+.personal_details {
+    /* text-align:center; */
+    margin: 15px;
+    padding: 2px;
+    height: 50px;
+    box-sizing: border-box;
 }
 
-#main_heading{
-    margin:25px;
+#main_heading {
+
+    margin: 25px;
+    padding: 20px;
+    font-family: sans-serif;
 }
 
-nav{
-    background-color:#f57a28;
+nav {
+    /* background: radial-gradient(#fff,#ffd6d6); */
+    font-family: sans-serif;
+    padding: 20px;
+    display: flex;
+    justify-content: right;
+
 }
 
-button{
-    padding: 10px 20px; 
-    background-color: #f57a28; 
+
+.nav_label {
+    margin: 10px;
+}
+
+.label_nav {
     color: black;
-    font: size 15px; 
-    border: none; 
-    border-radius: 5px;
+    text-decoration: none;
+    font-size: 15px;
+    margin: 10px;
 }
 
-button:hover{
-    color:black;
+.block_label {
+    display: block;
 }
 
-#nav_label{
-    display:flex;
-    justify-content:right;
-    gap:30px;
-}
-
-.label_nav{
-    color:black;
-    text-decoration:none;
-    font-size:15px;
-    margin:6px;
+[type=submit] {
+    
 }
