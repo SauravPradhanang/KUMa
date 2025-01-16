@@ -1,0 +1,53 @@
+.container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    /* height:100vh; */
+}
+
+.personal_details{
+    margin:2px;
+    padding:2px;
+    height:50px;
+    box-sizing:border-box;
+}
+
+#top_heading{
+    margin:25px;
+    text-align:center;
+    font-size:30px;
+}
+
+#main_heading{
+    margin:25px;
+}
+
+nav{
+    background-color:#f57a28;
+}
+
+button{
+    padding: 10px 20px; 
+    background-color: #f57a28; 
+    color: black;
+    font: size 15px; 
+    border: none; 
+    border-radius: 5px;
+}
+
+button:hover{
+    color:black;
+}
+
+#nav_label{
+    display:flex;
+    justify-content:right;
+    gap:30px;
+}
+
+.label_nav{
+    color:black;
+    text-decoration:none;
+    font-size:15px;
+    margin:6px;
+}
