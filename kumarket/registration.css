@@ -33,6 +33,7 @@ input {
     margin: 4px 4px;
     padding: 5px;
     height: 30px;
+    width: 345px;
     box-sizing: border-box;
 }
 
@@ -68,7 +69,7 @@ nav {
 }
 
 .button_style {
-    width: 330px;
+    width: 345px;
     font-family: sans serif;
     padding: 10px;
     background-color: rgb(255, 226, 192);
