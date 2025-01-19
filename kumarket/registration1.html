@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration page</title>
+    <link rel="stylesheet" href="registration1.css">
+</head>
+
+<body>
+    <header>
+        <!-- <div class="nav-logo">
+            <img class="nav-logo" src="https://kuma.io/assets/images/social/og-image-1200-630.jpg?cb=1730815037"
+                alt="Logo" width="125px">
+                Replace with the actual image URL
+        </div> -->
+        <nav>
+            <div class="nav-container">
+                <ul class="nav-list">
+                    <li class="nav-items">Home</li>
+                    <li class="nav-items">Products</li>
+                    <li class="nav-items">About</li>
+                    <li class="nav-items">Contact</li>
+                    <li class="nav-items">Account</li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <h2 id="main_heading">Sign Up To Become A Seller</h2>
+        <div class="signup-container">
+            <form method="POST" class="form-grid">
+                <div class="full_width">
+                    <label class="block_label" for="name">Full Name:</label>
+                    <input class="margin_left" type="text" id="name" name="fullname" placeholder="Enter Your Full Name"
+                        required autofocus>
+                    <!-- first name middle name last name, all caps or small or random -->
+                </div>
+                <div class="full_width">
+                    <label class="block_label" for="address">Address:</label>
+                    <input class="margin_left" type="text" id="address" name="address" placeholder="Enter your Address"
+                        required>
+                </div>
+                <div class="full_width">
+                    <label class="block_label" for="pnumber">Phone Number:</label>
+                    <input class="margin_left" type="tel" id="pnumber" name="phoneno." min="0" max="9" required>
+                    <!-- country code, number length & verification -->
+                </div>
+                <div class="full_width">
+                    <label class="block_label" for="email">Email Address:</label>
+                    <input class="margin_left" type="email" id="email" name="email" required>
+                    <!-- validity & verification -->
+                </div>
+                <div class="full_width">
+                    <label class="block_label" for="usrname">Username:</label>
+                    <input class="margin_left" type="text" id="usrname" name="username"
+                        placeholder="Enter your Username" required>
+                    <!-- validity, matching usernames -->
+                </div>
+                <div class="full_width">
+                    <label class="block_label" for="pwd">Password:</label>
+                    <input class="margin_left" type="password" id="pwd" name="password"
+                        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                        placeholder="Enter your Password" required>
+                    <!-- general rules or patterns, show & hide option -->
+                </div>
+                <div class="full_width">
+                    <label class="block_label" for="confirm_pwd">Confirm Password:</label>
+                    <input class="margin_left" type="password" id="confirm_pwd" name="confirm_password"
+                        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+                        placeholder="Enter your Password" required>
+                    <!-- general rules or patterns, show & hide option & check matching with the given password-->
+                </div>
+                <div class="full_width">
+                    <label for="bank_name" class="block_label">Name of the Bank:</label>
+                    <input class="margin_left" type="text" id="bank_name" required>
+                </div>
+                <div class="full_width">
+                    <label for="bank_branch" class="block_label">Branch:</label>
+                    <select required>
+                        <option>Kathmandu</option>
+                        <option>Kathmandu</option>
+                        <option>Kathmandu</option>
+                    </select>
+                </div>
+                <div class="full_width">
+                    <label for="acc_holder_name" class="block_label">Account Holder Name:</label>
+                    <input type="text" class="margin_left" id="acc_holder_name" required>
+                </div>
+                <div class="full_width">
+                    <label for="acc_no." class="block_label">Bank Account Number:</label>
+                    <input type="number" class="margin_left" id="acc_no." required>
+                </div>
+                <div class="grid-full">
+                    <button onclick="" class="button" name="submit">Sign Up</button>
+                    <!-- <button onclick="" class="button_style" name="reset">Reset</button> -->
+                </div>
+                <div>
+                    <label for="sign-google">Sign Up with Google?</label>
+                    <a id="sign-google" href="https://www.google.com">Google</a>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+
+</html>
