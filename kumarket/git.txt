@@ -1,0 +1,60 @@
+git instructions:
+
+1. to see the status of your files:
+
+    -to see the modified files yet to be committed.
+    -use this command in the terminal: 
+        git status
+
+2. to commit your changes:
+
+    -first, stage your changes. stage means to command git to track your changes. 
+    -use this command in the terminal: 
+        git commit -m "commit_message".
+
+3. to identify your current working branch:
+
+    -use this command in the terminal: 
+        git branch.
+
+4. to create a new branch different from main:
+
+    -create new branch to try new changes in your files without any concerns about affecting the main branch content.
+    -use this command in the terminal:
+        git checkout -b your_branch_name
+        this command will create a new branch and immediately switch to it.
+
+5. to switch to another branch:
+    
+    -before switching your branch make sure you commit or stash your changes of your current branch. 
+    -to commit your changes use the command above.
+    -to stash your changes, look at instruction no. 5.
+    -use this command in the terminal:
+        git checkout branch_name.
+
+6. to stash your changes:
+
+    -stash means to temporarily stash your changes elsewhere to work or to pull or to switch to another branch. you can later retrieve it using some commands mentioned below:
+    -use this command in the terminal:
+        -git stash
+        when your use this command, git will stash your changes elsewhere and restore your work to the last committed state.
+
+        -git stash list
+        use this command to see all the stashes you have saved with an identifier.
+
+        -git stash apply
+        use this command to apply your most recent changes while keeping that stash in the list.
+
+        -git stash pop
+        use this command to apply your most recent changes and remove that stash from the stash list.
+
+        -git stash apply stash@{n}
+        here the n is the index from your stash list.
+        use this command to apply your changes from the list.
+
+        -git stash clear
+        use this command to delete all your stashes from the list.
+
+        -git stash --staged:
+        use this command to stash your changes that are in the staging area, leaving your unstaged changes intact.
+

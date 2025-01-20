@@ -14,7 +14,6 @@
 nav{
     flex:1;
     text-align: right;
-    z-index: 1;
 }
 nav ul{
     list-style: none;
@@ -44,7 +43,7 @@ a{
     flex-basis: 40%;
     min-width: 300px;
     position: relative;
-    top: -88px;
+    top: -40px;
 }
 
 .col2 img{
@@ -276,4 +275,135 @@ input:focus{
     margin: 0 auto; /* Centers images horizontally if needed */
     box-sizing: border-box; /* Ensures padding and border don't affect size */
     margin-right: 50px;
+}
+/* -------------------cart item detail------------------ */
+.cart-page{
+    margin: 80px auto;
+
+}
+table{
+    width:100%;
+    border-collapse: collapse;
+}
+.cart-info{
+    display:flex;
+    flex-wrap: wrap;
+}
+th{
+    text-align: left;
+    padding: 5px;
+    color:#fff;
+    background-color: #ff523b;
+    font-weight: normal;
+}
+td{
+    padding: 10px 5px;
+}
+td input{
+    width:40px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 10px;
+}
+td a{
+    color:#ff523b;
+    font-size: 12px;
+}
+td img{
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+}
+.totalprice{
+    display: flex;
+    justify-content: flex-end;
+}
+.totalprice table{
+    border-top: 3px solid #ff523b;
+    width: 250px;
+    max-width: 350px;
+}
+td:last-child{
+    text-align: right;
+}
+th:last-child{
+    text-align: right;
+}
+/* -----------------------account page-------------------- */
+.accountname{
+    padding:50px 0 ;
+    background:radial-gradient(#fff,#ffd6d6);
+}
+.formcontainer{
+    background-color: #fff;
+    width:300px;
+    height: 400px;
+    position: relative;
+    text-align: center;
+    padding: 20px 0;
+    margin: auto;
+    box-shadow: 0 0 20px 0px rgba(0,0,0,0.1);
+    overflow: hidden;/*register ra login change garda avoids baira nisking*/
+}
+.floyd img{
+    mix-blend-mode: multiply; /* Retain blending for harmony */
+    opacity: 0.9; /* Slightly reduce opacity for blending */
+    filter: brightness(1.1) contrast(1.1); /* Adjust brightness and contrast */
+    border-radius: 10px; /* Optional, for smooth edges */
+
+}
+.formcontainer span{
+    font-weight: bold;
+    padding: 0 10px;
+    color:#555;
+    cursor:pointer;
+    width: 100px;
+    display:inline-block;
+}
+.form-btn{
+    display: inline-block;
+
+}
+.formcontainer form{
+    max-width: 200px;
+    padding: 0 20px;
+    position: absolute;
+    top:130px;
+    transition:transform 1s;/*making animation while switching between login and register*/
+
+}
+form input{
+    width: 234px;
+    height: 30px;
+    margin:10px 0;
+    padding: 0 10px;
+    border:1px solid #ccc;
+}
+form .btn{
+    width: 100%;
+    border: none;
+    cursor: pointer;
+    margin:10px 0;
+
+}
+form .btn :focus{
+    outline: none;
+}
+#LoginForm{
+    left:-300px;
+}
+#RegForm{
+    left:0;
+}
+form a{
+    font-size: 12px;
+}
+#indicator{
+    width: 100px;
+    border: none;
+    background-color: #ff523b;
+    height: 3px;
+    margin-top: 8px;
+    transform: translate(136px);
+    transition:transform 1s;
 }
