@@ -2,53 +2,75 @@
 
 * {
     /* border: 1px solid red; */
+    padding: 0px;
     font-family: 'Faculty Glyphic', sans-serif;
     box-sizing: border-box;
 }
 
 /* design: parent to children */
 
-/* div.nav-logo {
-    border: 2px solid red;
-    display:flex;
-    justify-content:left;
-    width: 120px;
-    mix-blend-mode: multiply;
-    opacity: 1.8;
-    filter: brightness(0.9) contrast(2.1);
-}  */
+/* div.nav-logo { */
+/* border: 2px solid red; */
+/* display: flex; */
+/* justify-content: left; */
+/* width: 120px; */
+/* mix-blend-mode: multiply; */
+/* opacity: 1.8; */
+/* filter: brightness(0.9) contrast(2.1); */
+/* } */
 
-/* .nav-bar * {
+.nav-container {
     display: flex;
-    justify-content: right;
-    padding: 20px;
-} */
-
-.nav-container * {
-    /* border:2px solid red; */
-    display: flex;
-    justify-content: right;
-    padding: 20px;
+    margin: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    max-width: 1300px;
+    /* margin: auto; */
 }
 
-.nav-list {
+.nav-logo {
+    margin-right: auto;
+    margin-left: 0px;
+}
+
+.nav-list {}
+
+/* border: 2px solid red; */
+.nav-items {
+    display: inline-block;
+    margin-right: 20px;
     list-style: none;
 }
 
+img.cart {
+    background: linear-gradient(180deg, #fce4ec, #f8dede);
+    /* Match your page gradient */
+    border-radius: 50%;
+    /* Optional for a circular style */
+    padding: 5px;
+    /* Adds spacing */
+    opacity: 1.8;
+    filter: brightness(0.9) contrast(2.1);
+    mix-blend-mode: multiply;
+}
+
+
 /* body { */
-    /* background-image: url('background.jpg'); */
-    /* background-size: cover; */
-    /* Ensures the image covers the entire container */
-    /* background-position: center; */
-    /* Centers the image in the container */
-    /* background-repeat: no-repeat; */
-    /* Prevents the image from repeating */
+/* background-image: url('background.jpg'); */
+/* background-size: cover; */
+/* Ensures the image covers the entire container */
+/* background-position: center; */
+/* Centers the image in the container */
+/* background-repeat: no-repeat; */
+/* Prevents the image from repeating */
 /* } */
 
 .signup-container {
     /* margin-top: 0px; */
-    background-color:transparent;
-    max-width: 900px;
+    background-color: transparent;
+    max-width: 1200px;
+    margin-left: 310px;
     /* margin-inline: auto; */
     padding: 1rem;
     /* box-shadow: 0px 0px 30px 1px rgba(255, 82, 59, 0.6); */
@@ -59,6 +81,7 @@
 
 .form-grid {
     /* border: 4px solid green; */
+    margin-top:20px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(900px, 1fr));
     grid-gap: 1.5rem 2.5rem;
@@ -84,9 +107,11 @@ div.full_width>* {
 
 #main_heading {
     /* border: 1px solid red; */
-    margin-bottom: 60px;
+    margin-top: 50px;
+    margin-bottom: 40px;
     padding: 20px;
     text-align: center;
+    box-shadow: 0px 0px 30px 1px rgba(255, 82, 59, 0.6);
 }
 
 input {
@@ -106,7 +131,7 @@ input:focus {
     transition: border-bottom-color ease 200ms;
 }
 
-select{
+select {
     border: none;
     border-bottom-width: 1px;
     border-bottom-style: solid;

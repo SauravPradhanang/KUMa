@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Page</title>
+</head>
+
+<body>
+    <form method="POST">
+        
+        <div class="product_info">
+            <label for="product_name" class="style-label">Name of the Product:</label>
+            <input type="text" class="style-input" id="product_name" name="product_name" required>
+        </div>
+        <div class="product_info">
+            <label for="product_category" class="style-label">Category:</label>
+            <select name="categories" class="style-input" id="product_category" required>
+                <option>Home Appliances</option>
+                <option>Groceries</option>
+                <option>Men's Clothing</option>
+                <option>Women's Clothing</option>
+                <option>Toddler's Clothing</option>
+                <option>Electrical Devices</option>
+                <option>Riding Essentials</option>
+                <option>Baby Care Essentials</option>
+                <option>Sports & Outdoor</option>
+                <option>Accessories</option>
+                <option>Pet Essentials</option>
+            </select>
+        </div>
+        <div class="product_info">
+            <label class="style-label">Product Availability:</label>
+            
+            <div>
+                <label for="size">Size:</label>
+                <input type="checkbox" class="style-input" id="XXL" name="size" value="XXL">
+                <label for="XXL" class="size">XXL</label>
+                
+                <input type="checkbox" class="style-input" id="XL" name="size" value="XL">
+                <label for="XL" class="size">XL</label>
+                
+                <input type="checkbox" class="style-input" id="L" name="size" value="L">
+                <label for="L" class="size">L</label>
+                
+                <input type="checkbox" class="style-input" id="M" name="size" value="M">
+                <label for="M" class="size">M</label>
+                
+                <input type="checkbox" class="style-input" id="S" name="size" value="S">
+                <label for="S" class="size">S</label>
+            </div>
+
+            <div>
+                <label for="dimensions">Please enter your Product Dimensions:</label>
+                <input type="text" class="style-input" id="dimensions" name="pr_dimensions">
+            </div>
+
+            <!-- <div>
+                <label for="color">Color:</label>
+                <select id="color" name="color[]" multiple>
+                    <option value="red">Red</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="green">Green</option>
+                    <option value="blue">Blue</option>
+                    <option value="white">White</option>
+                    <option value="black">Black</option>
+                    <option value="orange">Orange</option>
+                </select>
+            </div> -->
+        </div>
+        <div class="product_info">
+            <label for="display_name">Please provide a short display name of your product:</label>
+            <textarea name="pr_display_name" class="style-input" id="display_name" rows="5" cols="30" placeholder="Enter product name, brand, color, etc." required></textarea>
+        </div>
+        <div class="product_info">
+            <label for="pr_details" class="style-label">Please provide your product details:</label>
+            <textarea name="product_details" class="style-input" id="pr_details" rows="20" cols="50" placeholder="Enter your product name, brand, brief description of your product(dimensions, colors, size, uses, material, warranty, etc.), how to use, matters of attention and so on." required></textarea>
+        </div>
+        <div class="product_info">
+            <label for="price" class="style-label">Enter the Product Price:</label>
+            <input type="number" name="pr_price" class="style-input" id="price" required>
+        </div>
+        <div class="product_info">
+            <label for="pr_image" class="style-label">Please select at least one of your Product Images:</label>
+            <input type="file" class="style-input" name="product_img" id="pr_image" required>
+            <input type="file" class="style-input" name="product_img" id="pr_image">
+            <input type="file" class="style-input" name="product_img" id="pr_image">
+            <input type="file" class="style-input" name="product_img" id="pr_image">
+            <input type="file" class="style-input" name="product_img" id="pr_image">
+        </div>
+        <div class="product_info">
+            <label for="stock">Stock:</label>
+            <input type="number" class="style-input" id="stock" name="stock" placeholder="Enter the no. of products available in your stock">
+        </div>
+    </form>
+</body>
+
+</html>
