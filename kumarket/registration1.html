@@ -13,7 +13,8 @@
         <nav>
             <div class="nav-bar">
                 <div class="nav-container">
-                    <img class="nav-logo" src="https://kuma.io/assets/images/social/og-image-1200-630.jpg?cb=1730815037" alt="Logo" height="65" width="125px">
+                    <img class="nav-logo" src="https://kuma.io/assets/images/social/og-image-1200-630.jpg?cb=1730815037"
+                        alt="Logo" height="65" width="125px">
                     <ul class="nav-list">
                         <!-- Replace with the actual image URL -->
                         <li class="nav-items">Home</li>
@@ -21,7 +22,7 @@
                         <li class="nav-items">About</li>
                         <li class="nav-items">Contact</li>
                         <li class="nav-items">Account</li>
-                        
+
                     </ul>
                     <img class="cart"
                         src="https://png.pngtree.com/element_our/20190531/ourmid/pngtree-shopping-cart-convenient-icon-image_1287807.jpg"
@@ -34,11 +35,11 @@
     <main>
         <h2 id="main_heading">Sign Up To Become A Seller</h2>
         <div class="signup-container">
-            <form method="POST" class="form-grid">
-                <div class="full_width">
+            <form method="POST" name="myForm" class="form-grid" onsubmit="return formValidate()">
+                <div class="full_width" id="name">
                     <label class="block_label" for="name">Full Name:</label>
                     <input class="margin_left" type="text" id="name" name="fullname" placeholder="Enter Your Full Name"
-                        required autofocus>
+                        required autofocus> <b><span class="formerror"></span></b>
                     <!-- first name middle name last name, all caps or small or random -->
                 </div>
                 <div class="full_width">
@@ -104,5 +105,26 @@
         </div>
     </main>
 </body>
+
+<script>
+    function seterror(id, error) {
+        element = document.getElementById(id);
+        element.getElementsByClassName('formerror')[0].innerHTML = error;
+    }
+
+    function formValidate() {
+
+        var returnValue = true;
+
+        var name = document.forms['myForm']["fullname"].value;
+        if (name.length < 5) {
+            seterror("name", "*Invalid Length");
+            returnValue = false;
+        }
+
+        return returnValue;
+    }
+
+</script>
 
 </html>
