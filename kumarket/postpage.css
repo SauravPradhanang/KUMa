@@ -55,6 +55,125 @@ img.cart {
     mix-blend-mode: multiply;
 }
 
-ol{
-    list-style-position:inside;
+#main_heading {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    padding: 20px;
+    text-align: center;
+    /* box-shadow: 0px 0px 30px 1px rgba(255, 82, 59, 0.6); */
+}
+
+form {
+    max-width: 1200px;
+    margin-left: 340px;
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    gap: 30px 30px;
+}
+
+.style-label {
+    display: block;
+    font-weight: 900;
+    margin-bottom: 7px;
+    font-size: large;
+}
+
+#variant {
+    display: inline-block;
+}
+
+.variant-style {
+    margin-bottom: 7px;
+    display: block;
+    width: 40%;
+}
+
+input {
+    border: none;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(97, 97, 97, 0.1);
+    padding: 5px;
+    height: 45px;
+    font-size: medium;
+    width: 100%;
+}
+
+input:focus {
+    outline: none;
+    border-bottom-color: rgba(250, 92, 35, 1);
+    transition: border-bottom-color ease 200ms;
+}
+
+select {
+    border: none;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(97, 97, 97, 0.1);
+    padding: 5px;
+    height: 45px;
+    font-size: medium;
+}
+
+select:focus {
+    outline: none;
+    border-color: rgba(250, 92, 35, 1);
+    transition: border-color ease 200ms;
+}
+
+textarea {
+    border: none;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(97, 97, 97, 0.1);
+    padding: 5px;
+    /* height: 45px; */
+    font-size: medium;
+    width: 100%;
+}
+
+textarea:focus {
+    outline: none;
+    border-bottom-color: rgba(250, 92, 35, 1);
+    transition: border-bottom-color ease 200ms;
+
+}
+
+#price,
+#in_stock {
+    width: 40%;
+}
+
+.note {
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+ol {
+    list-style-position: inside;
+}
+
+.button {
+    font-size: 15px;
+    padding: 10px;
+    background-color: rgb(255, 82, 59);
+    border: none;
+    border-radius: 2px;
+}
+
+.add_button {
+    width: 70px;
+    margin-left: 9px;
+    /* padding-left: 15px; */
+    /* padding-right: 15px; */
+}
+
+.remove_button {
+    width: 70px;
+    margin-top: 7px;
+    margin-left: 0px;
 }

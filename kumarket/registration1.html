@@ -36,20 +36,22 @@
         <h2 id="main_heading">Sign Up To Become A Seller</h2>
         <div class="signup-container">
             <form method="POST" name="myForm" class="form-grid" onsubmit="return formValidate()">
-                <div class="full_width" id="name">
+                <div class="full_width" id="fename">
                     <label class="block_label" for="name">Full Name:</label>
                     <input class="margin_left" type="text" id="name" name="fullname" placeholder="Enter Your Full Name"
                         required autofocus> <b><span class="formerror"></span></b>
                     <!-- first name middle name last name, all caps or small or random -->
                 </div>
-                <div class="full_width">
+                <div class="full_width" id="eaddress">
                     <label class="block_label" for="address">Address:</label>
                     <input class="margin_left" type="text" id="address" name="address" placeholder="Enter your Address"
                         required>
+                    <span class="formerror"></span>
                 </div>
-                <div class="full_width">
+                <div class="full_width" id="enumber">
                     <label class="block_label" for="pnumber">Phone Number:</label>
                     <input class="margin_left" type="tel" id="pnumber" name="phoneno." min="0" max="9" required>
+                    <span class="formerror"></span>
                     <!-- country code, number length & verification -->
                 </div>
                 <div class="full_width">
@@ -58,44 +60,48 @@
                     <!-- validity & verification -->
                 </div>
                 <div class="full_width">
-                    <label class="block_label" for="usrname">Username:</label>
-                    <input class="margin_left" type="text" id="usrname" name="username"
-                        placeholder="Enter your Username" required>
-                    <!-- validity, matching usernames -->
-                </div>
-                <div class="full_width">
-                    <label class="block_label" for="pwd">Password:</label>
-                    <input class="margin_left" type="password" id="pwd" name="password"
-                        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
-                        placeholder="Enter your Password" required>
-                    <!-- general rules or patterns, show & hide option -->
-                </div>
-                <div class="full_width">
-                    <label class="block_label" for="confirm_pwd">Confirm Password:</label>
-                    <input class="margin_left" type="password" id="confirm_pwd" name="confirm_password"
-                        pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
-                        placeholder="Enter your Password" required>
-                    <!-- general rules or patterns, show & hide option & check matching with the given password-->
-                </div>
-                <div class="full_width">
                     <label for="bank_name" class="block_label">Name of the Bank:</label>
                     <input class="margin_left" type="text" id="bank_name" required>
                 </div>
                 <div class="full_width">
-                    <label for="bank_branch" class="block_label">Branch:</label>
-                    <select required>
-                        <option>Kathmandu</option>
-                        <option>Kathmandu</option>
-                        <option>Kathmandu</option>
-                    </select>
-                </div>
-                <div class="full_width">
                     <label for="acc_holder_name" class="block_label">Account Holder Name:</label>
-                    <input type="text" class="margin_left" id="acc_holder_name" required>
+                    <input type="text" class="margin_left" id="acc_holder_name" name="acc_holder_name" required>
                 </div>
-                <div class="full_width">
+                <div class="full_width" id="eaccno">
                     <label for="acc_no." class="block_label">Bank Account Number:</label>
-                    <input type="number" class="margin_left" id="acc_no." required>
+                    <input type="number" class="margin_left" id="acc_no." name="acc_no." required>
+                    <span class="formerror"></span>
+                </div>
+                <div class="full_width" id="eusername">
+                    <label class="block_label" for="usrname">Username:</label>
+                    <input class="margin_left" type="text" id="usrname" name="username"
+                        placeholder="Enter your Username" required>
+                    <span class="formerror"></span>
+                    <!-- validity, matching usernames -->
+                </div>
+                <div class="full_width" id="epassword">
+                    <label class="block_label" for="pwd">Password:</label>
+                    <input class="margin_left" type="password" id="pwd" name="password"
+                        placeholder="Enter your Password" required>
+                    <span class="formerror"></span>
+                    <div class="note">
+                        Password must contain the following format:
+                        <ol type="1">
+                            <li>At least 8 characters long.</li>
+                            <li>At least one captial alphabet [A-Z].</li>
+                            <li>At least one small alphabet [a-z].</li>
+                            <li>At least one number.</li>
+                            <li>At least one special characters [!, @, #, $, %, ^, &, *]</li>
+                        </ol>
+                    </div>
+                    <!-- general rules or patterns, show & hide option -->
+                </div>
+                <div class="full_width" id="econfpassword">
+                    <label class="block_label" for="confirm_pwd">Confirm Password:</label>
+                    <input class="margin_left" type="password" id="confirm_pwd" name="confirm_password"
+                        placeholder="Enter your Password" required>
+                    <span class="formerror"></span>
+                    <!-- general rules or patterns, show & hide option & check matching with the given password-->
                 </div>
                 <div class="grid-full">
                     <button onclick="" class="button" name="submit">Sign Up</button>
@@ -106,25 +112,6 @@
     </main>
 </body>
 
-<script>
-    function seterror(id, error) {
-        element = document.getElementById(id);
-        element.getElementsByClassName('formerror')[0].innerHTML = error;
-    }
-
-    function formValidate() {
-
-        var returnValue = true;
-
-        var name = document.forms['myForm']["fullname"].value;
-        if (name.length < 5) {
-            seterror("name", "*Invalid Length");
-            returnValue = false;
-        }
-
-        return returnValue;
-    }
-
-</script>
+<script src="registration.js" type="text/javascript"></script>
 
 </html>
