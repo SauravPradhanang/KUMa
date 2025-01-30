@@ -134,8 +134,15 @@ input:focus {
     width: 100%;
     font-size: 15px;
     padding: 10px;
+    border: 2.5px solid black;
+    border-radius: 3px;
     background-color: rgb(255, 82, 59);
-    border: none;
+}
+
+.button:active {
+    color: white;
+    border-color: rgb(255, 82, 59);
+    transition: color border-color ease-out 300ms;
 }
 
 ol {

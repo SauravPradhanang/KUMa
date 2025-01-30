@@ -105,19 +105,19 @@ ul {
     padding: 15px;
     margin-bottom: 7px;
     border-radius: 3px;
-    background-color: rgba(97, 97, 97, 0.1);
     font-size: large;
-}
-
-.style-aside-nav:active {
-    /* color: rgba(250, 92, 35, 1); */
-    background-color: rgba(250, 92, 35, 1);
-    transition: background-color ease-out 250ms;
+    font-weight: 600;
 }
 
 .style-aside-nav:hover {
     color: rgba(250, 92, 35, 1);
     cursor: pointer;
+}
+
+.style-aside-nav:active {
+    color: black;
+    transition: color ease-out 450ms;
+    background-color: rgba(97, 97, 97, 0.1);
 }
 
 .main-container {
@@ -160,6 +160,7 @@ ul {
     display: block;
     margin-bottom: 7px;
     font-size: large;
+    font-weight: 600;
 }
 
 
@@ -200,16 +201,21 @@ ol {
     width: 70px;
     padding: 10px;
     margin-bottom: 7px;
-    border: none;
+    display: inline-block;
+    border: 2.5px solid black;
+    border-radius: 3px;
     background-color: rgb(255, 82, 59);
     font-size: 15px;
+    /* border: none; */
+}
+
+.button:active {
+    color: white;
+    border-color: rgb(255, 82, 59);
+    transition: color border-color ease-out 300ms;
 }
 
 .button-margin {
-    margin-top: 30px;
+    /* margin-top: 30px; */
     margin-right: 20px;
-}
-
-.footer-container {
-    grid-area: foot;
 }

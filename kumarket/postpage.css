@@ -74,9 +74,9 @@ form {
 
 .style-label {
     display: block;
-    font-weight: 900;
     margin-bottom: 7px;
     font-size: large;
+    font-weight: 900;
 }
 
 #variant {
@@ -162,8 +162,15 @@ ol {
     font-size: 15px;
     padding: 10px;
     background-color: rgb(255, 82, 59);
-    border: none;
-    border-radius: 2px;
+    border: 2.5px solid black;
+    border-radius: 3px;
+    /* border-radius: 2px; */
+}
+
+.button:active {
+    color: white;
+    border-color: rgb(255, 82, 59);
+    transition: color border-color ease-out 300ms;
 }
 
 .add_button {
@@ -174,7 +181,7 @@ ol {
 }
 
 .remove_button {
-    width: 70px;
+    width: 80px;
     margin-top: 7px;
     margin-bottom: 7px;
     margin-left: 0px;
