@@ -64,12 +64,12 @@ img.cart {
 }
 
 form {
+    /* border: 2px solid red; */
     max-width: 1200px;
     margin-left: 340px;
-    /* border: 2px solid red; */
     display: flex;
     flex-direction: column;
-    gap: 30px 30px;
+    gap: 30px;
 }
 
 .style-label {
@@ -122,6 +122,7 @@ select:focus {
     outline: none;
     border-color: rgba(250, 92, 35, 1);
     transition: border-color ease 200ms;
+    color: rgba(250, 92, 35, 1);
 }
 
 textarea {
@@ -175,5 +176,6 @@ ol {
 .remove_button {
     width: 70px;
     margin-top: 7px;
+    margin-bottom: 7px;
     margin-left: 0px;
 }

@@ -1,12 +1,13 @@
-var counter = 1; // Counter to keep track of the number of repeated elements
+var counter = 0; // Counter to keep track of the number of repeated elements
 
 // Definition of function to add more input fields
 function addMore() {
     // Create a new HTML element (e.g., an input field)
     var newElement = document.createElement('div');
 
+    // console.log(counter);
     // Set attribute id = variant + counter
-    newElement.setAttribute('id', 'variant' + counter);
+    newElement.setAttribute('id', 'variant' + ++counter);
 
     // Set the innerHTML of the new element
     newElement.innerHTML = `
@@ -21,8 +22,9 @@ function addMore() {
     var container = document.getElementById('variant_div');
     container.appendChild(newElement);
 
-    // Increment the counter for the next element
-    counter++;
+    // Increase the counter for the next element
+    // counter++;
+    console.log(counter);
 }
 
 // Definition of function to remove to input fields
@@ -31,6 +33,9 @@ function remove(counter) {
     var elementToremove = document.getElementById('variant' + counter);
     // Implementation of JS function 'remove()' to remove the entire element from DOM.
     elementToremove.remove();
+
+    counter--;
+    console.log(counter);
 }
 
 function seterror(id, error) {
