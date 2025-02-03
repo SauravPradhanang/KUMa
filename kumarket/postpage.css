@@ -35,9 +35,6 @@
     cursor: pointer;
 }
 
-.nav-list {}
-
-/* border: 2px solid red; */
 .nav-items {
     display: inline-block;
     margin-right: 20px;

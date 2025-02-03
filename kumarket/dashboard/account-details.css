@@ -38,8 +38,6 @@
     cursor: pointer;
 }
 
-.nav-list {}
-
 /* border: 2px solid red; */
 .nav-items {
     display: inline-block;
@@ -148,12 +146,6 @@ ul {
 
 .full_width>* {
     width: 100%;
-}
-
-.div_margin {
-    /* border: 2px solid red; */
-    /* margin-top: 15px; */
-    /* margin-bottom: 15px; */
 }
 
 .block_label {
