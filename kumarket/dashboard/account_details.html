@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Account</title>
-    <link rel="stylesheet" href="dashboard.css">
+    <title>Account</title>
+    <link rel="stylesheet" href="account-details.css">
 </head>
 
 <body>
@@ -17,12 +17,11 @@
                         alt="Logo" height="65" width="125px">
                     <ul class="nav-list">
                         <!-- Replace with the actual image URL -->
-                        <li class="nav-items">Home</li>
-                        <li class="nav-items">Products</li>
-                        <li class="nav-items">About</li>
-                        <li class="nav-items">Contact</li>
-                        <li class="nav-items">Account</li>
-
+                        <li class="nav-items"><a href="main.html">Home</a></li>
+                        <li class="nav-items"><a href="product.html">Products</a></li>
+                        <li class="nav-items"><a href="">About</a></li>
+                        <li class="nav-items"><a href="">Contact</a></li>
+                        <li class="nav-items"><a href="account.html">Account</a></li>
                     </ul>
                     <img class="cart"
                         src="https://png.pngtree.com/element_our/20190531/ourmid/pngtree-shopping-cart-convenient-icon-image_1287807.jpg"
@@ -39,8 +38,8 @@
             <!-- Account Details -->
             <!-- Product Details -->
             <ul class="aside-nav">
-                <li class="style-aside-nav"><a>Account Details</a></li>
-                <li class="style-aside-nav"><a>Product Details</a></li>
+                <li class="style-aside-nav"><a href="account_details.html">Account Details</a></li>
+                <li class="style-aside-nav"><a href="product-dashboard.html">Product Details</a></li>
             </ul>
         </aside>
         <main class="main-container">
@@ -119,8 +118,10 @@
                     <!-- general rules or patterns, show & hide option & check matching with the given password-->
                 </div>
                 <div>
-                    <button onclick="" class="button button-margin" name="save">Save</button>
-                    <button onclick="cancel_action()" type="reset" class="button button-bottom" name="cancel">Cancel</button>
+                    <div id="buttons">
+                        <!-- <button onclick="" class="button button-margin visible" name="save">Save</button> -->
+                        <!-- <button onclick="cancel_action()" type="reset" class="button button-bottom visible" name="cancel">Cancel</button> -->
+                    </div>
                 </div>
             </form>
         </main>

@@ -26,12 +26,15 @@
     padding-right: 20px;
     padding-top: 20px;
     max-width: 1300px;
-    /* margin: auto; */
 }
 
 .nav-logo {
     margin-right: auto;
     margin-left: 0px;
+}
+
+.nav-logo:hover {
+    cursor: pointer;
 }
 
 .nav-list {}
@@ -41,6 +44,24 @@
     display: inline-block;
     margin-right: 20px;
     list-style: none;
+}
+
+.nav-items {
+    cursor: pointer;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(255, 82, 59);
+}
+
+a:active {
+    color: black;
+    transition: color ease-out 150ms;
 }
 
 img.cart {
@@ -54,7 +75,6 @@ img.cart {
     filter: brightness(0.9) contrast(2.1);
     mix-blend-mode: multiply;
 }
-
 
 /* body { */
 /* background-image: url('background.jpg'); */
@@ -136,13 +156,19 @@ input:focus {
     padding: 10px;
     border: 2.5px solid black;
     border-radius: 3px;
-    background-color: rgb(255, 82, 59);
+    background: transparent;
+    /* background-color: rgb(255, 82, 59); */
+}
+
+.button:hover {
+    color: rgb(255, 82, 59);
+    border-color: rgb(255, 82, 59);
 }
 
 .button:active {
-    color: white;
-    border-color: rgb(255, 82, 59);
-    transition: color border-color ease-out 300ms;
+    color: black;
+    border-color: black;
+    transition: color border-color ease-out 150ms;
 }
 
 ol {
