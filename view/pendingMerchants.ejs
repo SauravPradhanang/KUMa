@@ -1,0 +1,56 @@
+<div class="container">
+    <h1 class="page-title">
+        Merchants to be page
+    </h1>
+
+    <div class="books-container">
+        <% merchantsPending.forEach((user)=>{ %>
+
+            <div class="users">
+
+                <h4 class="user-name">
+                    <%= user.name %>
+                </h4>
+                <h5 class="user-email">
+                    <%= user.email %>
+
+                </h5>
+                <img class="user-proof" src="<%= user.merchantProof %> " image-id="<%= user.id %>"
+                    alt="Picture of the bank details">
+
+                <button type="submit" name="action" id="<%= user.id %>" value="accept">Make Merchant</button>
+                <button type="submit" name="action" id="<%= user.id %>" value="decline">Decline request</button>
+            </div>
+
+            <% }) %>
+    </div>
+</div>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.deliver-button').forEach(button => {
+            button.addEventListener('click', async function (event) {
+                event.stopPropagation(); // Prevent parent handlers from interfering
+                event.preventDefault(); // Prevent the default form submission
+
+                const clickedButton = event.submitter; // Get the button that was clicked
+                const id = clickedButton.getAttribute('id');
+                const action = clickedButton.value; // Retrieve the value (accept or decline)
+
+                const response = await fetch('/admin/merchant-requests', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action, id }) // Send the action value in the body
+                });
+
+                //const result = await response.json();
+                //console.log(result); // Handle response
+                if (res.ok) {
+                    window.location.href = `/admin/merchant-requests`;
+                }
+            });
+        });
+    });
+
+</script>

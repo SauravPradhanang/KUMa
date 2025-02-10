@@ -1,0 +1,60 @@
+<div class="container">
+    <h1 class="page-title">
+        Pendingorders
+    </h1>
+
+    <div class="books-container">
+        <% ordersPending.forEach((order)=>{ %>
+            
+                <div class="orders">
+
+                    <h4 class="user-name">
+                        <%= order.user.name %>
+                    </h4>
+                   
+                    <% order.orderItems.forEach((orderItem)=>{ %>
+                        <h3><%= orderItem.product.name %></h3>
+                        <p><%= orderItem.product.richDescription %></p>
+                        <h4><%= orderItem.quantity %></h4>
+                    <% }) %>
+
+                    <h3><%= order.totalPrice %></h3>
+
+                    <button type="submit" name="action" id="<%= order.id %>" value="delivered" class="deliver-button">Deliver</button>
+
+                </div>
+           
+            <% }) %>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.deliver-button').forEach(button => {
+            button.addEventListener('click', async function (event) {
+                event.stopPropagation(); // Prevent parent handlers from interfering
+                event.preventDefault(); // Prevent the default form submission
+
+                const clickedButton = event.target; // Get the button that was clicked
+                const id = clickedButton.getAttribute('id');
+                const action = clickedButton.value; // Retrieve the value
+
+                console.log(id);
+
+                const res = await fetch('/admin/order-requests', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action: action, id: id }) // Send the action value in the body
+                });
+
+                //const result = await response.json();
+                //console.log(result); // Handle response
+
+                if(res.ok){
+                window.location.href = `/admin/orders-requests`;
+                }
+            });
+        });
+
+    });
+</script>

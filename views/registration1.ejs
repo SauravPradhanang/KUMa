@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration page</title>
+    <link rel="stylesheet" href="../public/css/registration1.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="nav-bar">
+                <div class="nav-container">
+                    <img class="nav-logo" src="https://kuma.io/assets/images/social/og-image-1200-630.jpg?cb=1730815037"
+                        alt="Logo" height="65" width="125px">
+                    <ul class="nav-list">
+                        <!-- Replace with the actual image URL -->
+                        <li class="nav-items"><a href="main.html">Home</a></li>
+                        <li class="nav-items"><a href="product.html">Products</a></li>
+                        <li class="nav-items"><a href="">About</a></li>
+                        <li class="nav-items"><a href="">Contact</a></li>
+                        <li class="nav-items"><a href="account.html">Account</a></li>
+                    </ul>
+                    <img class="cart"
+                        src="https://png.pngtree.com/element_our/20190531/ourmid/pngtree-shopping-cart-convenient-icon-image_1287807.jpg"
+                        alt="cart" height="50" width="50">
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <h2 id="main_heading">Sign Up To Become A Seller</h2>
+        <div class="signup-container">
+            <form method="POST" name="myForm" class="form-grid" onsubmit="return formValidate()">
+                <div class="full_width" id="fename">
+                    <label class="block_label" for="name">Full Name:</label>
+                    <input class="margin_left" type="text" id="name" name="fullname" required autofocus>
+                    <span class="formerror"></span>
+                    <!-- first name middle name last name, all caps or small or random -->
+                </div>
+                <div class="full_width" id="eaddress">
+                    <label class="block_label" for="address">Address:</label>
+                    <input class="margin_left" type="text" id="address" name="address" required>
+                    <span class="formerror"></span>
+                </div>
+                <div class="full_width" id="enumber">
+                    <label class="block_label" for="pnumber">Phone Number:</label>
+                    <input class="margin_left" type="tel" id="pnumber" name="phoneno." min="0" max="9" required>
+                    <span class="formerror"></span>
+                    <div class="note">Note: You cannot enter your landline number.</div>
+                    <!-- country code, number length & verification -->
+                </div>
+                <div class="full_width">
+                    <label class="block_label" for="email">Email Address:</label>
+                    <input class="margin_left" type="email" id="email" name="email" required>
+                    <!-- validity & verification -->
+                </div>
+                <div class="full_width">
+                    <label for="bank_name" class="block_label">Name of the Bank:</label>
+                    <input class="margin_left" type="text" id="bank_name" required>
+                </div>
+                <div class="full_width">
+                    <label for="acc_holder_name" class="block_label">Account Holder Name:</label>
+                    <input type="text" class="margin_left" id="acc_holder_name" name="acc_holder_name" required>
+                </div>
+                <div class="full_width" id="eaccno">
+                    <label for="acc_no." class="block_label">Bank Account Number:</label>
+                    <input type="number" class="margin_left" id="acc_no." name="acc_no." required>
+                    <span class="formerror"></span>
+                </div>
+                <div class="full_width" id="eusername">
+                    <label class="block_label" for="usrname">Username:</label>
+                    <input class="margin_left" type="text" id="usrname" name="username" required>
+                    <span class="formerror"></span>
+                    <!-- validity, matching usernames -->
+                </div>
+                <div class="full_width" id="epassword">
+                    <label class="block_label" for="pwd">Password:</label>
+                    <input class="margin_left" type="password" id="pwd" name="password" required>
+                    <span class="formerror"></span>
+                    <div class="note">
+                        Password must contain the following format:
+                        <ol type="1">
+                            <li>At least 8 characters long.</li>
+                            <li>At least one captial alphabet [A-Z].</li>
+                            <li>At least one small alphabet [a-z].</li>
+                            <li>At least one number.</li>
+                            <li>At least one special characters [!, @, #, $, %, ^, &, *]</li>
+                        </ol>
+                    </div>
+                    <!-- general rules or patterns, show & hide option -->
+                </div>
+                <div class="full_width" id="econfpassword">
+                    <label class="block_label" for="confirm_pwd">Confirm Password:</label>
+                    <input class="margin_left" type="password" id="confirm_pwd" name="confirm_password" required>
+                    <span class="formerror"></span>
+                    <!-- general rules or patterns, show & hide option & check matching with the given password-->
+                </div>
+                <div class="grid-full">
+                    <button onclick="" class="button" name="submit">Sign Up</button>
+                    <!-- <button onclick="" class="button_style" name="reset">Reset</button> -->
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+
+<script src="formValidation.js" type="text/javascript"></script>
+
+</html>

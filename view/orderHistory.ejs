@@ -1,0 +1,28 @@
+<div class="container">
+    <h1 class="page-title">
+        Your Order History
+    </h1>
+    <div class="books-container">
+        <% orders.forEach((order)=>{ %>
+            <div class="card">
+                <h5><%= order.dateOrdered.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></h5>
+                
+                <% if(order.status=== 'Pending'){ %>
+                    <h2>This order is being processed. Please hold patience.</h2>
+                    <% } else { %>
+                    <h2>This order has been posted.</h2>
+                <% } %>
+                        
+                <% order.orderItems.forEach((orderItem)=>{ %>
+                    <h3><%= orderItem.product.name %></h3>
+                    <p><%= orderItem.product.richDescription %></p>
+                    <h4><%= orderItem.quantity %></h4>
+                <% }) %>
+                <h4><%= order.totalPrice %></h4>
+                <br>
+            </div>
+            <% }) %>
+    </div>
+    <form action="/orders/" method="get"><button type="submit">Place Order</button></form>
+
+</div>

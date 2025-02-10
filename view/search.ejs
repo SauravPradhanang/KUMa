@@ -1,0 +1,151 @@
+<link rel="stylesheet" href="../public/css/stylesheet.css">
+
+<div class="container">
+    <h1> Search</h1>
+
+    <div style="position: relative;">
+    <form action="/products/search" method="get" id="searchForm">
+        <input type="text" name="q" id="searchInput" placeholder="Search products" autocomplete="off"
+            value="<%= searchQuery %>" />
+        <ul id="autocompleteResults" class="autocom">
+            <% autocompleteSuggestions.forEach(function(suggestion) { %>
+                <li>
+                    <div class="autocom-name" name="<%= suggestion.name %>">
+                    <%= suggestion.name %>
+                    
+                    </div>
+                </li>
+                <% }) %>
+        </ul>
+        <button type="submit" style="">Search</button>
+    </form>
+    </div>
+
+    <ul>
+        <% products.forEach(function(product) { %>
+            <li>
+                <h3>
+                    <%= product.name %>
+                </h3>
+                <p>Category: <%= product.category.name %>
+                </p>
+                <p>Description: <%= product.richDescription %>
+                </p>
+               
+            </li>
+            <% }) %>
+    </ul>
+
+    <div>
+        <% if (currentPage> 1) { %>
+            <a href="/products/search?q=<%= searchQuery %>&page=<%= currentPage - 1 %>&limit=<%= limit %>">Previous</a>
+            <% } %>
+                <span>Page <%= currentPage %> of <%= totalPages %></span>
+                <% if (currentPage < totalPages) { %>
+                    <a
+                        href="/products/search?q=<%= searchQuery %>&page=<%= currentPage + 1 %>&limit=<%= limit %>">Next</a>
+                    <% } %>
+    </div>
+</div>
+
+<script>
+    // Autocomplete functionality for the search input
+    const searchInput = document.getElementById("searchInput");
+    const autocompleteResults = document.getElementById("autocompleteResults");
+
+    searchInput.addEventListener("input", function () {
+        const query = searchInput.value.toLowerCase();
+        autocompleteResults.innerHTML = '';
+
+        if (query) {
+            
+            fetch(`/products/autocomplete?q=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    data.autocompleteSuggestions.forEach(suggestion => {
+                        const li = document.createElement("li");
+                        li.textContent = suggestion;
+                        autocompleteResults.appendChild(li);
+                    });
+                });
+
+        }
+    });
+
+
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const searchInput = document.getElementById("searchInput");
+    const autocompleteResults = document.getElementById("autocompleteResults");
+  
+    // Show dropdown when input is focused
+    searchInput.addEventListener("focus", () => {
+      autocompleteResults.style.display = "block";
+    });
+  
+    // Hide dropdown when clicking outside
+    document.addEventListener("click", (event) => {
+      if (!searchInput.contains(event.target) && !autocompleteResults.contains(event.target)) {
+        autocompleteResults.style.display = "none";
+      }
+    });
+  
+    // Show dropdown when typing
+    searchInput.addEventListener("input", () => {
+      autocompleteResults.style.display = "block";
+    });
+
+    //for the searcher to load the product itslef form the autocompleter.
+/*
+    const products= document.querySelectorAll('.autocom-name');
+
+    products.forEach(product=>{
+        product.addEventListener('click', async (event)=>{
+            event.stopPropagation(); // Prevent parent handlers from interfering
+            console.log('Product clicked!');
+            const clickedProduct= event.target;
+
+            const id = clickedProduct.getAttribute('product-id');
+
+            try{
+                    const res= await fetch('/products/${id}', {
+                    method: 'GET',
+                    });
+            }
+            catch(err){
+                console.log(err);
+            }
+            
+        });
+    });
+*/
+const products= document.querySelectorAll('.autocom-name');
+const searchForm = document.getElementById('searchForm');
+
+    products.forEach(product=>{
+        product.addEventListener('click', async (event)=>{
+            event.stopPropagation(); // Prevent parent handlers from interfering
+            console.log('Product clicked!');
+            const clickedProduct= event.target;
+
+           const name = clickedProduct.getAttribute('name');
+           //const name = clickedProduct.textContent.trim();
+
+            try{
+                    searchInput.value= name;
+
+                    //auto submit the clicked result.
+                    searchForm.submit();
+            }
+            catch(err){
+                console.log(err);
+            }
+            
+        });
+    });
+
+
+  });
+</script>

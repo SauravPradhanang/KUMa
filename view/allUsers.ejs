@@ -1,0 +1,41 @@
+<div class="container">
+    <h1 class="page-title">
+        Users page
+    </h1>
+    <form action="/admin/users-flagging" id="usersForm">
+    <div class="books-container">
+        <% users.forEach((user)=>{ %>
+            <div class="card">
+               <h3><%= user.name %></h3>
+               <h4><%= user.email %></h4>
+               <button type="submit" name="action" id="<%= user.id %>" value="warning">Send a warning!</button>
+               <button type="submit" name="action" id="<%= user.id %>" value="blacklist">Blacklist</button>
+               <button type="submit" name="action" id="<%= user.id %>" value="remove-ban">Allow back!</button>
+
+            </div>
+            <% }) %>
+    </div>
+    </form>
+</div>
+
+
+<script>
+
+    document.getElementById('usersForm').addEventListener('submit', async function(event) {
+        event.preventDefault(); // Prevent the default form submission
+    
+        const clickedButton = event.submitter; // Get the button that was clicked
+        const id= clickedButton.getAttribute('id');
+        const action = clickedButton.value; // Retrieve the value (accept or decline)
+    
+        const response = await fetch('/admin/users-flagging', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action, id }) // Send the action value in the body
+        });
+    
+        const result = await response.json();
+        console.log(result); // Handle response
+    });
+       
+</script>

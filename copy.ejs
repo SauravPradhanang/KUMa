@@ -1,0 +1,74 @@
+<link rel="stylesheet" href="../public/css/stylesheet.css">
+
+<div class="container">
+    <h1> Search</h1>
+
+    <form action="/products/search" method="get">
+        <input type="text" name="q" id="searchInput" placeholder="Search products" autocomplete="off"
+            value="<%= searchQuery %>" />
+        <ul id="autocompleteResults">
+            <% autocompleteSuggestions.forEach(function(suggestion) { %>
+                <li>
+                    <div class="autocom-img-box">  <img class="autocom-img" src="<%= suggestion.image %>" image-id="<%= suggestion._id %>" alt="Picture of the product"/></div>
+            
+                    <%= suggestion %>
+                </li>
+                <% }) %>
+        </ul>
+        <button type="submit">Search</button>
+    </form>
+
+    <ul>
+        <% products.forEach(function(product) { %>
+            <li>
+                <h3>
+                    <%= product.name %>
+                </h3>
+                <p>Category: <%= product.category.name %>
+                </p>
+                <p>Description: <%= product.richDescription %>
+                </p>
+               
+            </li>
+            <% }) %>
+    </ul>
+
+    <div>
+        <% if (currentPage> 1) { %>
+            <a href="/products/search?q=<%= searchQuery %>&page=<%= currentPage - 1 %>&limit=<%= limit %>">Previous</a>
+            <% } %>
+                <span>Page <%= currentPage %> of <%= totalPages %></span>
+                <% if (currentPage < totalPages) { %>
+                    <a
+                        href="/products/search?q=<%= searchQuery %>&page=<%= currentPage + 1 %>&limit=<%= limit %>">Next</a>
+                    <% } %>
+    </div>
+</div>
+
+<script>
+    // Autocomplete functionality for the search input
+    const searchInput = document.getElementById("searchInput");
+    const autocompleteResults = document.getElementById("autocompleteResults");
+
+    searchInput.addEventListener("input", function () {
+        const query = searchInput.value.toLowerCase();
+        autocompleteResults.innerHTML = '';
+
+        if (query) {
+            
+            fetch(`/products/autocomplete?q=${query}`)
+                .then(response => response.json())
+                .then(data => {
+                    data.autocompleteSuggestions.forEach(suggestion => {
+                        const li = document.createElement("li");
+                        li.textContent = suggestion;
+                        autocompleteResults.appendChild(li);
+                    });
+                });
+
+        }
+    });
+
+
+    // <img class="list-img" src="<%= product.image %>" image-id="<%= product._id %>" alt="Picture of the product">
+</script>

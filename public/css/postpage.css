@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Faculty+Glyphic&display=swap');
+
+* {
+    /* border: 1px solid red; */
+    padding: 0px;
+    font-family: 'Faculty Glyphic', sans-serif;
+    box-sizing: border-box;
+}
+
+/* design: parent to children */
+
+/* div.nav-logo { */
+/* border: 2px solid red; */
+/* display: flex; */
+/* justify-content: left; */
+/* width: 120px; */
+/* mix-blend-mode: multiply; */
+/* opacity: 1.8; */
+/* filter: brightness(0.9) contrast(2.1); */
+/* } */
+
+.nav-container {
+    display: flex;
+    margin: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    max-width: 1300px;
+    /* margin: auto; */
+}
+
+.nav-logo {
+    margin-right: auto;
+    margin-left: 0px;
+    cursor: pointer;
+}
+
+.nav-items {
+    display: inline-block;
+    margin-right: 20px;
+    list-style: none;
+}
+
+.nav-items:hover {
+    cursor: pointer;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(255, 82, 59);
+}
+
+a:active {
+    color: black;
+    transition: color ease-out 150ms;
+}
+
+img.cart {
+    background: linear-gradient(180deg, #fce4ec, #f8dede);
+    /* Match your page gradient */
+    border-radius: 50%;
+    /* Optional for a circular style */
+    padding: 5px;
+    /* Adds spacing */
+    opacity: 1.8;
+    filter: brightness(0.9) contrast(2.1);
+    mix-blend-mode: multiply;
+}
+
+#main_heading {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    padding: 20px;
+    text-align: center;
+    /* box-shadow: 0px 0px 30px 1px rgba(255, 82, 59, 0.6); */
+}
+
+form {
+    /* border: 2px solid red; */
+    max-width: 1200px;
+    margin-left: 340px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.style-label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: large;
+    font-weight: 900;
+}
+
+#variant {
+    display: inline-block;
+}
+
+.variant-style {
+    margin-bottom: 7px;
+    display: block;
+    width: 40%;
+}
+
+input {
+    border: none;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(97, 97, 97, 0.1);
+    padding: 5px;
+    height: 45px;
+    font-size: medium;
+    width: 100%;
+}
+
+input:focus {
+    outline: none;
+    border-bottom-color: rgba(250, 92, 35, 1);
+    transition: border-bottom-color ease 200ms;
+}
+
+select {
+    border: none;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(97, 97, 97, 0.1);
+    padding: 5px;
+    height: 45px;
+    font-size: medium;
+}
+
+select:focus {
+    outline: none;
+    border-color: rgba(250, 92, 35, 1);
+    transition: border-color ease 200ms;
+    color: rgba(250, 92, 35, 1);
+}
+
+textarea {
+    border: none;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(97, 97, 97, 0.1);
+    padding: 5px;
+    /* height: 45px; */
+    font-size: medium;
+    width: 100%;
+}
+
+textarea:focus {
+    outline: none;
+    border-bottom-color: rgba(250, 92, 35, 1);
+    transition: border-bottom-color ease 200ms;
+
+}
+
+#price,
+#in_stock {
+    width: 40%;
+}
+
+.note {
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
+ol {
+    list-style-position: inside;
+}
+
+.button {
+    font-size: 15px;
+    padding: 10px;
+    border: 2.5px solid black;
+    border-radius: 3px;
+    background: transparent;
+}
+
+.button:hover {
+    color: rgb(255, 82, 59);
+    border-color: rgb(255, 82, 59);
+}
+
+.button:active {
+    color: black;
+    border-color: black;
+    transition: color border-color ease-out 150ms;
+}
+
+.add_button {
+    width: 70px;
+    margin-left: 9px;
+    /* padding-left: 15px; */
+    /* padding-right: 15px; */
+}
+
+.remove_button {
+    width: 80px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    margin-left: 0px;
+}
+
+.none {
+    display: none;
+}

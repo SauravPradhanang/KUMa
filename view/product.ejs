@@ -1,0 +1,7 @@
+<h1><%= product.name %></h1>
+<p><%= product.richDescription %></p>
+<img src="<%= product.image %>" alt="">
+<form action="/order-items/<%= product.id %>" method="post">
+    <input type="number" name="quantity">
+    <button type="submit" name="">Add to Cart</button>
+</form>

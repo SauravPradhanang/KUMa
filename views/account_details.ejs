@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+    <link rel="stylesheet" href="../public/css/account-details.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="nav-bar">
+                <div class="nav-container">
+                    <img class="nav-logo" src="https://kuma.io/assets/images/social/og-image-1200-630.jpg?cb=1730815037"
+                        alt="Logo" height="65" width="125px">
+                    <ul class="nav-list">
+                        <!-- Replace with the actual image URL -->
+                        <li class="nav-items"><a href="main.html">Home</a></li>
+                        <li class="nav-items"><a href="product.html">Products</a></li>
+                        <li class="nav-items"><a href="">About</a></li>
+                        <li class="nav-items"><a href="">Contact</a></li>
+                        <li class="nav-items"><a href="account.html">Account</a></li>
+                    </ul>
+                    <img class="cart"
+                        src="https://png.pngtree.com/element_our/20190531/ourmid/pngtree-shopping-cart-convenient-icon-image_1287807.jpg"
+                        alt="cart" height="50" width="50">
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="grid-container">
+        <div class="dashboard-header">
+            <h2 class="dashboard-heading">User Dashboard</h2>
+        </div>
+        <aside class="aside-container">
+            <!-- Account Details -->
+            <!-- Product Details -->
+            <ul class="aside-nav">
+                <li class="style-aside-nav"><a href="account_details.html">Account Details</a></li>
+                <li class="style-aside-nav"><a href="product-dashboard.html">Product Details</a></li>
+            </ul>
+        </aside>
+        <main class="main-container">
+            <h2 id="main_heading">Edit Your Account Details</h2>
+            <div class="div-button">
+                <button onclick="edit()" type="button" class="button" name="edit">Edit</button>
+            </div>
+            <form method="POST" name="myForm" class="form-grid" onsubmit="return formValidate()">
+                <div class="full_width div_margin" id="fename">
+                    <label class="block_label" for="name">Full Name:</label>
+                    <input class="margin_left" type="text" id="name" name="fullname" value="abc" required readonly>
+                    <div class="formerror"></div>
+                    <!-- first name middle name last name, all caps or small or random -->
+                </div>
+                <div class="full_width div_margin" id="eaddress">
+                    <label class="block_label" for="address">Address:</label>
+                    <input class="margin_left" type="text" id="address" name="address" value="abc" required readonly>
+                    <div class="formerror"></div>
+                </div>
+                <div class="full_width div_margin" id="enumber">
+                    <label class="block_label" for="pnumber">Phone Number:</label>
+                    <input class="margin_left" type="tel" id="pnumber" name="phoneno." value="0000000000" required
+                        readonly>
+                    <div class="formerror"></div>
+                    <div class="note">Note: You cannot enter your landline number.</div>
+                    <!-- country code, number length & verification -->
+                </div>
+                <div class="full_width div_margin">
+                    <label class="block_label" for="email">Email Address:</label>
+                    <input class="margin_left" type="email" id="email" name="email" value="abc@gmail.com" required
+                        readonly>
+                    <!-- validity & verification -->
+                </div>
+                <div class="full_width div_margin">
+                    <label for="bank_name" class="block_label">Name of the Bank:</label>
+                    <input class="margin_left" type="text" id="bank_name" value="abc" required readonly>
+                </div>
+                <div class="full_width div_margin">
+                    <label for="acc_holder_name" class="block_label">Account Holder Name:</label>
+                    <input type="text" class="margin_left" id="acc_holder_name" name="acc_holder_name" value="abc"
+                        required readonly>
+                </div>
+                <div class="full_width div_margin" id="eaccno">
+                    <label for="acc_no." class="block_label">Bank Account Number:</label>
+                    <input type="number" class="margin_left" id="acc_no." name="acc_no." value="00000000000" required
+                        readonly>
+                    <div class="formerror"></div>
+                </div>
+                <div class="full_width div_margin" id="eusername">
+                    <label class="block_label" for="usrname">Username:</label>
+                    <input class="margin_left" type="text" id="usrname" name="username" value="abc" required readonly>
+                    <div class="formerror"></div>
+                    <!-- validity, matching usernames -->
+                </div>
+                <div class="full_width div_margin" id="epassword">
+                    <label class="block_label" for="pwd">Password:</label>
+                    <input class="margin_left" type="password" id="pwd" name="password" value="abc" required readonly>
+                    <span class="formerror"></span>
+                    <div class="note">
+                        Password must contain the following format:
+                        <ol type="1">
+                            <li>At least 8 characters long.</li>
+                            <li>At least one captial alphabet [A-Z].</li>
+                            <li>At least one small alphabet [a-z].</li>
+                            <li>At least one number.</li>
+                            <li>At least one special characters [!, @, #, $, %, ^, &, *]</li>
+                        </ol>
+                    </div>
+                    <!-- general rules or patterns, show & hide option -->
+                </div>
+                <div class="full_width div_margin" id="econfpassword">
+                    <label class="block_label" for="confirm_pwd">Confirm Password:</label>
+                    <input class="margin_left" type="password" id="confirm_pwd" name="confirm_password" value="abc"
+                        required readonly>
+                    <div class="formerror"></div>
+                    <!-- general rules or patterns, show & hide option & check matching with the given password-->
+                </div>
+                <div>
+                    <div id="buttons">
+                        <!-- <button onclick="" class="button button-margin visible" name="save">Save</button> -->
+                        <!-- <button onclick="cancel_action()" type="reset" class="button button-bottom visible" name="cancel">Cancel</button> -->
+                    </div>
+                </div>
+            </form>
+        </main>
+    </div>
+
+</body>
+
+<script src="formValidation.js" type="text/javascript"></script>
+<script src="form.js" type="text/javascript"></script>
+
+</html>
