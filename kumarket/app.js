@@ -40,23 +40,27 @@ app.get('/', (req, res)=>{
 
 //add product form
 app.get('/upload', (req,res)=>{
-  res.render('addProduct');
+  res.render('postpage');
 })
-app.post('/upload', upload.array('image'), async (req,res)=>{
+app.post('/upload', upload.array('variant_img'), async (req,res)=>{
   try{
-    
+    console.log(req.body.variant_colorsize);
+    console.log(req.files);
    const newProduct = new Product({
-      productName: req.body.name,
-      productDescription: req.body.description,
-      Price: req.body.price,
-      Size: req.body.size,
-      Image:req.files
+    productName: req.body.product_name,
+    productDescription: req.body.product_details,
+    productPrice: req.body.product_price,
+    productCategory: req.body.product_category,
+    productVariant: req.body.variant_colorsize,
+    productImage: req.files,
+    productStock: req.body.product_stock
    })
    await newProduct.save();
    console.log(newProduct);
-   res.render('addProduct');
+   res.render('postpage');
   }
   catch(err){
+    console.log(err);
     res.status(500).json({ err: "Error saving data" });
   }
 })
@@ -79,7 +83,7 @@ app.get('/search', async (req,res)=>{
 app.get('/product/:id', async (req,res)=>{
     try {
         const fproduct = await Product.findById(req.params.id);
-        console.log(fproduct);
+        console.log(fproduct.productImage[0].filename);
         if (!fproduct) {
           return res.status(404).send("User not found");
         }

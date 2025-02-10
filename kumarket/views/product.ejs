@@ -44,8 +44,9 @@
         </div>
         <div class="row">
                 <% product.forEach((product)=>{%>
+                <a href="/product/<%=product._id%>"    
                 <div class="col4">
-                    <img src="/uploads/<%=product.Image[0].filename%>">
+                    <img src="/uploads/<%=product.productImage[0].filename%>">
                     <h4><%=product.productName%></h4>
                     <div class="rating">
                         <i class="fa fa-star"></i>

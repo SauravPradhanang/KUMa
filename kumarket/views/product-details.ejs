@@ -34,34 +34,26 @@
  <div class="smallcontainer single-product" >
     <div class="row">
         <div class="col2">
-            <img src="" width="100%" id="product-img" alt="1">
-            
+            <img src="/uploads/<%=product.productImage[0].filename%>" width="100%" id="product-img" alt="1">
             <div class="smallimg-row">
+                <%product.productImage.forEach((img)=>{%>
                 <div class="smallimg-col">
-                    <img src="https://i.pinimg.com/736x/71/b8/ec/71b8ecbd56f65eff79499da84e1517d5.jpg" width="100%" class="small-img" alt="">
+                    <img src="/uploads/<%=img.filename%>" width="100%" class="small-img" alt="">
                 </div>
-                <div class="smallimg-col">
-                    <img src="https://i.pinimg.com/474x/3b/59/9d/3b599d391592edd578336c093bb300b5.jpg" width="100%" class="small-img" alt="">
-                </div>
-                <div class="smallimg-col">
-                    <img src="https://i.pinimg.com/474x/24/0c/95/240c95cc145d42271573e3a7a9283a0d.jpg" width="100%" class="small-img" alt="">
-                </div>
-                <div class="smallimg-col">
-                    <img src="https://i.pinimg.com/474x/f8/b6/cf/f8b6cf07978e502e8185b7394e34383d.jpg" width="100%" class="small-img" alt="">
-                </div>
-            </div>
+                <%})%>
+        </div>
         </div>
         <div class="col2">
             <p>Home/T-shirt</p>
-            <h1><%=product.name%></h1>
-            <h4><%=product.price%></h4>
+            <h1><%=product.productName%></h1>
+            <h4><%=product.productPrice%></h4>
             <form action="/cart" method="post" class="prod"></form>
             <select>
-                <%product.size.forEach((size)=>{%>
-                    <option><%=size%></option>
+                <%product.productVariant.forEach((ColorSize)=>{%>
+                    <option><%=ColorSize%></option>
                 <%})%>                
             </select>
-            <input type="number" value="1">
+            <input type="number" value="0" max =<%=product.productStock%>>
             <a href="" class="btn">Add to Cart</a>
             <h3>Product Detail <i class="fa fa-indent"></i></h3>
             <br>
@@ -159,6 +151,8 @@
 
     <!-- -------------------java s for product breif--------------- -->
      <script>
+        let pr = <%=product>;
+        console.log(pr);
         var productimg=document.getElementById("product-img");
         var small_img=document.getElementsByClassName("small-img");
         //small_img is a array because of  many small imges

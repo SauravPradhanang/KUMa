@@ -45,6 +45,7 @@ a{
     min-width: 300px;
     position: relative;
     top: -88px;
+    margin: 10px;
 }
 
 .col2 img{
