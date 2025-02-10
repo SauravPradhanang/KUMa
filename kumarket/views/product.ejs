@@ -43,9 +43,10 @@
             </select>
         </div>
         <div class="row">
+                <% product.forEach((product)=>{%>
                 <div class="col4">
-                    <img src="https://assets.myntassets.com/h_1440,q_100,w_1080/v1/assets/images/27578922/2024/5/7/f1a33d9d-36ed-4ce4-875e-d8b34fe5414e1715066567499-Roadster-Men-Tshirts-2851715066567102-1.jpg" alt="men">
-                    <h4>Grey T-shirt</h4>
+                    <img src="/uploads/<%=product.Image[0].filename%>">
+                    <h4><%=product.productName%></h4>
                     <div class="rating">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
@@ -53,145 +54,10 @@
                         <i class="fa fa-star"></i>
                         <i class="fa-regular fa-star"></i>
                     </div>
-                    <p>5.00$</p>
+                    <p><%=product.Price%></p>
                 </div>
-                <div class="col4">
-                    <img src="https://www.hummel.fr/dw/image/v2/BDWL_PRD/on/demandware.static/-/Sites-hummel-master-catalog/default/dw580bbf91/images/model/215119-9001_A.png?sw=514&sh=685&q=80" alt="men">
-                    <h4>White T-shirt</h4>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                    <p>3.00$</p>
-                </div>
-                <div class="col4">
-                    <img src="https://mockey.ai/wp-content/uploads/sites/15/2024/04/indian-male-model-wearing-white-tshirt-posing-in-front-pink-background-00191-8-converted.webp" alt="men">
-                    <h4>Dark Grey T-shirt</h4>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                    <p>4.00$</p>
-                </div>
-                <div class="col4">
-                    <img src="https://pingpang.paris/a/l/en/cdn/shop/products/PingPang221416_800x.jpg?v=1666537303" alt="men">
-                    <h4>Cream T-shirt</h4>
-                    <div class="rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                    <p>5.00$</p>
-                </div>
-        </div>
-        <div class="row">
-            <div class="col4">
-                <img src="data:image/jpeg;base64,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" alt="men">
-                <h4>Gucci T-shirt</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <p>5.00$</p>
+                <%})%>
             </div>
-            <div class="col4">
-                <img src="https://5.imimg.com/data5/ANDROID/Default/2023/12/370653400/BF/VS/LW/196227462/product-jpeg.jpg" alt="men">
-                <h4>White Gucci T-shirt</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <p>3.00$</p>
-            </div>
-            <div class="col4">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo3zDyZZ92_X07mDpk6PUBtHNiEO1pbV1cxZ6SAGAV9DR8s1vWSbzagVatWyMhEPBcQV0&usqp=CAU" alt="men">
-                <h4>Dark  gucci Grey T-shirt</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <p>4.00$</p>
-            </div>
-            <div class="col4">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzzAIh1dCn-rQzrgxPAzpJiBTGnpePFB-WMw&s" alt="men">
-                <h4>Gucci shoes </h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
-                </div>
-                <p>995.00$</p>
-            </div>
-    </div>
-    <div class="row">
-        <div class="col4">
-            <img src="https://images-cdn.ubuy.co.in/634f36053a0be73b1f5ce41b-gucci-shoes-size-42.jpg" alt="men">
-            <h4>Premium lois shoes </h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-            </div>
-            <p>555.00$</p>
-        </div>
-        <div class="col4">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwC2yeKh_2bpLyYDkm62rA3ax16BPBewdJjA&s" alt="men">
-            <h4>lou voitton bag</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-            </div>
-            <p>3000.00$</p>
-        </div>
-        <div class="col4">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCKv3yT8BBxSa44RsZKXJPyWS9HW9ayNW9GA&s" alt="men">
-            <h4>Zara bag unlimit</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-            </div>
-            <p>400.00$</p>
-        </div>
-        <div class="col4">
-            <img src="https://static.zara.net/assets/public/f1cf/d2d7/a8f443cb9b4b/59029093a670/11261430600-e1/11261430600-e1.jpg?ts=1723445145259&w=824" alt="men">
-            <h4>Zara red</h4>
-            <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-            </div>
-            <p>500.00$</p>
-        </div>
-</div>
 <div class="pagebtn">
     <span>1</span>
     <span>2</span>

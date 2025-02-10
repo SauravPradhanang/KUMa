@@ -34,7 +34,7 @@
  <div class="smallcontainer single-product" >
     <div class="row">
         <div class="col2">
-            <img src="https://i.pinimg.com/736x/a2/19/84/a21984e8610e4a0ac0093dff637a37d1.jpg" width="100%" id="product-img" alt="1">
+            <img src="" width="100%" id="product-img" alt="1">
             
             <div class="smallimg-row">
                 <div class="smallimg-col">
@@ -53,15 +53,13 @@
         </div>
         <div class="col2">
             <p>Home/T-shirt</p>
-            <h1>white womoan shirt by HXR</h1>
-            <h4>$50.00</h4>
+            <h1><%=product.name%></h1>
+            <h4><%=product.price%></h4>
+            <form action="/cart" method="post" class="prod"></form>
             <select>
-                <option>Select Size</option>
-                <option>XXL</option>
-                <option>XL</option>
-                <option>Large</option>
-                <option>Medium</option>
-                <option>Small</option>
+                <%product.size.forEach((size)=>{%>
+                    <option><%=size%></option>
+                <%})%>                
             </select>
             <input type="number" value="1">
             <a href="" class="btn">Add to Cart</a>
