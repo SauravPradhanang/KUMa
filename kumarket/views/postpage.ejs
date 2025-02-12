@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Page</title>
+    <link rel="stylesheet" href="css/postpage.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="nav-bar">
+                <div class="nav-container">
+                    <img class="nav-logo" src="https://kuma.io/assets/images/social/og-image-1200-630.jpg?cb=1730815037"
+                        alt="Logo" height="65" width="125px">
+                    <ul class="nav-list">
+                        <!-- Replace with the actual image URL -->
+                        <li class="nav-items"><a href="/">Home</a></li>
+                        <li class="nav-items"><a href="/search">Products</a></li>
+                        <li class="nav-items"><a href="">About</a></li>
+                        <li class="nav-items"><a href="">Contact</a></li>
+                        <li class="nav-items"><a href="account.html">Account</a></li>
+                    </ul>
+                    <img class="cart"
+                        src="https://png.pngtree.com/element_our/20190531/ourmid/pngtree-shopping-cart-convenient-icon-image_1287807.jpg"
+                        alt="cart" height="50" width="50">
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <h2 id="main_heading">Add Your Products:</h2>
+        <form action="" name="addProductform" onsubmit="return Validate()" method="POST" enctype="multipart/form-data">
+
+            <div class="product_info" id="name_div">
+                <!-- name of the product server-side-name = "product_name", a required field-->
+                <label for="product_name" class="style-label">Name of the Product:</label>
+                <input type="text" class="style-input" id="product_name" name="product_name" required>
+            </div>
+            <div class="product_info">
+                <!-- this is for product category, server-side-name = "product_category" -->
+                <label for="product_category" class="style-label">Category:</label>
+                <select name="product_category" class="style-input" id="product_category" required>
+                    <option>Home Appliances</option>
+                    <option>Groceries</option>
+                    <option>Men's Clothing</option>
+                    <option>Women's Clothing</option>
+                    <option>Toddler's Clothing</option>
+                    <option>Electrical Devices</option>
+                    <option>Riding Essentials</option>
+                    <option>Baby Care Essentials</option>
+                    <option>Sports & Outdoor</option>
+                    <option>Accessories</option>
+                    <option>Pet Essentials</option>
+                </select>
+            </div>
+            <div class="product_info" id="variant_div">
+                <!-- this is to add different variants of product, at least one is required. -->
+                <label class="style-label" id="variant" for="add_button_variant">Variant:</label>
+                <button class="button add_button" type="button" onclick="addMoreVariant()">Add</button>
+                <div class="formerror"></div>
+                <!-- "addMore": function to create additional input fields, implementation in script tag. -->
+            </div>
+            <div class="product_info" id="image_div">
+                <!-- this is to add different variants of product, at least one is required. -->
+                <label class="style-label" id="variant" for="add_button_image">Image:</label>
+                <button class="button add_button" type="button" onclick="addMoreImage()">Add</button>
+                <div class="formerror"></div>
+                <!-- "addMore": function to create additional input fields, implementation in script tag. -->
+            </div>
+            <div class="product_info">
+                <!-- this is for product details, server-side-name = "product_details", required field -->
+                <label for="pr_details" class="style-label">Product Details:</label>
+                <textarea name="product_details" class="style-input" id="pr_details" rows="10" cols="50"
+                    required></textarea>
+                <div class="note">*Note: Enter your product name, brand, brief description of your product(dimensions,
+                    colors, size, uses, material, warranty, etc.), how to use, matters of attention and so on.</div>
+            </div>
+            <div class="product_info" id="tag_div">
+                <!-- this is for tags to enhance search implementation, server-side-name = "product_tags" -->
+                <label for="tags" class="style-label">Tags:</label>
+                <textarea name="product_tags" class="style-input" id="tags" rows="10" cols="50"></textarea>
+                <div class="formerror"></div>
+                <!-- note to the user to follow the instructions when creating tags. -->
+                <div class="note">*Note: Enter tags related to your product like color, model, brand name, etc. <br>
+                    Please follow the following instructions when entering tags:
+                    <ol type="1">
+                        <li>Enter the sign '#' before your tag names.</li>
+                        <li>Do not leave any space between the sign and your tag names.</li>
+                        <li>Enter as many tags as possible related to your products like your color, model name, brand
+                            name material, etc. This will increase your product visibility in the search content.</li>
+                        <li>Please leave a space before entering another tag.</li>
+                        <li>If there are multiple names in a single tag, separate them with the underscore sign '_'.
+                        </li>
+                        <li>Here are some examples of how your tag should look. <i>#color #brand_name #model_name,
+                                etc.</i></li>
+                    </ol>
+                </div>
+            </div>
+            <div class="product_info" id="price_div">
+                <!-- this is for price of the product, server-side-name = "pr_price", a required field -->
+                <label for="price" class="style-label">Enter the Product Price:</label>
+                <input type="number" name="product_price" class="style-input" id="price" step="0.1" required>
+                <span class="formerror"></span>
+            </div>
+            <div class="product_info" id="stock">
+                <!-- stock number, need to update itself afte the product decreases, server-side-name = "stock" -->
+                <label class="style-label" for="stock">Stock:</label>
+                <input type="number" class="style-input" id="in_stock" name="product_stock"
+                    placeholder="Enter the number of products in your stock" required>
+                <span class="formerror"></span>
+            </div>
+
+            <!-- button to submit the form or to add product to the search page. -->
+            <button class="button" onclick="">Add Product</button>
+        </form>
+    </main>
+</body>
+
+<!-- JS implementation -->
+<script src="javascript/postpage.js" type="text/javascript"></script>
+
+</html>
