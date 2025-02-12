@@ -46,18 +46,18 @@
         <div class="col2">
             <p>Home/T-shirt</p>
             <h1><%=product.productName%></h1>
-            <h4><%=product.productPrice%></h4>
+            <h4><%=product.productPrice.toLocaleString("en-IN")%></h4>
             <form action="/cart" method="post" class="prod"></form>
             <select>
                 <%product.productVariant.forEach((ColorSize)=>{%>
                     <option><%=ColorSize%></option>
                 <%})%>                
             </select>
-            <input type="number" value="0" max =<%=product.productStock%>>
-            <a href="" class="btn">Add to Cart</a>
+            <input type="number" id="itemAmount" name="itemAmount" value="0" min = 0 max =<%=product.productStock%>>
+            <button type="submit" name="cart" onclick=ValidateStock()>Add to Cart</button>
             <h3>Product Detail <i class="fa fa-indent"></i></h3>
             <br>
-            <p>Elevate your wardrobe with the White Woman Shirt by HXR, a timeless blend of elegance and versatility. Crafted with premium-quality fabric, this shirt is designed for both comfort and style, making it the perfect choice for any occasion—be it a casual outing or a sophisticated event. The crisp white color adds a touch of minimalistic charm, while the tailored fit ensures you look effortlessly polished. Available in multiple sizes, this shirt adapts seamlessly to your personal style. Pair it with jeans for a relaxed vibe or trousers for a professional look. Grab yours today for just $50.00 and redefine your style with simplicity and grace. Don't wait—click "Add to Cart" now and make it yours</p>
+            <p><%=product.productDescription%></p>
         </div>
     </div>
  </div>
@@ -151,7 +151,15 @@
 
     <!-- -------------------java s for product breif--------------- -->
      <script>
-        let pr = <%=product>;
+        var stock = parseInt('<%=product.productStock%>');
+        function ValidateStock(){
+            const amount = document.getElementById('itemAmount').value;
+            console.log(amount);
+            if(amount > stock){
+                alert(`Current available amount is ${stock}`);
+                return false;
+            }
+        }
         console.log(pr);
         var productimg=document.getElementById("product-img");
         var small_img=document.getElementsByClassName("small-img");
