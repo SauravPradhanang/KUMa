@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 const multer = require('multer');
 const Fuse= require('fuse.js');
 const userDecoder = require('../helpers/user-decoder');
+const { Review } = require('../models/review');
+const { Rating } = require('../models/rating');
 
 
 
@@ -23,6 +25,97 @@ const FILE_TYPE_MAP = {
     'image/jpeg': 'jpeg',
     'image/jpg': 'jpg'
 }
+
+router.post(`/rate/:id`, userDecoder ,async (req, res)=>{
+  const product = await Product.findById(req.params.id).populate('category', 'review');
+  //const ratedProduct= await Product.findById(req.params.id)
+
+  let ratingExists = await Rating.findOne({ product: req.params.id, user: req.userId}).populate('user');
+
+
+  const newRating= parseInt(req.body.rating, 10);
+
+  if(ratingExists){
+    ratingExists.rating= newRating;
+    await ratingExists.save();
+  }
+
+  else{
+
+        let ratingExists = new Rating({
+            product: product.id,
+            user: req.userId,
+            rating: newRating
+        })
+    
+        ratingExists = await ratingExists.save();
+        //order = await order.populate({ path: 'orderItems', populate: { path: 'product' } });
+  }
+  
+
+
+  const allRatings= await Rating.find({product: req.params.id, rating: { $ne: 0 }});
+  const numberOfRatings= allRatings.length;
+  console.log(numberOfRatings);
+
+ let ratingSum= 0;
+  allRatings.forEach(rating=>{
+    ratingSum+= rating.rating
+  })
+
+  const finalRating= ratingSum/numberOfRatings;
+
+  product.rating= finalRating;
+  product.numberOfRatings= numberOfRatings;
+
+  await product.save();
+
+  return res.send({rating: finalRating , numberOfRatings: numberOfRatings});
+  
+  /*res.render('product-details', {
+    product: product,
+    rating: ratingExists
+});
+*/
+})
+
+
+router.post(`/review/:id`, async (req, res)=>{
+  const product = await Product.findById(req.params.id).populate('category');
+
+  let reviewExists = await Review.findOne({ product: req.params.id, user: req.userId}).populate('user');
+  
+  const newReview= req.body.review;
+
+  if(reviewExists){
+    ratingExists.review= newReview;
+    await reviewExists.save();
+  }
+
+  else{
+
+        let reviewExists = new Review({
+            product: product.id,
+            user: req.userId,
+            review: newReview
+        })
+    
+        reviewExists = await reviewExists.save();
+        //order = await order.populate({ path: 'orderItems', populate: { path: 'product' } });
+  }
+
+  const reviews= await Review.find({product: req.params.id, review: { $ne: null, $ne: '' } }).populate('rating').sort({ updatedAt: -1 });
+   
+  product.numberOfReviews=reviews.length;
+  await product.save();
+
+  res.render('product-details', {
+    product: product,
+    userReview: reviewExists,
+    reviews: reviews
+});
+
+})
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -82,7 +175,7 @@ router.get("/search", async (req, res) => {
   });
   */
 
-  router.get('/')
+  //router.get('/')
 
   router.get("/autocomplete", async (req, res) => {
     try {
@@ -202,10 +295,12 @@ router.get(`/` ,async (req, res) =>{
 })
 
 
-router.get(`/:id`, async (req, res)=>{
+router.get(`/:id`, userDecoder ,async (req, res)=>{
   const product = await Product.findById(req.params.id).populate('category');
+  const rating= await Rating.findOne({user: req.userId, product: req.params.id});
+
   console.log(req.params.id);
-  res.render('product', {product: product});
+  res.render('product-details', {product: product, rating: rating});
 })
 /*
 router.get(`/:id`, (req, res)=>{

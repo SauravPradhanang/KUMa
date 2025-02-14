@@ -63,12 +63,26 @@ router.post('/merchant-request', userDecoder , async (req, res)=>{
 })
   
 router.get('/login', (req, res)=>{
-    res.render('login');
+    res.render('account');
 });
 
 router.get('/signup', (req, res)=>{
-    res.render('signup');
+    res.render('account');
 });
+
+router.post('/register', userDecoder ,async (req, res)=>{
+    const user = await User.findById(req.userId);
+
+    user.name= req.body.fullname;
+    user.street= req.body.address;
+    user.phone= req.body.phoneno;
+    user.bankname= req.body.bankname;
+    user.banknumber= req.body.acc_no;
+    user.merchantProof=
+    
+    user= await user.save();
+
+})
 
 router.post('/signup', async (req,res)=>{
     console.log('it is working');

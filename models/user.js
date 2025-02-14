@@ -70,6 +70,15 @@ const userSchema = new mongoose.Schema({
     googleID: {
         type: String,
         default: ''
+    },
+    bankname:
+    {
+        type: String,
+        default: ''
+    },
+    banknumber:{
+        type: Number,
+        default: 0
     }
 
 });

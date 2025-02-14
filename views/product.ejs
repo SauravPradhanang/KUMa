@@ -66,7 +66,7 @@
         <div class="row">
             <% products.forEach((product)=>{ %>
             <div class="col4">
-                <img src="<%= product.image %>" alt="men" image-id="<%= product.id %>" >
+                <img class="col4-img" src="<%= product.image %>" alt="men" image-id="<%= product.id %>" >
                 <h4><%= product.name %></h4>
                 <div class="rating">
                     <i class="fa fa-star"></i>
@@ -146,6 +146,47 @@
                 });
 
         }
+    });
+
+
+    //get to respective prodcuts:
+    document.addEventListener('DOMContentLoaded', () => {
+        const images = document.querySelectorAll('.col4-img');
+
+        images.forEach(image => {
+            image.addEventListener('click', async (event) => {
+                event.stopPropagation(); // Prevent parent handlers from interfering
+                console.log('Image clicked!');
+                const clickedImage = event.target;
+
+                const id = clickedImage.getAttribute('image-id');
+
+                /*
+                try {
+                    const res = await fetch(`/products/${id}`, {
+                        method: 'GET',
+                    });
+                    //res.render('product');
+
+                    // Handle the response, e.g. navigate to the book page
+                  if (res.ok) {
+                        window.location.href = `/products/${id}`;
+                    } else {
+                        console.error('Failed to load book details');
+                    }
+
+                */
+
+                try{
+                    window.location.href = `/products/${id}`;
+                }
+                catch (err) {
+                    console.log(err);
+                }
+
+            });
+        });
+
     });
 
 

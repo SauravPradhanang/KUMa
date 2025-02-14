@@ -34,7 +34,7 @@
     <main>
         <h2 id="main_heading">Sign Up To Become A Seller</h2>
         <div class="signup-container">
-            <form method="POST" name="myForm" class="form-grid" onsubmit="return formValidate()">
+            <form action="/users/register" method="POST" name="myForm" class="form-grid" onsubmit="return formValidate()">
                 <div class="full_width" id="fename">
                     <label class="block_label" for="name">Full Name:</label>
                     <input class="margin_left" type="text" id="name" name="fullname" required autofocus>
@@ -48,7 +48,7 @@
                 </div>
                 <div class="full_width" id="enumber">
                     <label class="block_label" for="pnumber">Phone Number:</label>
-                    <input class="margin_left" type="tel" id="pnumber" name="phoneno." min="0" max="9" required>
+                    <input class="margin_left" type="tel" id="pnumber" name="phoneno" min="0" max="9" required>
                     <span class="formerror"></span>
                     <div class="note">Note: You cannot enter your landline number.</div>
                     <!-- country code, number length & verification -->
@@ -60,7 +60,7 @@
                 </div>
                 <div class="full_width">
                     <label for="bank_name" class="block_label">Name of the Bank:</label>
-                    <input class="margin_left" type="text" id="bank_name" required>
+                    <input class="margin_left" type="text" id="bank_name" name="bankname" required>
                 </div>
                 <div class="full_width">
                     <label for="acc_holder_name" class="block_label">Account Holder Name:</label>
@@ -68,7 +68,7 @@
                 </div>
                 <div class="full_width" id="eaccno">
                     <label for="acc_no." class="block_label">Bank Account Number:</label>
-                    <input type="number" class="margin_left" id="acc_no." name="acc_no." required>
+                    <input type="number" class="margin_left" id="acc_no." name="acc_no" required>
                     <span class="formerror"></span>
                 </div>
                 <div class="full_width" id="eusername">

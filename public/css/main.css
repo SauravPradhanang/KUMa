@@ -127,6 +127,12 @@ img.cart {
     margin-bottom: 50px;
     transition:transform 0.5s;
 }
+.col4-img{
+    width: 105%;
+    height: 348px; /* Set a fixed height for all images */
+    object-fit: cover; /*make photos perfectly align without causing unevenness */
+}
+
 .col4 img{
     width: 105%;
     height: 348px; /* Set a fixed height for all images */
