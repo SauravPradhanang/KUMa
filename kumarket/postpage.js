@@ -11,7 +11,7 @@ function addMoreVariant() {
 
     // Set the innerHTML of the new element
     newElement1.innerHTML = `
-            <input type="text" class="style-input variant-style variantColor" name="variant_color/size${counter}" id="variant_details1${counter}" placeholder="Color/Size of the product">
+            <input type="text" class="style-input variant-style variantColor" name="variant_color/size${counter}" id="variant_details1${counter}" placeholder="Color/Size of the product" required>
             <button class="button remove_button" type="button" onclick="remove(${counter})">Remove</button>
             <br>
         `;
@@ -36,7 +36,7 @@ function addMoreImage() {
 
     // Set the innerHTML of the new element
     newElement2.innerHTML = `
-            <input type="file" class="style-input variant-style" name="variant_img${counter}" id="variant_details2${counter}">
+            <input type="file" class="style-input variant-style" name="variant_img${counter}" id="variant_details2${counter} required">
             <button class="button remove_button" type="button" onclick="remove(${counter})">Remove</button>
             <br>
         `;
