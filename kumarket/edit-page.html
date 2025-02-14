@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post Page</title>
+    <title>Edit Product</title>
+    <link rel="stylesheet" href="postpage.css">
     <link rel="stylesheet" href="sample.css">
 </head>
 
@@ -31,10 +32,11 @@
         </nav>
     </header>
     <main>
-        <h2 id="main_heading">Add Your Products:</h2>
-        <button onclick="edit()" type="button" class="button" name="edit">Edit</button>
+        <h2 id="main_heading">Edit Your Products:</h2>
+        <div id="edit-button">
+        </div>
         <form action="" name="addProductform" onsubmit="return Validate()" method="POST">
-
+            <button onclick="edit_page()" type="button" class="button" id="edit_button" name="edit">Edit</button>
             <div class="product_info" id="name_div">
                 <!-- name of the product server-side-name = "product_name", a required field-->
                 <label for="product_name" class="style-label">Name of the Product:</label>

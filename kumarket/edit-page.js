@@ -45,7 +45,7 @@ function cancel_action() {
 }
 
 // Function Definition to remove 'readonly' attribute from the form document to enable the user to modify their data
-function edit() {
+function edit_page() {
 
     // use of element.removeAttribute("attr_name") method to remove 'readonly' attribute from the input elements
     var edit_pr_name = document.getElementById('product_name');
@@ -74,8 +74,8 @@ function edit() {
     // zzz.classList.add/remove/toggle("ccc"): helps us add, remove or toggle the class dynamically
 
     button_to_add.innerHTML = `
-            <button onclick="" class="button button-margin" name="save">Save</button>
-            <button onclick="cancel_action()" type="reset" class="button button-bottom" name = "cancel">Cancel</button>
+            <button onclick="" class="button button-bottom1" name="save">Save</button>
+            <button onclick="cancel_action()" type="reset" class="button button-bottom2" name = "cancel">Cancel</button>
             `;
 }
 

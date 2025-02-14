@@ -53,13 +53,6 @@ function formValidate() {
         returnValue = false;
     }
 
-    // Checks if the passwords match
-    var conf_pass = document.forms['myForm']["confirm_password"].value;
-    if (conf_pass !== pasword) {
-        seterror("econfpassword", "*The password do not match. Please re-enter your password.");
-        returnValue = false;
-    }
-
     // Checks the length of acc. no 
     var accnumber = document.forms['myForm']["acc_no."].value;
     if (accnumber.length !== 16) {

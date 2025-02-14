@@ -15,29 +15,23 @@ function cancel_action() {
     var edit_address = document.getElementById('address');
     edit_address.setAttribute("readonly", "true");
 
-    var edit_pnum = document.getElementById('pnumber');
-    edit_pnum.setAttribute("readonly", "true");
+    var number = document.getElementById('pnumber');
+    number.setAttribute("readonly", "true");
 
     var edit_email = document.getElementById('email');
     edit_email.setAttribute("readonly", "true");
 
-    var edit_NofB = document.getElementById('bank_name');
-    edit_NofB.setAttribute("readonly", "true");
+    // var edit_NofB = document.getElementById('bank_name');
+    // edit_NofB.setAttribute("readonly", "true");
 
-    var edit_Acc_Name = document.getElementById('acc_holder_name');
-    edit_Acc_Name.setAttribute("readonly", "true");
+    // var edit_Acc_Name = document.getElementById('acc_holder_name');
+    // edit_Acc_Name.setAttribute("readonly", "true");
 
-    var edit_Acc_No = document.getElementById('acc_no.');
-    edit_Acc_No.setAttribute("readonly", "true");
+    // var edit_Acc_No = document.getElementById('acc_no.');
+    // edit_Acc_No.setAttribute("readonly", "true");
 
     var edit_username = document.getElementById('usrname');
     edit_username.setAttribute("readonly", "true");
-
-    var edit_password = document.getElementById('pwd');
-    edit_password.setAttribute("readonly", "true");
-
-    var edit_conf_password = document.getElementById('confirm_pwd');
-    edit_conf_password.setAttribute("readonly", "true");
 
     // Setting display property value to none to hide the buttons when 'Cancel' button is clicked 
     var button_to_del = document.getElementById('buttons');
@@ -72,12 +66,6 @@ function edit() {
 
     var edit_username = document.getElementById('usrname');
     edit_username.removeAttribute("readonly");
-
-    var edit_password = document.getElementById('pwd');
-    edit_password.removeAttribute("readonly");
-
-    var edit_conf_password = document.getElementById('confirm_pwd');
-    edit_conf_password.removeAttribute("readonly");
 
     var button_to_add = document.getElementById('buttons');
     // console.log(button_to_del);

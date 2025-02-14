@@ -5,3 +5,9 @@ function add_product() {
 function edit_page() {
     window.location.href = "edit-page.html";
 }
+
+function delete_product() {
+    var row3 = document.getElementById('row-3');
+    console.log(row3);
+    row3.innerHTML = "";
+}

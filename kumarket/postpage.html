@@ -59,11 +59,15 @@
             <div class="product_info" id="variant_div">
                 <!-- this is to add different variants of product, at least one is required. -->
                 <label class="style-label" id="variant" for="add_button">Variant:</label>
-                <button class="button add_button" type="button" onclick="addMore()">Add</button>
-                <div class="note">*Note: This is the only way to add your images so, please add at least one variant of
-                    your product.</div>
+                <button class="button add_button" type="button" onclick="addMoreVariant()">Add</button>
                 <div class="formerror"></div>
                 <!-- "addMore": function to create additional input fields, implementation in script tag. -->
+            </div>
+            <div class="product_info" id="image_div">
+                <label class="style-label" id="variant" for="add_button">Image:</label>
+                <button class="button add_button" type="button" onclick="addMoreImage()">Add</button>
+                <div class="note">*Note: This is the only way to add your images so, please add at least one variant of
+                    your product.</div>
             </div>
             <div class="product_info">
                 <!-- this is for product details, server-side-name = "product_details", required field -->
