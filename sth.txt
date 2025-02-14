@@ -1,0 +1,11 @@
+<form action="/orders/" method="post">
+    <input type="text" name="shippingAddress1" > ..
+    <input type="text" name="shippingAddress2" >
+    <input type="text" name="city" > ..
+
+    <input type="text" name="country" > ..
+    <input type="number" name="phone" > ..
+    <input type="number" name="zip" >
+    <button type="submit">Place</button> ..
+
+</form>

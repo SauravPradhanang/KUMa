@@ -1,74 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Faculty+Glyphic&display=swap');
+/* -----main----- */
 
-* {
-    /* border: 1px solid red; */
-    padding: 0px;
-    font-family: 'Faculty Glyphic', sans-serif;
-    box-sizing: border-box;
-}
-
-/* design: parent to children */
-
-/* div.nav-logo { */
-/* border: 2px solid red; */
-/* display: flex; */
-/* justify-content: left; */
-/* width: 120px; */
-/* mix-blend-mode: multiply; */
-/* opacity: 1.8; */
-/* filter: brightness(0.9) contrast(2.1); */
-/* } */
-
-.nav-container {
-    display: flex;
-    margin: auto;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 20px;
-    max-width: 1300px;
-    /* margin: auto; */
-}
-
-.nav-logo {
-    margin-right: auto;
-    margin-left: 0px;
-    cursor: pointer;
-}
-
-.nav-items {
-    display: inline-block;
-    margin-right: 20px;
-    list-style: none;
-}
-
-.nav-items:hover {
-    cursor: pointer;
-}
-
-a {
-    color: black;
-    text-decoration: none;
-}
-
-a:hover {
-    color: rgb(255, 82, 59);
-}
-
-a:active {
-    color: black;
-    transition: color ease-out 150ms;
-}
-
-img.cart {
-    background: linear-gradient(180deg, #fce4ec, #f8dede);
-    /* Match your page gradient */
-    border-radius: 50%;
-    /* Optional for a circular style */
-    padding: 5px;
-    /* Adds spacing */
-    opacity: 1.8;
-    filter: brightness(0.9) contrast(2.1);
-    mix-blend-mode: multiply;
+main {
+    display: relative;
 }
 
 #main_heading {
@@ -76,19 +9,20 @@ img.cart {
     margin-bottom: 40px;
     padding: 20px;
     text-align: center;
-    /* box-shadow: 0px 0px 30px 1px rgba(255, 82, 59, 0.6); */
 }
 
+
+/* ----for the form----- */
 form {
-    /* border: 2px solid red; */
     max-width: 1300px;
-    /* margin-left: 340px; */
     margin: auto;
     display: flex;
     flex-direction: column;
     gap: 30px;
 }
 
+
+/* ------for all the labels with the class name below------ */
 .style-label {
     display: block;
     margin-bottom: 7px;
@@ -96,10 +30,8 @@ form {
     font-weight: 900;
 }
 
-#variant {
-    display: inline-block;
-}
 
+/* ---------for the remove button of variant and image-------- */
 .variant-style {
     margin-bottom: 7px;
     display: block;
@@ -161,21 +93,30 @@ textarea:focus {
 
 }
 
+
+/* -----for price and stock input fields------ */
 #price,
 #in_stock {
     width: 40%;
 }
 
+
+/* -------for note div element-------- */
 .note {
     margin-top: 7px;
     margin-bottom: 7px;
 }
 
+
+/* ------for all the ol elements--------- */
 ol {
     list-style-position: inside;
 }
 
+
+/* ------for all the button class elements-------- */
 .button {
+    width: 200px;
     font-size: 15px;
     padding: 10px;
     border: 2.5px solid black;
@@ -188,6 +129,14 @@ ol {
     border-color: rgb(255, 82, 59);
 }
 
+
+/* -----for all the remove button------- */
+.remove_button:hover {
+    color: red;
+    border-color: red;
+    transition: color border-color ease-out 150ms;
+}
+
 .button:active {
     color: black;
     border-color: black;
@@ -196,10 +145,8 @@ ol {
 
 .add_button {
     width: 70px;
-    margin-left: 9px;
-    margin-bottom: 7px;
-    /* padding-left: 15px; */
-    /* padding-right: 15px; */
+    margin-left: 0px;
+    margin-bottom: 10px;
 }
 
 .remove_button {
@@ -207,21 +154,27 @@ ol {
     margin-top: 7px;
     margin-bottom: 7px;
     margin-left: 0px;
+    color: red;
+    border-color: red;
 }
 
+
+/* -----for the edit button------ */
 #edit-button {
     margin: auto;
     display: flex;
     justify-content: right;
 }
 
+
+/* ------for save and cancel button------- */
 .button-bottom1 {
-    width: 70px;
+    width: 200px;
     margin-right: 20px;
 }
 
 .button-bottom2 {
-    width: 70px;
+    width: 200px;
 }
 
 .none {

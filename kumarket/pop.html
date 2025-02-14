@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="pop.css">
+</head>
+
+<body>
+    <button type="button" popovertarget="orderConfirmDiv">Place order</button>
+    <div id="orderConfirmDiv" popover>
+        <h1 id="text-center">Order Confirmation</h1>
+        <form method="POST" onsubmit="return validateForm()" class="popupForm" name="orderConfirmForm">
+            <!-- <div class="popupForm"> -->
+            <div id="error_number" class="phone_no margin-left">
+                <label for="phone_number">Phone Number:</label>
+                <input type="text" id="phone_number" name="phoneNo" required autofocus>
+                <div class="note">Note: Please provide your mobile number and not your landline number.</div>
+                <span class="formerror"></span>
+            </div>
+            <div class="subheading margin-left">
+                <label class="block_display" for="country">Shipping Address:</label>
+            </div>
+            <div class="city margin-left">
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" required>
+            </div>
+            <div class="street margin-left">
+                <label for="street">Street:</label>
+                <input type="text" id="street" name="street" required>
+            </div>
+            <div class="pay_button">
+                <button class="button" onclick="">Pay with <img src="khalti_logo.png" alt="khalti logo"
+                        width="70"></button>
+            </div>
+            <!-- </div> -->
+        </form>
+    </div>
+</body>
+
+<script>
+    // Definition of function to remove errors before going through form validation
+    function clearerrors() {
+
+        errors = document.getElementsByClassName('formerror');
+        // clears the content of innerHTML of elements of class name: 'formerror', useful to remove errors after it is solved
+        for (let item of errors) {
+            item.innerHTML = "";
+        }
+
+    }
+
+    // Definiton of function to set error, takes id of the respective div and display message as arguments.
+    function seterror(id, error) {
+
+        element = document.getElementById(id);
+        element.getElementsByClassName('formerror')[0].innerHTML = error;
+        // we cannot set the properties of null
+
+    }
+
+    // Definition of function to check errors and validate form data
+    function validateForm() {
+
+        clearerrors();
+        var returnValue = true;
+        console.log(returnValue);
+
+        var number = document.forms['orderConfirmForm']["phoneNo"].value;
+
+        // .length() property only works for strings. When retrieving data from input fields using the DOM model, the values are always treated as strings by JS, that is why even if the input field consists of number it is technically read as string.
+
+        // Checks length of the phone no.
+        if (number.length !== 10) {
+            seterror("error_number", "*Invalid length. Phone number should be 10 digits long.");
+            returnValue = false;
+        }
+
+        // Checks if the field consists of value other than +ve no.
+        if (isNaN(number) || parseFloat(number) < 0) {
+            seterror("error_number", "*Invalid value. Please enter a proper phone number ");
+            returnValue = false;
+        }
+
+        console.log(returnValue);
+        return returnValue;
+    }
+</script>
+
+</html>

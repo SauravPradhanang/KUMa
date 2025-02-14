@@ -12,6 +12,7 @@ function togglePassword1() {
 
 function togglePassword2() {
     var element_to_change2 = document.getElementById('confirm_pwd');
+    console.log(element_to_change2);
     if (element_to_change2.type === "password") {
         element_to_change2.type = "text";
     }

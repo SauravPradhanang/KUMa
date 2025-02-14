@@ -1,0 +1,94 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+div#orderConfirmDiv {
+    margin: 10px;
+    max-width: 600px;
+    border: 2px solid black;
+    border-radius: 3px;
+}
+
+div#orderConfirmDiv:hover {
+    border-color: rgb(255, 82, 59);
+    transition: border-color ease-out 350ms;
+}
+
+#text-center {
+    text-align: center;
+    margin: 20px;
+}
+
+.popupForm {
+    /* border: 2px solid black; */
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    gap: 20px;
+}
+
+label {
+    display: block;
+    font-size: large;
+    font-weight: 600;
+}
+
+div.margin-left>* {
+    width: 100%;
+    /* the width of the box model of whole input is 100% not just the actual content of input, this is so because of universal property box-sizing:border-box */
+}
+
+input {
+    /* margin-bottom: 7px; */
+    border: none;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(97, 97, 97, 0.1);
+    padding: 5px;
+    height: 45px;
+    font-size: medium;
+}
+
+input:focus {
+    outline: none;
+    border-bottom-color: rgba(250, 92, 35, 1);
+    transition: border-bottom-color ease 200ms;
+}
+
+.note {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.formerror {
+    color: red;
+}
+
+.pay_button {
+    text-align: right;
+}
+
+.button {
+    width: 150px;
+    padding: 10px;
+    margin-bottom: 7px;
+    display: inline-block;
+    border: 2.5px solid black;
+    border-radius: 3px;
+    font-size: 15px;
+    background: transparent;
+}
+
+.button:hover {
+    color: rgb(255, 82, 59);
+    border-color: rgb(255, 82, 59);
+}
+
+.button:active {
+    color: black;
+    border-color: black;
+    transition: color border-color ease-out 150ms;
+}

@@ -3,7 +3,7 @@ function add_product() {
 }
 
 function edit_page() {
-    window.location.href = "edit-page.html";
+    window.location.href = "product-edit-page.html";
 }
 
 function delete_product() {

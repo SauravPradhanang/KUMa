@@ -1,4 +1,4 @@
-// for registration1.html
+// for account-details.html
 
 // Definition of function to remove errors before going through form validation
 function clearerrors() {
@@ -52,13 +52,6 @@ function formValidate() {
     console.log(result);
     if (result === false) {
         seterror("epassword", "*Invalid Format. Please check the password format and re-enter the password.");
-        returnValue = false;
-    }
-
-    // Checks if the passwords match
-    var conf_pass = document.forms['myForm']["confirm_password"].value;
-    if (conf_pass !== pasword) {
-        seterror("econfpassword", "*The password do not match. Please re-enter your password.");
         returnValue = false;
     }
 

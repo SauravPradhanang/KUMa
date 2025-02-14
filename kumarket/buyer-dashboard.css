@@ -115,13 +115,18 @@ ol {
     font-size: medium;
 }
 
+.registrationHyperlinkDiv {
+    color: rgb(255, 82, 59);
+    font-size: 20px;
+}
+
 .div-button {
     text-align: end;
     /* border: 2px solid pink; */
 }
 
 .button {
-    width: 70px;
+    width: 200px;
     padding: 10px;
     margin-bottom: 7px;
     display: inline-block;
@@ -145,6 +150,10 @@ ol {
 .button-margin {
     /* margin-top: 30px; */
     margin-right: 20px;
+}
+
+.authenticationButton {
+    text-align: right;
 }
 
 .none {
