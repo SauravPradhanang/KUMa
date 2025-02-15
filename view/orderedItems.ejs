@@ -4,12 +4,34 @@
     </h1>
     <div class="books-container">
         <% orderedItems.forEach((orderedItem)=>{ %>
-            <div class="card">
-                <img class="card-img" src="<%= orderedItem.product.image %> " image-id="<%= orderedItem.id %>"
+           
+           <tr>
+           
+           <td>
+            <div class="cart-info">
+                <img src="<%= orderedItem.product.image %> " image-id="<%= orderedItem.id %>"
                     alt="Picture of the book">
-                <h4 class="card-auhtor">
+                    <div>
+                <p>
                     <%= orderedItem.product.name %>
-                </h4>
+                </p>
+                <small>Price: <%= orderedItem.product.price %></small>
+                <br>
+                <button type="submit" class="remove" id-data="<%= orderedItem.id %>">Remove</button>
+            </div>
+        </div>
+    </td>
+
+    
+</script>
+
+
+
+    <td> <input type="number" placeholder="Update the quantity if needed." id="quantity" data-id="<%= orderedItem.id %>"></td>
+            <td><%= orderedItem.product.price %></td>
+
+           </tr>
+
                 <h1 class="card-quantity ">
 
                     <%= orderedItem.quantity %>
@@ -23,14 +45,37 @@
                 <p class="card-price">
                     <%= orderedItem.product.price %>
                 </p>
-               <button type="submit" class="remove" id-data="<%= orderedItem.id %>">Remove from the
-                        cart</button>
+               
             </div>
             <% }) %>
     </div>
     <form action="/orders/" method="get"><button type="submit">Place Order</button></form>
 
 </div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.cart-info-input input').forEach(input => {
+            input.addEventListener('input', async function () {
+                const card = this.closest('tr');
+
+               
+                const quantity = this.value;
+                const id = card.querySelector('.update').getAttribute('id-data');
+    
+                const res = await fetch(`/order-items/${id}`, {
+                    method: 'PUT',
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ id, quantity })
+                });
+    
+                if (res.ok) {
+                    card.querySelector('.card-quantity').innerText = quantity;
+                }
+            });
+        });
+    });
 
 <script>
 document.addEventListener('DOMContentLoaded', ()=>{
@@ -41,7 +86,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             e.stopPropagation();
             e.preventDefault();
 
-        const card= this.closest('.card');
+        const card= this.closest('.cart-info');
         //const input= document.getElementById('quantity');
         //const input = document.querySelector(`.quantity[data-id="${id}"]`);
         const input= card.querySelector('input');

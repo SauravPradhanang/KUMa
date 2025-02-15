@@ -38,70 +38,142 @@
         <th>Quantity</th>
         <th>Subtotal</th>
         </tr>
-        <tr>
-            <td> 
-                <div class="cart-info">
-                    <img src="https://i.pinimg.com/736x/a2/19/84/a21984e8610e4a0ac0093dff637a37d1.jpg"   alt="">
-                    <div>
-                        <p>white woman shirt by HXR</p>
-                        <small>Price: 50.00$</small>
-                        <br>
-                        <a href="">Remove</a>
-                    </div>
-                </div>
-            </td>
-            <td><input type="number" value="1"></td>
-            <td>$50.00</td>
-        </tr>
-        <tr>
-            <td> 
-                <div class="cart-info">
-                    <img src="https://images-na.ssl-images-amazon.com/images/I/61SUj2aKoEL._AC_UL330_SR330,330_.jpg"   alt="">
-                    <div>
-                        <p>Apple Ear Pods</p>
-                        <small>Price: 599.00$</small>
-                        <br>
-                        <a href="">Remove</a>
-                    </div>
-                </div>
-            </td>
-            <td><input type="number" value="1"></td>
-            <td>$599.00</td>
-        </tr>
-        <tr>
-            <td> 
-                <div class="cart-info">
-                    <img src="https://m.media-amazon.com/images/G/01/CE/CEshowcase_320x320_bubblr_Gaming._SS287_QL85_FMpng_.png"   alt="">
-                    <div>
-                        <p>Controller X-box</p>
-                        <small>Price: 59.00$</small>
-                        <br>
-                        <a href="">Remove</a>
-                    </div>
-                </div>
-            </td>
-            <td><input type="number" value="1"></td>
-            <td>$59.00</td>
-        </tr>
-    </table>
+
+       
+        
+
+
+        <% orderedItems.forEach((orderedItem)=>{ %>
+           
+            <tr>
+            
+            <td>
+             <div class="cart-info">
+                 <img src="<%= orderedItem.product.image %> " image-id="<%= orderedItem.id %>"
+                     alt="Picture of the book">
+                     <div>
+                 <p>
+                     <%= orderedItem.product.name %>
+                 </p>
+                 <small>Price: $<span class="item-price" data-price="<%= orderedItem.product.price %>">
+                    <%= orderedItem.product.price %></span></small>
+                 <br>
+                 <button type="submit" class="remove" id-data="<%= orderedItem.id %>">Remove</button>
+             </div>
+         </div>
+     </td>
+ 
+     <td> <div class="cart-info-input"><input type="number" value="<%= orderedItem.quantity %>" id="quantity" data-id="<%= orderedItem.id %>"></div></td>
+             <td class="subTotal-column"><%= orderedItem.product.price* orderedItem.quantity  %></td>
+ 
+            </tr>
+             <% }) %>
+
+            </table>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+
+    document.querySelectorAll('.remove').forEach(button => {
+        button.addEventListener('click', async function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+
+            const row = this.closest('tr'); // Get the closest table row
+            const id = this.getAttribute('id-data'); // Get the ID from the button
+
+            const res = await fetch(`/order-items/${id}`, {
+                method: 'DELETE',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id })
+            });
+
+            if (res.ok) {
+                console.log(`Deleted item ${id}`);
+                row.remove(); // Remove the row from the table
+                //card.querySelector('.card-quantity').innerText = quantity;
+            }
+        });
+    });
+
+
+  
+
+   document.querySelectorAll('.cart-info-input input').forEach(input => {
+    input.addEventListener('input', async function () {
+        
+        const row = this.closest('tr');  
+        const priceElement = row.querySelector('.item-price');  
+        //const subTotalElement= row.querySelector('.subTotal-column');
+        const price = parseFloat(priceElement.getAttribute('data-price'));  
+       
+        
+        const id = this.getAttribute('data-id'); 
+        const quantity = parseInt(this.value) || 0; 
+
+        //edit the total in UI
+        const subTotalCell = row.querySelector('.subTotal-column');
+         
+        if (subTotalCell) {
+            subTotalCell.innerText = `${(price * quantity)}`;
+        
+
+        let subTotalPrice= 0;
+        document.querySelectorAll('.subTotal').forEach((cell)=>{
+            
+            subTotalPrice+= parseFloat(cell.innerText);
+            
+        })
+        let taxPrice= subTotalPrice*0.13;
+        let deliveryPrice= subTotalPrice*0.1;
+        let totalPrice= subTotalPrice+ taxPrice + deliveryPrice;
+
+        document.querySelector('.subTotal').innerText = subTotalPrice.toFixed(2);
+        document.querySelector('.tax').innerText = taxPrice.toFixed(2);
+        document.querySelector('.delivery').innerText = deliveryPrice.toFixed(2);
+        document.querySelector('.total').innerText = totalPrice.toFixed(2);
+    }
+       
+       
+        const res = await fetch(`/order-items/${id}`, {
+            method: 'PUT',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id, quantity })
+        });
+
+        if (res.ok) {
+            console.log(`Updated item ${id} to quantity ${quantity}`);
+        }
+    });
+});
+
+});
+
+</script>
+
+
+   
     <div class="totalprice">
         <table>
             <tr>
                 <td>Subtotal</td>
-                <td>$708</td>
+                <td>Rs.<span class="subTotal"><%= subTotal.toFixed(2) %></span> </td>
             </tr>
             <tr>
                 <td>Tax</td>
-                <td>$20</td>
+                <td>Rs.<span class="tax"><%= taxAmount %></td></span>
             </tr>
             <tr>
                 <td>Delivery cost</td>
-                <td>$9</td>
+                <td>Rs.<span class="delivery"><%= deilveryCost %></td></span>
             </tr>
             <tr>
                 <td>Total</td>
-                <td>$737</td>
+                <td>Rs.<span class="total"><%= totalPrice %></td></span>
+            
             </tr>
+             <tr><td><form action="/orders/" method="get"><button type="submit">Place Order</button></form></td></tr>
         </table>
     </div>
  </div>

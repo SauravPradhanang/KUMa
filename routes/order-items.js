@@ -69,7 +69,7 @@ router.post(`/:id`, userDecoder, async (req, res) => {
 
     //const id= req.userId;
     //console.log(`${id}`);
-    console.log(req.body.quantity);
+    //console.log(req.body.quantity);
 
     if (req.body.quantity <= product.countInStock) {
         console.log(cartItem);
@@ -110,51 +110,12 @@ router.post(`/:id`, userDecoder, async (req, res) => {
         console.log(cartItem);
         console.log(req.body.quantity);
 
-        return res.redirect('/products/');
+        return res.status(200).json({ message: "Item added to cart" });
     }
     else {
-        return res.send('Out of Stock.');
+        return res.status(400).json({message: "Insufficent items in store."});
     }
 
-})
-
-
-router.post('/login', async (req, res) => {
-
-    const user = await User.findOne({ email: req.body.email })
-    const secret = process.env.secret;
-    if (!user) {
-        //return res.status(400).send('The user not found');
-        //const errors=errorHandler('email not present');
-        const errors = 'The email is not registered.';
-        res.status(200).json({ errors });
-    }
-
-    else if (user && await bcrypt.compare(req.body.password, user.passwordHash)) {
-        const token = jwt.sign(
-            {
-                id: user.id,
-                isAdmin: user.isAdmin
-            },
-            secret,
-            { expiresIn: '1w' }
-        )
-
-        res.cookie('token', token, {
-            httpOnly: true,  // Cookie is only accessible by the server (prevents XSS attacks)
-            secure: process.env.NODE_ENV === 'production',  // Set to true in production to use HTTPS
-            maxAge: 60 * 60 * 24 * 7 * 1000  // Token expires in 1 week
-        })
-
-        res.status(200).send({ user: user._id, token: token })
-        console.log('Rendering 2f template...');
-
-        //res.redirect('/users/2f'); 
-    } else {
-        // res.status(400).send('password is wrong!');
-        const errors = 'Your password is incorrect.';
-        res.status(400).json({ errors });
-    }
 })
 
 //testing route only
@@ -169,9 +130,18 @@ router.get('/', userDecoder, async (req, res) => {
     const orderedItems = await OrderItem.find({ user: req.userId, session: 'active' }).populate("product");
 
     console.log(orderedItems);
-    res.render('orderedItems', { orderedItems });
+   
 
+    let subTotal=0;
+    orderedItems.forEach(orderedItem=>{
+        subTotal= subTotal+orderedItem.product.price*orderedItem.quantity
+    })
+    
+    let taxAmount= 0.13*subTotal;
+    let deilveryCost= 0.1*subTotal;
+    let totalPrice= subTotal+taxAmount+deilveryCost;
 
+    res.render('cart', { orderedItems, taxAmount, deilveryCost, totalPrice, subTotal });
 })
 
 module.exports = router;

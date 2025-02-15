@@ -32,12 +32,20 @@ router.post(`/rate/:id`, userDecoder ,async (req, res)=>{
 
   let ratingExists = await Rating.findOne({ product: req.params.id, user: req.userId}).populate('user');
 
+  let reviewExists= await Review.findOne({product: req.params.id, user: req.userId});
 
   const newRating= parseInt(req.body.rating, 10);
 
   if(ratingExists){
     ratingExists.rating= newRating;
     await ratingExists.save();
+
+
+  if(reviewExists){
+    reviewExists.rating= ratingExists.id;
+    await reviewExists.save();
+  }
+
   }
 
   else{
@@ -70,7 +78,7 @@ router.post(`/rate/:id`, userDecoder ,async (req, res)=>{
 
   await product.save();
 
-  return res.send({rating: finalRating , numberOfRatings: numberOfRatings});
+  return res.json({message: 'Rated'});
   
   /*res.render('product-details', {
     product: product,
@@ -80,19 +88,28 @@ router.post(`/rate/:id`, userDecoder ,async (req, res)=>{
 })
 
 
-router.post(`/review/:id`, async (req, res)=>{
+router.post(`/review/:id`, userDecoder, async (req, res)=>{
   const product = await Product.findById(req.params.id).populate('category');
+
+  let ratingExists = await Rating.findOne({ product: req.params.id, user: req.userId}).populate('user');
 
   let reviewExists = await Review.findOne({ product: req.params.id, user: req.userId}).populate('user');
   
   const newReview= req.body.review;
 
   if(reviewExists){
-    ratingExists.review= newReview;
+    reviewExists.review= newReview;
+    
+
+    if(ratingExists){
+      reviewExists.rating= ratingExists.id;
+    }
     await reviewExists.save();
   }
 
   else{
+
+    
 
         let reviewExists = new Review({
             product: product.id,
@@ -100,11 +117,14 @@ router.post(`/review/:id`, async (req, res)=>{
             review: newReview
         })
     
+        if(ratingExists){
+          reviewExists.rating= ratingExists.id;
+        }
         reviewExists = await reviewExists.save();
         //order = await order.populate({ path: 'orderItems', populate: { path: 'product' } });
   }
 
-  const reviews= await Review.find({product: req.params.id, review: { $ne: null, $ne: '' } }).populate('rating').sort({ updatedAt: -1 });
+  const reviews= await Review.find({product: req.params.id, review: { $ne: null, $ne: '' } }).populate(['rating', 'user']).sort({ updatedAt: -1 });
    
   product.numberOfReviews=reviews.length;
   await product.save();
@@ -220,10 +240,49 @@ router.get("/search", async (req, res) => {
       
   const searchQuery = req.query.q || "";
       const page = parseInt(req.query.page) - 1 || 0;
-      const limit = parseInt(req.query.limit) || 5;
+      const limit = parseInt(req.query.limit) || 8;
   
       // Fetch all products from the database
-      const products = await Product.find({}).populate("category");
+      
+      const selectedOption=req.query.sort;
+
+      let products;
+      products = await Product.find({}).populate("category")
+
+/*
+      if(selectedOption && typeof selectedOption !== "undefined"){
+      
+      switch(selectedOption) {
+        case "default":
+          products = await Product.find({}).populate("category");
+            console.log("Sorting by default");
+            break;
+        case "price":
+             products = await Product.find({}).populate("category").sort({ price: -1 }); 
+            // Code for sorting by price
+            console.log("Sorting by price");
+            break;
+        case "popularity":
+           products = await Product.find({}).populate("category").sort({ rating: -1 }); 
+          // Code for sorting by price
+            console.log("Sorting by popularity");
+            break;
+        case "rating":
+           products = await Product.find({}).populate("category").sort({ rating: -1 }); 
+          // Code for sorting by price
+            console.log("Sorting by rating");
+            break;
+        case "newest":
+           products = await Product.find({}).populate("category").sort({ createdAt: 1 }); 
+          // Code for sorting by price
+            console.log("Sorting by sale");
+            break;
+        default:
+          products = await Product.find({}).populate("category")
+            console.log("No sorting option selected");
+    }}else{
+      products = await Product.find({}).populate("category")
+    }*/
   
       // Setup Fuse.js options for fuzzy search
       const options = {
@@ -243,14 +302,59 @@ router.get("/search", async (req, res) => {
   
       // Calculate total count after filtering
       const total = searchResults.length;
-  
+
+      switch (selectedOption) {
+        case "price":
+            searchResults.sort((a, b) => b.price - a.price);
+            break;
+        case "popularity":
+        case "rating": // Both use rating
+            searchResults.sort((a, b) => b.rating - a.rating);
+            break;
+        case "newest":
+            searchResults.sort((a, b) => b.createdAt - a.createdAt);
+            break;
+        default:
+            console.log("Sorting by default (no change)");
+    }
+
+      if(selectedOption && typeof selectedOption !== "undefined"){
+      
+        switch(selectedOption) {
+          
+          case "price":
+            searchResults.sort((a, b) => b.price - a.price);
+              
+              console.log("Sorting by price");
+              break;
+          case "popularity":
+            searchResults.sort((a, b) => b.numberOfReviews - a.numberOfReviews);
+              break;
+          case "rating":
+            searchResults.sort((a, b) => b.rating - a.rating);
+              console.log("Sorting by rating");
+              break;
+          case "newest":
+            searchResults.sort((a, b) => b.createdAt - a.createdAt);
+              console.log("Sorting by sale");
+              break;
+          default:
+            console.log("Sorting by default (no change)");
+      }}else{
+        console.log("Sorting by default (no change)");
+      }
+
       // Paginate results
       //const paginatedResults = searchResults.skip(page * limit).limit(limit);
       const paginatedResults = searchResults.slice(page * limit, (page + 1) * limit);
 
       // Render the search results page
+      
+   
+
       res.render("product", {
         products: paginatedResults,
+        selectedOption,
         searchQuery,
         total,
         autocompleteSuggestions: autocompleteResults,
@@ -277,13 +381,15 @@ router.get("/search", async (req, res) => {
 */
 
 router.get(`/` ,async (req, res) =>{
-    let filter = {};
+   // let filter = {};
     /*if(req.query.categories)
     {
          filter = {category: req.query.categories.split(',')}
     }*/
     
-    const products = await Product.find(filter).populate('category');
+
+
+    const products = await Product.find().populate('category');
    
 
     if(!products) {
@@ -299,8 +405,12 @@ router.get(`/:id`, userDecoder ,async (req, res)=>{
   const product = await Product.findById(req.params.id).populate('category');
   const rating= await Rating.findOne({user: req.userId, product: req.params.id});
 
+  const reviews= await Review.find({product: req.params.id, review: { $ne: null, $ne: '' } }).populate(['rating', 'user']).sort({ updatedAt: -1 });
+  let reviewExists = await Review.findOne({ product: req.params.id, user: req.userId}).populate('user');
+   
+
   console.log(req.params.id);
-  res.render('product-details', {product: product, rating: rating});
+  res.render('product-details', {product: product, rating: rating, reviews: reviews, userReview: reviewExists});
 })
 /*
 router.get(`/:id`, (req, res)=>{
