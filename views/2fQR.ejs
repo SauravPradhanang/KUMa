@@ -1,0 +1,41 @@
+<h1>Scan this QR Code with your Authenticator App</h1>
+<img src="<%= data %>" />
+<form action="" method="post">
+
+    <input type="number" name="qrverify" id="verify">
+    <div class="value-error"></div>
+    <button id="<%= user.id %>" type="submit">Submit</button>
+</form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", ()=>{
+
+    const form= document.querySelector('form');
+    const valueError= document.querySelector('.value-error');
+    
+    form.addEventListener('submit', async (e)=>{
+        e.stopPropagation();
+        
+        e.preventDefault();
+
+        const qrverify= form.querySelector('input').value;
+        const id= document.querySelector('button').id;
+
+        const res= await fetch(`/users/verify`,{
+            method: 'POST',
+            body: JSON.stringify({ qrverify, id}),
+            headers: {'Content-Type': 'application/json'}
+        })
+        
+        if(!res.ok){
+            valueError.innerText = "Incorrect 6-digit code. Please enter the one shown on your app.";
+            valueError.style.color = "red";
+        }
+        else{
+            window.location.href="/";
+        }
+
+    })
+})
+    
+</script>
