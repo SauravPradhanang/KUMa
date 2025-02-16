@@ -63,7 +63,7 @@ router.post('/merchant-request', userDecoder , async (req, res)=>{
 })
   
 router.get('/login', (req, res)=>{
-    res.render('account');
+    res.renderconst('account');
 });
 
 router.get('/signup', (req, res)=>{
@@ -71,7 +71,7 @@ router.get('/signup', (req, res)=>{
 });
 
 router.post('/register', userDecoder ,async (req, res)=>{
-    const user = await User.findById(req.userId);
+     user = await User.findById(req.userId);
 
     user.name= req.body.fullname;
     user.street= req.body.address;
@@ -362,7 +362,6 @@ router.get('/logout', (req, res)=>{
     res.clearCookie(token);  // Clear the token cookie
     return res.status(200).send('Logged out successfully!');
 })
-
 /*
 router.post('/logout', (req, res) => {
     res.clearCookie('token');  // Clear the token cookie

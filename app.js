@@ -29,7 +29,7 @@ app.use(passport.initialize());
 const path = require('path');
 
 // Serve static files from the public directory
-app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 //app.use('/public/uploads', express.static(__dirname + '/public/uploads'));
 app.use(errorHandler);

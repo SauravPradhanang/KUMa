@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Products | KUMA </title>
-    <link rel="stylesheet" href="../public/css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 </head>
@@ -59,14 +59,14 @@
                         <% }) %>
                         <% }  %>
                 </ul>
-                <button type="submit" style="">Search</button>
+                <button type="submit">Search</button>
             </form>
             </div>
 
         <div class="row">
             <% products.forEach((product)=>{ %>
             <div class="col4">
-                <img class="col4-img" src="<%= product.image %>" alt="men" image-id="<%= product.id %>" >
+                <img class="col4-img" src="/uploads/<%= product.images[0].filename %>" alt="men" image-id="<%= product.id %>" >
                 <h4><%= product.name %></h4>
                 <div class="rating">
                     <i class="fa fa-star"></i>

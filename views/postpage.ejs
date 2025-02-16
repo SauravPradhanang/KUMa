@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post Page</title>
-    <link rel="stylesheet" href="../public/css/postpage.css">
+    <link rel="stylesheet" href="/css/postpage.css">
 </head>
 
 <body>
@@ -17,8 +17,8 @@
                         alt="Logo" height="65" width="125px">
                     <ul class="nav-list">
                         <!-- Replace with the actual image URL -->
-                        <li class="nav-items"><a href="main.html">Home</a></li>
-                        <li class="nav-items"><a href="product.html">Products</a></li>
+                        <li class="nav-items"><a href="/">Home</a></li>
+                        <li class="nav-items"><a href="/search">Products</a></li>
                         <li class="nav-items"><a href="">About</a></li>
                         <li class="nav-items"><a href="">Contact</a></li>
                         <li class="nav-items"><a href="account.html">Account</a></li>
@@ -32,7 +32,7 @@
     </header>
     <main>
         <h2 id="main_heading">Add Your Products:</h2>
-        <form action="" name="addProductform" onsubmit="return Validate()" method="POST">
+        <form action="/products/upload" name="addProductform" onsubmit="return Validate()" method="POST" enctype="multipart/form-data">
 
             <div class="product_info" id="name_div">
                 <!-- name of the product server-side-name = "product_name", a required field-->
@@ -42,7 +42,7 @@
             <div class="product_info">
                 <!-- this is for product category, server-side-name = "product_category" -->
                 <label for="product_category" class="style-label">Category:</label>
-                <select name="categories" class="style-input" id="product_category" required>
+                <select name="product_category" class="style-input" id="product_category" required>
                     <option>Home Appliances</option>
                     <option>Groceries</option>
                     <option>Men's Clothing</option>
@@ -58,10 +58,15 @@
             </div>
             <div class="product_info" id="variant_div">
                 <!-- this is to add different variants of product, at least one is required. -->
-                <label class="style-label" id="variant" for="add_button">Variant:</label>
-                <button class="button add_button" type="button" onclick="addMore()">Add</button>
-                <div class="note">*Note: This is the only way to add your images so, please add at least one variant of
-                    your product.</div>
+                <label class="style-label" id="variant" for="add_button_variant">Variant:</label>
+                <button class="button add_button" type="button" onclick="addMoreVariant()">Add</button>
+                <div class="formerror"></div>
+                <!-- "addMore": function to create additional input fields, implementation in script tag. -->
+            </div>
+            <div class="product_info" id="image_div">
+                <!-- this is to add different variants of product, at least one is required. -->
+                <label class="style-label" id="variant" for="add_button_image">Image:</label>
+                <button class="button add_button" type="button" onclick="addMoreImage()">Add</button>
                 <div class="formerror"></div>
                 <!-- "addMore": function to create additional input fields, implementation in script tag. -->
             </div>
@@ -97,13 +102,13 @@
             <div class="product_info" id="price_div">
                 <!-- this is for price of the product, server-side-name = "pr_price", a required field -->
                 <label for="price" class="style-label">Enter the Product Price:</label>
-                <input type="number" name="pr_price" class="style-input" id="price" required>
+                <input type="number" name="product_price" class="style-input" id="price" step="0.1" required>
                 <span class="formerror"></span>
             </div>
             <div class="product_info" id="stock">
                 <!-- stock number, need to update itself afte the product decreases, server-side-name = "stock" -->
                 <label class="style-label" for="stock">Stock:</label>
-                <input type="number" class="style-input" id="in_stock" name="stock"
+                <input type="number" class="style-input" id="in_stock" name="product_stock"
                     placeholder="Enter the number of products in your stock" required>
                 <span class="formerror"></span>
             </div>
@@ -115,6 +120,6 @@
 </body>
 
 <!-- JS implementation -->
-<script src="postpage.js" type="text/javascript"></script>
+<script src="/javascript/postpage.js" type="text/javascript"></script>
 
 </html>
