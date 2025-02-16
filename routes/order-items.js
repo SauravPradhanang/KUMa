@@ -69,7 +69,7 @@ router.post(`/:id`, userDecoder, async (req, res) => {
 
     //const id= req.userId;
     //console.log(`${id}`);
-    console.log(req.body.quantity);
+    //console.log(req.body.quantity);
 
     if (req.body.quantity <= product.countInStock) {
         console.log(cartItem);
