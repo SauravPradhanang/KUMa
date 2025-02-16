@@ -11,7 +11,7 @@ function authJwt() {
             if (req.cookies && req.cookies.token){
                 return req.cookies.token;
             }
-            return null;e
+            return null;
         },
         isRevoked: isRevoked
     }).unless({

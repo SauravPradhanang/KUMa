@@ -58,7 +58,7 @@ const productSchema = mongoose.Schema({
             type: Number,
             default: 0
         },
-    variant:[{
+    variant:[{git check
         type: String,
         required: true
     }]

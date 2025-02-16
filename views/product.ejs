@@ -44,13 +44,6 @@
                         <% if (typeof selectedOption === "undefined" || selectedOption === null) { %>
                             <% selectedOption = "default"; %>
                         <% } %>
-                        
-                        <option value="default" <%= selectedOption === "default" ? "selected" : "" %>>Default Sorting</option>
-                        <option value="price" <%= selectedOption === "price" ? "selected" : "" %> >Sort by Price</option>
-                        <option value="popularity" <%= selectedOption === "popularity" ? "selected" : "" %> >Sort by Popularity</option>
-                        <option value="rating" <%= selectedOption === "rating" ? "selected" : "" %> >Sort by Rating</option>
-                        <option value="newest" <%= selectedOption === "newest" ? "selected" : "" %> >Sort by Newest</option>
-                       
                             <option value="default" <%= selectedOption === "default" ? "selected" : "" %>>Default Sorting</option>
                             <option value="price" <%= selectedOption === "price" ? "selected" : "" %> >Sort by Price</option>
                             <option value="popularity" <%= selectedOption === "popularity" ? "selected" : "" %> >Sort by Popularity</option>
