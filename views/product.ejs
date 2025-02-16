@@ -13,7 +13,7 @@
         <div class="container">
             <div class="navbar">
                 <div class="logo">
-                    <a href="main.html"><img src="https://kuma.io/assets/images/social/og-image-1200-630.jpg?cb=1730815037" alt="Logo" width="125px"></a><!-- Replace with the actual image URL -->
+                    <a href="/"><img src="https://kuma.io/assets/images/social/og-image-1200-630.jpg?cb=1730815037" alt="Logo" width="125px"></a> <!-- Replace with the actual image URL -->
                     
                 </div>
                 <nav>
@@ -22,48 +22,70 @@
                         <li><a href="/products/">Product</a></li>
                         <li><a href="">About</a></li>
                         <li><a href="">Contact</a></li>
-                        <li><a href="/users/account/">Account</a></li>
+                        <li><a href="/users/account">Account</a></li>
                     </ul>
                 </nav>
-                <img class="cart" src="https://png.pngtree.com/element_our/20190531/ourmid/pngtree-shopping-cart-convenient-icon-image_1287807.jpg" alt="cart" height="40px" width="40px">
+                <img class="cart" src="https://png.pngtree.com/element_our/20190531/ourmid/pngtree-shopping-cart-convenient-icon-image_1287807.jpg" alt="cart" height="40px" width="40px" >
             </div>
             
         </div>
-   
-   
-     <div class="smallcontainer">
-        <div class="row row2">
-            <h2>All Products</h2>
-            <select > <!-- for drop down options -->
-                <option>Default Sorting</option>
-                <option>Sort by Price</option>
-                <option>Sort by Popularity</option>
-                <option>Sort by Rating</option>
-                <option>Sort by Sale</option>
-            </select>
-        </div>
-       
-        <div style="position: relative;">
-            <form action="/products/search" method="get" id="searchForm">
-                <input type="text" name="q" id="searchInput" placeholder="Search products" autocomplete="off"
-                    value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>" />
-                <ul id="autocompleteResults" class="autocom">
-                    <% if (typeof autocompleteSuggestions !== "undefined" && autocompleteSuggestions.length > 0) { %>
-                    <% autocompleteSuggestions.forEach(function(suggestion) { %>
-                        <li>
-                            <div class="autocom-name" name="<%= suggestion.name %>">
-                            <%= suggestion.name %>
-                            
-                            </div>
-                        </li>
-                        <% }) %>
-                        <% }  %>
-                </ul>
-                <button type="submit">Search</button>
-            </form>
-            </div>
 
-        <div class="row">
+
+
+
+        
+
+   
+        <div class="smallcontainer">
+            <div class="row row2">
+                <h2>All Products</h2>
+                <form action="/products/search" method="get" id="searchForm">
+                    <select id="sortOptions" name="sort" onchange="this.form.submit()">
+                        <% if (typeof selectedOption === "undefined" || selectedOption === null) { %>
+                            <% selectedOption = "default"; %>
+                        <% } %>
+                        
+                        <option value="default" <%= selectedOption === "default" ? "selected" : "" %>>Default Sorting</option>
+                        <option value="price" <%= selectedOption === "price" ? "selected" : "" %> >Sort by Price</option>
+                        <option value="popularity" <%= selectedOption === "popularity" ? "selected" : "" %> >Sort by Popularity</option>
+                        <option value="rating" <%= selectedOption === "rating" ? "selected" : "" %> >Sort by Rating</option>
+                        <option value="newest" <%= selectedOption === "newest" ? "selected" : "" %> >Sort by Newest</option>
+                       
+                            <option value="default" <%= selectedOption === "default" ? "selected" : "" %>>Default Sorting</option>
+                            <option value="price" <%= selectedOption === "price" ? "selected" : "" %> >Sort by Price</option>
+                            <option value="popularity" <%= selectedOption === "popularity" ? "selected" : "" %> >Sort by Popularity</option>
+                            <option value="rating" <%= selectedOption === "rating" ? "selected" : "" %> >Sort by Rating</option>
+                            <option value="newest" <%= selectedOption === "newest" ? "selected" : "" %> >Sort by Newest</option>
+                      
+
+                    </select>
+            </div>
+        <div style="position: relative;">
+            <input type="text" name="q" id="searchInput" placeholder="Search products" autocomplete="off"
+            value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>" />
+        <ul id="autocompleteResults" class="autocom">
+            <% if (typeof autocompleteSuggestions !== "undefined" && autocompleteSuggestions.length > 0) { %>
+            <% autocompleteSuggestions.forEach(function(suggestion) { %>
+                <li>
+                    <div class="autocom-name" name="<%= suggestion.name %>">
+                    <%= suggestion.name %>
+                    
+                    </div>
+                </li>
+                <% }) %>
+                <% }  %>
+        </ul>
+        <button type="submit" style="">Search</button>
+    </form>
+    </div>
+        
+            
+              
+
+
+
+
+        <div class="row" id="row">
             <% products.forEach((product)=>{ %>
             <div class="col4">
                 <img class="col4-img" src="/uploads/<%= product.images[0].filename %>" alt="men" image-id="<%= product.id %>" >
