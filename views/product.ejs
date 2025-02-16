@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Products | KUMA </title>
-    <link rel="stylesheet" href="../public/css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 </head>
@@ -44,12 +44,7 @@
                         <% if (typeof selectedOption === "undefined" || selectedOption === null) { %>
                             <% selectedOption = "default"; %>
                         <% } %>
-                        
-                        <option value="default" <%= selectedOption === "default" ? "selected" : "" %>>Default Sorting</option>
-                        <option value="price" <%= selectedOption === "price" ? "selected" : "" %> >Sort by Price</option>
-                        <option value="popularity" <%= selectedOption === "popularity" ? "selected" : "" %> >Sort by Popularity</option>
-                        <option value="rating" <%= selectedOption === "rating" ? "selected" : "" %> >Sort by Rating</option>
-                        <option value="newest" <%= selectedOption === "newest" ? "selected" : "" %> >Sort by Newest</option>
+                      
                        
                             <option value="default" <%= selectedOption === "default" ? "selected" : "" %>>Default Sorting</option>
                             <option value="price" <%= selectedOption === "price" ? "selected" : "" %> >Sort by Price</option>

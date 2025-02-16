@@ -13,12 +13,8 @@ const productSchema = mongoose.Schema({
         type: String,
         default: ''
     },
-    image: {
-        type: String,
-        default: ''
-    },
     images: [{
-        type: String
+        filename: String
     }],
     brand: {
         type: String,
@@ -46,10 +42,7 @@ const productSchema = mongoose.Schema({
     numReviews: {
         type: Number,
         default: 0,
-    },
-    isFeatured: {
-        type: Boolean,
-        default: false,
+    
     },
     dateCreated: {
         type: Date,
@@ -71,6 +64,10 @@ const productSchema = mongoose.Schema({
             type: Number,
             default: 0
         },
+        variant:[{
+            type: String,
+            required: true
+        }]
 })
 
 productSchema.index({name: "text", richDescription:"text", category:"text", brand:"text"});

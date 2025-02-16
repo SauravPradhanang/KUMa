@@ -16,7 +16,7 @@ function authJwt() {
         isRevoked: isRevoked
     }).unless({
         path: [
-            { url: /\/public\/(.*)/, methods: ['GET', 'OPTIONS'] },
+            { url: /\/css\/(.*)/, methods: ['GET', 'OPTIONS'] },
             {url: /\/products(.*)/ , methods: ['GET', 'OPTIONS'] },
             {url: /\/categories(.*)/ , methods: ['GET', 'OPTIONS'] },
             {url: /\/orders(.*)/,methods: ['GET', 'OPTIONS', 'POST']},
@@ -27,7 +27,11 @@ function authJwt() {
             {url: /\/users\/verify(.*)/ },
             `/`,
             
-            {url: /\/users\/google(.*)/ }
+            {url: /\/users\/google(.*)/ },
+            { url: /\/javascript\/(.*)/},
+                { url: /\/scripts\/(.*)/},
+                    { url: /\/upload\/(.*)/}
+                        
         ]
         
     })

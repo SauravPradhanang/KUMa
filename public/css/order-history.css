@@ -1,0 +1,126 @@
+.grid-container {
+    position: relative;
+    margin-top: 20px;
+    max-width: 1200px;
+    margin-left: 340px;
+    border: 2px solid black;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-areas: "header header"
+        "aside main";
+    /* grid-gap: 2rem 2rem; */
+}
+
+.dashboard-header {
+    grid-area: header;
+    border-bottom: 1px solid black;
+}
+
+.dashboard-header {
+    padding: 15px;
+}
+
+.aside-container {
+    border-right: 1px solid black;
+    padding: 15px;
+    grid-area: aside;
+}
+
+.aside-nav {
+    margin: 0px;
+}
+
+.style-aside-nav {
+    /* border: 2px solid red; */
+    padding: 15px;
+    margin-bottom: 7px;
+    border-radius: 3px;
+    font-size: large;
+    font-weight: 600;
+}
+
+.style-aside-nav:hover {
+    color: rgba(250, 92, 35, 1);
+    cursor: pointer;
+}
+
+.style-aside-nav:active {
+    color: black;
+    transition: color ease-out 150ms;
+    /* background-color: rgba(97, 97, 97, 0.1); */
+}
+
+.main-container {
+    /* border: 2px solid blue; */
+    padding: 7px;
+    grid-area: main;
+}
+
+ol {
+    list-style-position: inside;
+    margin: 0px;
+}
+
+.div_for_button_heading {
+    display: flex;
+    justify-content: space-between;
+}
+
+table {
+    margin-top: 15px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* all the children of <tr> */
+tr>* {
+    border: 2px solid black;
+}
+
+th {
+    padding: 15px;
+    background-color: tan;
+}
+
+td {
+    padding: 15px;
+    text-align: center;
+}
+
+.button {
+    height: 40px;
+    align-self: center;
+    padding: 10px;
+    font-size: 15px;
+    border: 2.5px solid black;
+    border-radius: 3px;
+    background: transparent;
+}
+
+.button:hover {
+    color: rgb(255, 82, 59);
+    border-color: rgb(255, 82, 59);
+    cursor: pointer;
+}
+
+.button:active {
+    color: black;
+    border-color: black;
+    transition: color border-color ease-out 300ms;
+}
+
+.edit_product_button,
+.delete_product_button {
+    border: none;
+    background: transparent;
+}
+
+svg:hover {
+    color: rgb(255, 82, 59);
+    cursor: pointer;
+}
+
+svg:active {
+    color: black;
+    transition: color ease-out 150ms;
+}
