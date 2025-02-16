@@ -23,6 +23,8 @@ function authJwt() {
             `/users/login`,
             `/users/signup`,
             `/users/account`,
+            {url: /\/users\/qrcode(.*)/ },
+            {url: /\/users\/verify(.*)/ },
             `/`,
             
             {url: /\/users\/google(.*)/ }

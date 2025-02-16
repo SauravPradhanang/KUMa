@@ -135,7 +135,7 @@
           headers: {'Content-Type': 'application/json'}
         });
         const data = await res.json();
-        //console.log(data);
+        console.log(data);
         
           
           if(data.errors==='The email is not registered.')
@@ -145,9 +145,15 @@
           passwordError.textContent = data.errors;
   
           console.log('is the error in front?');
+
+          if(data.userId){
+           // console.log(data.userId);
+            //const id= data.userId;
+            window.location.href=`/users/qrcode/${data.userId}`;
+          }
         
-       if (data.user) {
-         location.assign('/');
+       if (data.twofactor===0) {
+        window.location.href = '/';
          //res.render('search');
         }
   
