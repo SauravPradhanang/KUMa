@@ -16,7 +16,7 @@ router.get('/order-history', userDecoder, async (req, res) => {
 
     const orders = await Order.find({ user: req.userId }).sort({ dateOrdered: -1 }).populate({ path: 'orderItems', populate: { path: 'product' } });
     console.log(orders);
-    res.render('orderHistory', { orders });
+    res.render('order-history', { orders });
 })
 
 

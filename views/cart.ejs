@@ -18,11 +18,12 @@
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="">Home</a></li>
-                        <li><a href="">Product</a></li>
-                        <li><a href="">About</a></li>
-                        <li><a href="">Contact</a></li>
-                        <li><a href="">Account</a></li>
+                       
+                        <li class="nav-items"><a href="/">Home</a></li>
+                        <li class="nav-items"><a href="/products/">Product</a></li>
+                        <li class="nav-items"><a href="">About</a></li>
+                        <li class="nav-items"><a href="">Contact</a></li>
+                        <li class="nav-items"><a href="/users/account">Account</a></li>
                     </ul>
                 </nav>
                 <img class="cart" src="https://png.pngtree.com/element_our/20190531/ourmid/pngtree-shopping-cart-convenient-icon-image_1287807.jpg" alt="cart" height="40px" width="40px">
@@ -49,7 +50,7 @@
             
             <td>
              <div class="cart-info">
-                 <img src="<%= orderedItem.product.image %> " image-id="<%= orderedItem.id %>"
+                 <img src="/uploads/<%= orderedItem.product.images[0].filename %>" image-id="<%= orderedItem.id %>"
                      alt="Picture of the book">
                      <div>
                  <p>
@@ -63,7 +64,7 @@
          </div>
      </td>
  
-     <td> <div class="cart-info-input"><input type="number" value="<%= orderedItem.quantity %>" id="quantity" data-id="<%= orderedItem.id %>"></div></td>
+     <td> <div class="cart-info-input"><input min="0" type="number" value="<%= orderedItem.quantity %>" id="quantity" data-id="<%= orderedItem.id %>"></div></td>
              <td class="subTotal-column"><%= orderedItem.product.price* orderedItem.quantity  %></td>
  
             </tr>

@@ -83,7 +83,7 @@
         <div class="row" id="row">
             <% products.forEach((product)=>{ %>
             <div class="col4">
-                <img class="col4-img" src="<%= product.image %>" alt="men" image-id="<%= product.id %>" >
+                <img class="col4-img" src="/uploads/<%= product.images[0].filename %>" alt="men" image-id="<%= product.id %>" >
                 <h4><%= product.name %></h4>
                 <div class="rating">
                     <i class="fa fa-star"></i>
