@@ -1,17 +1,13 @@
 const mongoose = require('mongoose');
-
 const orderSchema = mongoose.Schema({
     orderItems: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'OrderItem',
         required:true
     }],
-    shippingAddress1: {
+    streetAddress:{
         type: String,
-        required: true,
-    },
-    shippingAddress2: {
-        type: String,
+        default: ''
     },
     city: {
         type: String,
@@ -19,11 +15,12 @@ const orderSchema = mongoose.Schema({
     },
     zip: {
         type: String,
-        required: true,
+        //required: true,
     },
     country: {
         type: String,
-        required: true,
+        default: 'Nepal'
+        //required: true,
     },
     phone: {
         type: String,
@@ -46,7 +43,6 @@ const orderSchema = mongoose.Schema({
         default: Date.now,
     },
 })
-
 
 orderSchema.virtual('id').get(function () {
     return this._id.toHexString();

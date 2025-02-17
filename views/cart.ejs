@@ -18,14 +18,15 @@
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="">Home</a></li>
-                        <li><a href="">Product</a></li>
-                        <li><a href="">About</a></li>
-                        <li><a href="">Contact</a></li>
-                        <li><a href="">Account</a></li>
+                     
+                        <li class="nav-items"><a href="/">Home</a></li>
+                        <li class="nav-items"><a href="/products/">Products</a></li>
+                        <li class="nav-items"><a href="">About</a></li>
+                        <li class="nav-items"><a href="">Contact</a></li>
+                        <li class="nav-items"><a href="/users/account">Account</a></li>
                     </ul>
                 </nav>
-                <img class="cart" src="https://png.pngtree.com/element_our/20190531/ourmid/pngtree-shopping-cart-convenient-icon-image_1287807.jpg" alt="cart" height="40px" width="40px">
+                <a href="/order-items/"> <img class="cart" src="https://png.pngtree.com/element_our/20190531/ourmid/pngtree-shopping-cart-convenient-icon-image_1287807.jpg" alt="cart" height="40px" width="40px"></a>
             </div>
             
         </div>
@@ -49,7 +50,7 @@
             
             <td>
              <div class="cart-info">
-                 <img src="/uploads/<%= (product.images && product.images.length > 0) ? product.images[0].filename : 'no-sign-icon-mobile-concept-600nw-2236399885.webp' %>" image-id="<%= orderedItem.id %>"
+                 <img src="/uploads/<%= (orderedItem.product.images && orderedItem.product.images.length > 0) ? orderedItem.product.images[0].filename : 'no-sign-icon-mobile-concept-600nw-2236399885.webp' %>" image-id="<%= orderedItem.id %>"
                      alt="Picture of the book">
                      <div>
                  <p>
@@ -173,10 +174,60 @@
                 <td>Rs.<span class="total"><%= totalPrice %></td></span>
             
             </tr>
-             <tr><td><form action="/orders/" method="get"><button type="submit">Place Order</button></form></td></tr>
+             <tr><td>
+                <div class="placeOrderButton">
+                   <button id="orderButton" type="button" class="button" onclick="OrderFetch()">Place Order</button>
+               </div></td></tr>
         </table>
     </div>
  </div>
+
+
+    
+
+    <div id="orderConfirmDiv" style="z-index:999; display: none ; background: white; top: 50%; left: 50%; border: 1px solid black; padding: 10px; position: absolute;  box-shadow: 0px 0px 10px 2px rgba(255, 82, 59, 0.2);">
+        <h1 id="text-center">Order Confirmation</h1>
+        <form action="/orders/" method="post" onsubmit="return validateForm()" class="popupForm" name="orderConfirmForm">
+            <div id="error_number" class="phone_no margin-left">
+                <label for="phone_number">Phone Number:</label>
+                <input type="text" class="orderFormInput" id="phone_number" name="phoneNo" required autofocus>
+                <div class="note">Note: Please provide your mobile number, not your landline number.</div>
+                <span class="formerror"></span>
+            </div>
+            <div class="subheading margin-left">
+                <label class="block_display" for="country">Shipping Address:</label>
+            </div>
+            <div class="city margin-left">
+                <label for="city">City:</label>
+                <input type="text" class="orderFormInput" id="city" name="city" required>
+            </div>
+            <div class="street margin-left">
+                <label for="street">Street:</label>
+                <input type="text" class="orderFormInput" id="street" name="street" required>
+            </div>
+            <div class="pay_button">
+                <button class="button1">Pay with <img src="/uploads/khalti_logo.png"
+                        alt="khalti logo" width="70"></button>
+            </div>
+        </form>
+    </div>
+
+<script>
+    const orderPopup= document.getElementById("orderConfirmDiv");
+    const orderButton= document.getElementById('orderButton');
+
+        async function OrderFetch() {
+    
+        orderPopup.style.display = "block";
+    }
+
+        document.addEventListener("click", (event) => {
+          if (!orderPopup.contains(event.target) && !orderButton.contains(event.target)) {
+            orderPopup.style.display = "none";
+          }
+        });
+      
+    </script>
 
 
     <!-- brands         -->
@@ -203,6 +254,7 @@
     </div>
 
     
+<script src="/scripts/cart.js" type="text/javascript"></script>
 
 </body>
 </html>

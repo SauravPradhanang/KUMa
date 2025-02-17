@@ -45,13 +45,17 @@ router.get(
   }
 );
 
+
 router.get("/notifications", userDecoder, async (req, res) => {
+
+  //const user= await user.findById(req.userId);
   const notifications = await Notification.find({ user: req.userId }).sort({
     createdAt: 1,
   });
 
-  res.render("notification", { notifications });
+res.status(200).json({ notifications });
 });
+
 
 router.get("/merchant-request", (req, res) => {
   res.render("usertomerchant");

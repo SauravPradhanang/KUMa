@@ -16,7 +16,7 @@ router.get('/order-history', userDecoder, async (req, res) => {
 
     const orders = await Order.find({ user: req.userId }).sort({ dateOrdered: -1 }).populate({ path: 'orderItems', populate: { path: 'product' } });
     console.log(orders);
-    res.render('orderHistory', { orders });
+    res.render('order-history', { orders });
 })
 
 
@@ -81,12 +81,10 @@ router.post('/', userDecoder, async (req, res) => {
 
     let order = new Order({
         orderItems: orderedItemsId,
-        shippingAddress1: req.body.shippingAddress1,
-        shippingAddress2: req.body.shippingAddress2,
+        streetAddress: req.body.street,
         city: req.body.city,
-        zip: req.body.zip,
-        country: req.body.country,
-        phone: req.body.phone,
+        
+        phone: req.body.phoneNo,
         user: req.userId,
         totalPrice: totalPrice
     })
