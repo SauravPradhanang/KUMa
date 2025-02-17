@@ -14,7 +14,8 @@ const productSchema = mongoose.Schema({
         default: ''
     },
     images: [{
-        filename: String
+        filename: String,
+       
     }],
     price : {
         type: Number,
@@ -27,8 +28,12 @@ const productSchema = mongoose.Schema({
     countInStock: {
         type: Number,
         required: true,
-        min: 0,
+       // min: 0,
         //max: 2550
+    },
+    brand:{
+        type: String,
+        default: ''
     },
     rating: {
         type: Number,

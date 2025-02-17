@@ -115,7 +115,7 @@
                
         <% productsLatest.forEach((product)=>{ %>
             <div class="col4">
-                <img src="<%= product.image %>" class="col4-img" alt="men" image-id="<%= product.id %>" >
+                <img src="/uploads/<%= (product.images && product.images.length > 0) ? product.images[0].filename : 'no-sign-icon-mobile-concept-600nw-2236399885.webp' %>" class="col4-img" alt="men" image-id="<%= product.id %>" >
                 <h4><%= product.name %></h4>
                 <div class="rating">
                     <i class="fa fa-star"></i>

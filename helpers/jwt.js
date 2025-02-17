@@ -11,7 +11,7 @@ function authJwt() {
             if (req.cookies && req.cookies.token){
                 return req.cookies.token;
             }
-            return null;e
+            return null;
         },
         isRevoked: isRevoked
     }).unless({
@@ -26,6 +26,11 @@ function authJwt() {
             {url: /\/users\/qrcode(.*)/ },
             {url: /\/users\/verify(.*)/ },
             `/`,
+            {url: /\/css\/(.*)/ },
+            {url: /\/scripts\/(.*)/ },
+            {url: /\/javascript\/(.*)/ },
+            
+            
             
             {url: /\/users\/google(.*)/ }
         ]

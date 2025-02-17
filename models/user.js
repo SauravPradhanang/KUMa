@@ -55,10 +55,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: 'customer'//update to merchantRequest
     },
-    merchantProof: {
-        type: String,//image of bank details
-        default: ''
-    },
+    merchantProof: [{
+        filename: String,
+       // default:"maxresdefault.jpg"
+    }],
+    
     status: {
         type: String,
         default: 'allowed'//update to blocked.

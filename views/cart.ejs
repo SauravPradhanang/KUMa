@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Products | KUMA </title>
-    <link rel="stylesheet" href="../public/css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 </head>
@@ -49,7 +49,7 @@
             
             <td>
              <div class="cart-info">
-                 <img src="<%= orderedItem.product.image %> " image-id="<%= orderedItem.id %>"
+                 <img src="/uploads/<%= (product.images && product.images.length > 0) ? product.images[0].filename : 'no-sign-icon-mobile-concept-600nw-2236399885.webp' %>" image-id="<%= orderedItem.id %>"
                      alt="Picture of the book">
                      <div>
                  <p>

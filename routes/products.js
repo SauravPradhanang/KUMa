@@ -25,11 +25,12 @@ const bodyParser = require("body-parser");
 const FILE_TYPE_MAP = {
     'image/png': 'png',
     'image/jpeg': 'jpeg',
-    'image/jpg': 'jpg'
+    'image/jpg': 'jpg',
+    'image/webp': 'webp'
 }
 
 router.post(`/rate/:id`, userDecoder ,async (req, res)=>{
-  const product = await Product.findById(req.params.id).populate('category', 'review');
+  const product = await Product.findById(req.params.id).populate( 'review');
   //const ratedProduct= await Product.findById(req.params.id)
 
   let ratingExists = await Rating.findOne({ product: req.params.id, user: req.userId}).populate('user');
@@ -93,7 +94,7 @@ router.get('/upload', (req,res)=>{
   res.render('postpage');
 })
 router.post(`/review/:id`, async (req, res)=>{
-  const product = await Product.findById(req.params.id).populate('category');
+  const product = await Product.findById(req.params.id);
 
   let ratingExists = await Rating.findOne({ product: req.params.id, user: req.userId}).populate('user');
 
@@ -187,8 +188,9 @@ router.get("/search", async (req, res) => {
       const searchQuery = req.query.q || "";
   
       // Fetch all products from the database
-      const products = await Product.find({}).populate("category");
-  
+      const products = await Product.find({})
+
+      
       // Filter products for autocomplete suggestions
       const autocompleteResults = searchQuery
         ? products
@@ -232,7 +234,7 @@ router.get("/search", async (req, res) => {
       const selectedOption=req.query.sort;
 
       let products;
-      products = await Product.find({}).populate("category")
+      products = await Product.find({})
 
 /*
       if(selectedOption && typeof selectedOption !== "undefined"){
@@ -374,7 +376,7 @@ router.get(`/` ,async (req, res) =>{
     
 
 
-    const products = await Product.find().populate('category');
+    const products = await Product.find();
    
 
     if(!products) {
@@ -387,7 +389,7 @@ router.get(`/` ,async (req, res) =>{
 
 
 router.get(`/:id`, userDecoder ,async (req, res)=>{
-  const product = await Product.findById(req.params.id).populate('category');
+  const product = await Product.findById(req.params.id);
   const rating= await Rating.findOne({user: req.userId, product: req.params.id});
 
   const reviews= await Review.find({product: req.params.id, review: { $ne: null, $ne: '' } }).populate(['rating', 'user']).sort({ updatedAt: -1 });

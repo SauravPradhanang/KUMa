@@ -44,13 +44,6 @@
                         <% if (typeof selectedOption === "undefined" || selectedOption === null) { %>
                             <% selectedOption = "default"; %>
                         <% } %>
-                        
-                        <option value="default" <%= selectedOption === "default" ? "selected" : "" %>>Default Sorting</option>
-                        <option value="price" <%= selectedOption === "price" ? "selected" : "" %> >Sort by Price</option>
-                        <option value="popularity" <%= selectedOption === "popularity" ? "selected" : "" %> >Sort by Popularity</option>
-                        <option value="rating" <%= selectedOption === "rating" ? "selected" : "" %> >Sort by Rating</option>
-                        <option value="newest" <%= selectedOption === "newest" ? "selected" : "" %> >Sort by Newest</option>
-                       
                             <option value="default" <%= selectedOption === "default" ? "selected" : "" %>>Default Sorting</option>
                             <option value="price" <%= selectedOption === "price" ? "selected" : "" %> >Sort by Price</option>
                             <option value="popularity" <%= selectedOption === "popularity" ? "selected" : "" %> >Sort by Popularity</option>
@@ -88,7 +81,7 @@
         <div class="row" id="row">
             <% products.forEach((product)=>{ %>
             <div class="col4">
-                <img class="col4-img" src="/uploads/<%= product.images[0].filename %>" alt="men" image-id="<%= product.id %>" >
+                <img class="col4-img" src="/uploads/<%= (product.images && product.images.length > 0) ? product.images[0].filename : 'no-sign-icon-mobile-concept-600nw-2236399885.webp' %>" alt="men" image-id="<%= product.id %>" >
                 <h4><%= product.name %></h4>
                 <div class="rating">
                     <i class="fa fa-star"></i>
@@ -100,7 +93,7 @@
                 <p><%= product.price %></p>
                 <h1><%= product.countInStock %></h1>
             </div>    
-            <% }) %>
+            <% }) %>no-sign-icon-mobile-concept-600nw-2236399885.webp
         </div>
 
         
