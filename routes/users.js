@@ -84,6 +84,7 @@ router.get("/merchant-request", (req, res) => {
   res.render("usertomerchant");
 });
 
+/*
 router.get("/edit-user", userDecoder, async (req, res) => {
   await user.findById(req.userId);
 
@@ -102,7 +103,7 @@ router.get("/edit-user", userDecoder, async (req, res) => {
   }
 
  
-});
+});*/
 
 router.get("/account", userDecoder, async (req, res) => {
   const user = await User.findById(req.userId);
@@ -111,7 +112,12 @@ router.get("/account", userDecoder, async (req, res) => {
   if (!user) {
     res.render("account.ejs");
   } else {
+
+    if(!user.googleID){
     res.render("buyer-dashboard", { user });
+    }else{
+      res.render("buyer-dashboard-google", {user})
+    }
   }
 });
 
@@ -219,6 +225,15 @@ router.get("/2f", (req, res) => {
   console.log("Cookies:", req.cookies);
 });
 
+router.get(`/disable/qrcode/:id`,userDecoder ,async (req,res)=>{
+  const user= await User.findById(req.userId);
+
+  user.twoFactorSecret= '';
+  await user.save();
+
+
+})
+
 router.get(`/qrcode/:id`, async (req, res) => {
   //const secret = process.env.secret;
 
@@ -311,7 +326,17 @@ router.post("/verify", async (req, res) => {
       maxAge: 60 * 60 * 24 * 7 * 1000,
       path: "/", // Token expires in 1 week
     });
+
+
+    let notification = new Notification({
+      message: "Congratulations on enabling two-factor authentication. Hope you have an amazing and secure experience here.",
+      user: user.id,
+    });
+
+    await notification.save();
+  
     return res.status(200).json({ message: "" });
+
     //res.redirect('/products/search')
     //res.status(200).send({user: user._id , token: newToken});
   } else {
@@ -330,6 +355,8 @@ router.get(`/`, async (req, res) => {
   res.send(userList);
 });
 
+/*
+
 router.get("/:id", async (req, res) => {
   const user = await User.findById(req.params.id).select("-passwordHash");
 
@@ -339,7 +366,7 @@ router.get("/:id", async (req, res) => {
       .json({ message: "The user with the given ID was not found." });
   }
   res.status(200).send(user);
-});
+});*/
 
 /*
 router.post('/', async (req,res)=>{
@@ -424,16 +451,18 @@ router.get(`/get/count`, async (req, res) => {
   });
 });
 
+/*
 router.get("/logout", (req, res) => {
   const token = req.cookies.token;
   res.clearCookie(token); // Clear the token cookie
   return res.status(200).send("Logged out successfully!");
-});
-
-/*
-router.post('/logout', (req, res) => {
-    res.clearCookie('token');  // Clear the token cookie
-    res.status(200).send('Logged out successfully!');
 });*/
+
+
+router.get('/logout', (req, res) => {
+    res.clearCookie('token');  // Clear the token cookie
+   // res.status(200).send('Logged out successfully!');
+   return res.redirect("/users/account"); // Redirect to login page
+})
 
 module.exports = router;

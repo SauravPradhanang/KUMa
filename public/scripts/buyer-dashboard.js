@@ -49,7 +49,7 @@ function edit() {
     // zzz.classList.add/remove/toggle("ccc"): helps us add, remove or toggle the class dynamically
 
     button_to_add.innerHTML = `
-            <button onclick="save()" type="submit" class="button button-margin" name="save">Save</button>
+          <button onclikc="save(event)" type="button" class="button button-margin" name="save">Save</button>
             <button onclick="cancel_action()" type="reset" class="button button-bottom" name = "cancel">Cancel</button>
             `;
 }
@@ -73,32 +73,38 @@ function togglePassword1() {
     }
 }
 
-async function save() {
+
+
+
+
+async function save((event)=> {
+
+    event.stop
                    
-        const form= document.querySelector('.form-grid');
-        const passwordError= document.querySelector('.password-error');
-
-        const newPassword= form.new-password.value || '';
-        const oldPassword= form.old-password.value || '';
-        const username= form.username.value;
-        const email= form.email.value;
-        //const id= product.getAttribute('id');
-        
-        const res= await fetch(`/users/edit-user`,{
-            method: 'POST',
-            body: JSON.stringify({ oldPassword, username, newPassword, email }),
-            headers: {'Content-Type': 'application/json'}
-        })
-        
-        if(!res.ok){
-            passwordError.innerText = "Enter the correct old password to change it.";
-            passwordError.style.color = "red";
-        }
-        else{
-            passwordError.innerText = "Password changed successfully.";
-            passwordError.style.color = "green";
-        }
-        
-        }
-
-   
+    const form= document.querySelector('.form-grid');
+    const passwordError= document.querySelector('.password-error');
+  
+    const newPassword= form.new-password.value || '';
+    const oldPassword= form.old-password.value || '';
+    const username= form.username.value;
+    const email= form.email.value;
+    //const id= product.getAttribute('id');
+    
+    const res= await fetch(`/users/edit-user`,{
+        method: 'POST',
+        body: JSON.stringify({ oldPassword, username, newPassword, email }),
+        headers: {'Content-Type': 'application/json'}
+    })
+    
+    if(!res.ok){
+        passwordError.innerText = "Enter the correct old password to change it.";
+        passwordError.style.color = "red";
+    }
+    else{
+        passwordError.innerText = "Password changed successfully.";
+        passwordError.style.color = "green";
+    }
+    
+    })
+  
+  

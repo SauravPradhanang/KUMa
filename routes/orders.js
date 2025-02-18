@@ -20,7 +20,7 @@ router.get('/order-history', userDecoder, async (req, res) => {
 })
 
 
-router.get('/khalti-done', async (req, res) => {
+router.get('/khalti-done',userDecoder, async (req, res) => {
 
     const pidx = req.query.pidx;
     console.log(pidx);
@@ -41,7 +41,7 @@ router.get('/khalti-done', async (req, res) => {
         if(data.status==='Completed'){
 
             const orderedItems = await OrderItem.find({ user: req.userId, session: 'active' }).populate({ path: 'product' });
-            const order = await Order.findOne({ user: req.userId, existence: 'temp' }).sort({ createdAt: -1 });
+            const order = await Order.findOne({ user: req.userId, existence: 'temp' }).sort({ dateOrdered: -1 });
 
             order.existence= 'paid';
             await order.save();
@@ -53,7 +53,7 @@ router.get('/khalti-done', async (req, res) => {
 
 
             //return res.send('Payment success!!')
-            return res.redirect('/products');
+            return res.redirect('/orders/order-history');
         }else{
             return res.redirect('/order-items/')
         }
@@ -97,7 +97,7 @@ router.post('/', userDecoder, async (req, res)=>{
     })
 
     order = await order.save();
-    const khaltiPrice= (parseFloat(req.body.totaldisplay))*100;
+    const khaltiPrice= (parseInt(req.body.totaldisplay)*100);
     try {
         const response = await fetch('https://dev.khalti.com/api/v2/epayment/initiate/', {
             method: 'POST',
@@ -123,6 +123,7 @@ router.post('/', userDecoder, async (req, res)=>{
             //window.location.href = data.payment_url;
             res.redirect(data.payment_url);
         } else {
+            res.redirect('/order-items/')
             throw new Error('Payment initiation failed');
         }
     } catch (err) {

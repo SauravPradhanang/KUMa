@@ -64,7 +64,7 @@
          </div>
      </td>
  
-     <td> <div class="cart-info-input"><input type="number" value="<%= orderedItem.quantity %>" id="quantity" data-id="<%= orderedItem.id %>"></div></td>
+     <td> <div class="cart-info-input"><input type="number" value="<%= orderedItem.quantity %>" id="quantity" data-id="<%= orderedItem.id %>" min="0"></div></td>
              <td class="subTotal-column"><%= orderedItem.product.price* orderedItem.quantity  %></td>
  
             </tr>

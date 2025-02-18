@@ -93,62 +93,9 @@
             </ul>
         </aside>
         <main class="main-container">
-            <h2 id="main_heading">Edit Your Account Details</h2>
-            <div class="div-button">
-                <button onclick="edit()" type="button" class="button" name="edit">Edit</button>
-            </div>
-
-            <form name="myForm" class="form-grid">
-
-          
-                    <div class="full_width div_margin">
-                        <label class="block_label" for="email">Email Address:</label>
-                        <input class="margin_left" type="email" id="email" name="email" value="<%= user.email %>" required readonly>
-                   
-                    <!-- validity & verification -->
-                </div>
-                <div class="full_width div_margin" id="eusername">
-                    <label class="block_label" for="usrname">Username:</label>
-                    <input class="margin_left" type="text" id="usrname" name="username" value="<%= user.name %>" required readonly>
-                    <div class="formerror"></div>
-                    <!-- validity, matching usernames -->
-                </div>
-
-              
-
-                <div class="full_width div_margin" id="epassword">
-
-
-    
-                    <label class="block_label" for="pwd">Old Password:</label>
-                    <input class="margin_left" type="password" id="pwd1" name="old-password" placeholder="Enter the current password:"  readonly>
-                    <div class="password-error"></div>
-
-
-
-                    <label class="block_label" for="pwd">New Password:</label>
-                    <input class="margin_left" type="password" id="pwd2" name="new-password" placeholder="Enter the password you want to change to." readonly>
-                
-                    
-                    <div class="show_password">
-                        <input type="checkbox" onclick="togglePassword1()" class="heightForCheckbox" id="togglePassword"
-                            name="togglePassword-1">
-                        <label class="" for="togglePassword">Show Password</label>
-                    </div>
-                    <span class="formerror"></span>
-                    <!-- general rules or patterns, show & hide option -->
-                </div>
-                <div>
-                    <div id="buttons">
-                        
-                        <!-- <button onclick="" class="button button-margin visible" name="save">Save</button> -->
-                        <!-- <button onclick="cancel_action()" type="reset" class="button button-bottom visible" name="cancel">Cancel</button> -->
-                    </div>
-                </div>
-            </form>
-            <div class="registrationHyperlinkDiv">
+            <h2 id="main_heading">You are signed in with Google. So you cannot edit your user details. Sorry!</h2>
                 <label>Want to post your own products?</label>
-                <a href="registration1.html">Upgrade to seller account</a>
+                <a href="">Upgrade to seller account</a>
             </div>
             <div class="authenticationButton">
                 <% if(!user.twoFactorSecret){ %>

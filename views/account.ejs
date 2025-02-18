@@ -46,22 +46,30 @@
                         <span onclick="register()">Register</span>
                         <hr id="indicator">
                     </div>
-                    <form id="LoginForm">
+                    <div id="LoginForm">
+                    <form >
                     
                         <input type="Email" name="email" placeholder="Email">
                         <div class="email error"></div>
                         <input type="password" name="password" placeholder="Password">
                         <div class="password error"></div>
                         <button type="submit" class="btn-login">Login</button>
-                        <a href="">Forgot Password</a>
+                        
                     </form>
-                    <form id="RegForm" action="/users/signup" method="POST" name="auth">
+                    <form action="/users/google"><button type="submit">Sgin in with Google</button></form>
+                </div>
+                
+                   
+                    <div id="RegForm">
+                    <form action="/users/signup" method="POST" name="auth">
                         <input type="text" name="username" placeholder="Username">
                         <input type="Email" name="email" placeholder="Email">
                         <input type="password" name="password" placeholder="Password">
                         <button type="submit" class="btn">Register</button>
-                        
+                       
                     </form>
+                    <form action="/users/google"><button type="submit">Sgin in with Google</button></form>
+                    </div>  
                 </div>
             </div>
         </div>
@@ -92,6 +100,8 @@
         </div>
     </div>
 
+    
+
     <!-- =-----------------------------js for toggle form --------------------/ -->
      <script>
         var loginform=document.getElementById("LoginForm");
@@ -100,12 +110,12 @@
 
         function register(){
             RegForm.style.transform="translateX(0px)";
-             loginform.style.transform="translateX(0px)";
+             loginform.style.transform="translateX(100%)";
              indicator.style.transform="translateX(130px)";
         }
         function login(){
-            RegForm.style.transform="translateX(300px)";
-            loginform.style.transform="translateX(300px)";
+            RegForm.style.transform="translateX(100%)";
+            loginform.style.transform="translateX(0px)";
             indicator.style.transform="translateX(10px)";
         }
 
