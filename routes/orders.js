@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 
 router.get('/order-history', userDecoder, async (req, res) => {
 
-    const orders = await Order.find({ user: req.userId }).sort({ dateOrdered: -1 }).populate({ path: 'orderItems', populate: { path: 'product' } });
+    const orders = await Order.find({ user: req.userId, existence: 'paid' }).sort({ dateOrdered: -1 }).populate({ path: 'orderItems', populate: { path: 'product' } });
     console.log(orders);
     res.render('order-history', { orders });
 })
@@ -39,8 +39,23 @@ router.get('/khalti-done', async (req, res) => {
         })
         const data= await response.json();
         if(data.status==='Completed'){
+
+            const orderedItems = await OrderItem.find({ user: req.userId, session: 'active' }).populate({ path: 'product' });
+            const order = await Order.findOne({ user: req.userId, existence: 'temp' }).sort({ createdAt: -1 });
+
+            order.existence= 'paid';
+            await order.save();
+             
+    orderedItems.forEach(async (orderItem)=>{
+        orderItem.session= 'inactive'
+        await orderItem.save();
+    })
+
+
             //return res.send('Payment success!!')
             return res.redirect('/products');
+        }else{
+            return res.redirect('/order-items/')
         }
         console.log(data);
     } catch (err) {
@@ -49,6 +64,8 @@ router.get('/khalti-done', async (req, res) => {
 
 
 })
+
+
 
 router.get(`/:id`, async (req, res) => {
     const order = await Order.findById(req.params.id)
@@ -65,7 +82,58 @@ router.get(`/:id`, async (req, res) => {
     res.send(order);
 })
 
-router.post('/', userDecoder, async (req, res) => {
+router.post('/', userDecoder, async (req, res)=>{
+    const orderedItems = await OrderItem.find({ user: req.userId, session: 'active' }).populate({ path: 'product' });
+    const orderedItemsId = await orderedItems.map((orderedItem) => orderedItem.id);
+
+    let order = new Order({
+        orderItems: orderedItemsId,
+        streetAddress: req.body.street,
+        city: req.body.city,
+        
+        phone: req.body.phoneNo,
+        user: req.userId,
+        totalPrice: req.body.totaldisplay
+    })
+
+    order = await order.save();
+    const khaltiPrice= (parseFloat(req.body.totaldisplay))*100;
+    try {
+        const response = await fetch('https://dev.khalti.com/api/v2/epayment/initiate/', {
+            method: 'POST',
+            body: JSON.stringify({
+                "return_url": "http://localhost:3000/orders/khalti-done",
+                "website_url": "http://localhost:3000/",
+                "amount": khaltiPrice,
+                "purchase_order_id": order.id,
+                "purchase_order_name": "Order",
+            }),
+            headers: {
+                'Authorization': process.env.khalti_key,
+                'Content-Type': 'application/json',
+            }
+        });
+
+       if (response.ok) {
+            // Parse the JSON response
+            const data = await response.json();
+            console.log(data); // Ensure data is correctly logged
+
+            // Redirect to the Khalti payment URL
+            //window.location.href = data.payment_url;
+            res.redirect(data.payment_url);
+        } else {
+            throw new Error('Payment initiation failed');
+        }
+    } catch (err) {
+        console.log(err);
+        res.send('Error procesing request.')
+        //alert('Error processing request');
+    }
+
+})
+
+router.post('/random', userDecoder, async (req, res) => {
 
     console.log(req.userId);
     const orderedItems = await OrderItem.find({ user: req.userId, session: 'active' }).populate({ path: 'product' });

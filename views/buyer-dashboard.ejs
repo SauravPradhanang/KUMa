@@ -96,48 +96,13 @@
                 <button onclick="edit()" type="button" class="button" name="edit">Edit</button>
             </div>
 
-            <script>
-                document.addEventListener("DOMContentLoaded", ()=>{
+            <form name="myForm" class="form-grid">
 
+          
+                    <div class="full_width div_margin">
+                        <label class="block_label" for="email">Email Address:</label>
+                        <input class="margin_left" type="email" id="email" name="email" value="<%= user.email %>" required readonly>
                    
-const form= document.querySelector('.form-grid');
-const passwordError= document.querySelector('.password-error');
-
-form.addEventListener('submit', async (e)=>{
-    
-    e.preventDefault();
-
-    const newPassword= form.new-password.value;
-    const oldPassword= form.old-password.value;
-    const username= form.username.value;
-    //const id= product.getAttribute('id');
-
-
-
-    const res= await fetch(`/users/edit-user`,{
-        method: 'POST',
-        body: JSON.stringify({ oldPassword, username, newPassword }),
-        headers: {'Content-Type': 'application/json'}
-    })
-    
-    if(!res.ok){
-        passwordError.innerText = "Enter the correct old password to change it.";
-        passwordError.style.color = "red";
-    }
-    else{
-        passwordError.innerText = "Password changed successfully.";
-        passwordError.style.color = "green";
-    }
-
-})
-})
-            </script>
-            <form method="" action="" name="myForm" class="form-grid" onsubmit="return formValidate()">
-
-                <div class="full_width div_margin">
-                    <label class="block_label" for="email">Email Address:</label>
-                    <input class="margin_left" type="email" id="email" name="email" value="<%= user.email %>" required
-                        readonly>
                     <!-- validity & verification -->
                 </div>
                 <div class="full_width div_margin" id="eusername">
@@ -146,22 +111,22 @@ form.addEventListener('submit', async (e)=>{
                     <div class="formerror"></div>
                     <!-- validity, matching usernames -->
                 </div>
+
+              
+
                 <div class="full_width div_margin" id="epassword">
 
 
     
                     <label class="block_label" for="pwd">Old Password:</label>
-                    <input class="margin_left" type="password" id="pwd" name="old-password" value="abc" required readonly>
+                    <input class="margin_left" type="password" id="pwd1" name="old-password" placeholder="Enter the current password:"  required readonly>
                     <div class="password-error"></div>
 
 
 
                     <label class="block_label" for="pwd">New Password:</label>
-                    <input class="margin_left" type="password" id="pwd" name="new-password" value="abc" required readonly>
-                    
-
-
-<button type="submit">Save Changes</button>
+                    <input class="margin_left" type="password" id="pwd2" name="new-password" placeholder="Enter the password you want to change to." required readonly>
+                
                     
                     <div class="show_password">
                         <input type="checkbox" onclick="togglePassword1()" class="heightForCheckbox" id="togglePassword"
@@ -173,6 +138,7 @@ form.addEventListener('submit', async (e)=>{
                 </div>
                 <div>
                     <div id="buttons">
+                        
                         <!-- <button onclick="" class="button button-margin visible" name="save">Save</button> -->
                         <!-- <button onclick="cancel_action()" type="reset" class="button button-bottom visible" name="cancel">Cancel</button> -->
                     </div>

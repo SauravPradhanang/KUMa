@@ -93,7 +93,7 @@ router.post(`/rate/:id`, userDecoder ,async (req, res)=>{
 router.get('/upload', (req,res)=>{
   res.render('postpage');
 })
-router.post(`/review/:id`, async (req, res)=>{
+router.post(`/review/:id`, userDecoder ,async (req, res)=>{
   const product = await Product.findById(req.params.id);
 
   let ratingExists = await Rating.findOne({ product: req.params.id, user: req.userId}).populate('user');
@@ -136,6 +136,7 @@ router.post(`/review/:id`, async (req, res)=>{
 
   res.render('product-details', {
     product: product,
+    ratingExists: ratingExists,
     userReview: reviewExists,
     reviews: reviews
 });
@@ -290,20 +291,6 @@ router.get("/search", async (req, res) => {
       // Calculate total count after filtering
       const total = searchResults.length;
 
-      switch (selectedOption) {
-        case "price":
-            searchResults.sort((a, b) => b.price - a.price);
-            break;
-        case "popularity":
-        case "rating": // Both use rating
-            searchResults.sort((a, b) => b.rating - a.rating);
-            break;
-        case "newest":
-            searchResults.sort((a, b) => b.createdAt - a.createdAt);
-            break;
-        default:
-            console.log("Sorting by default (no change)");
-    }
 
       if(selectedOption && typeof selectedOption !== "undefined"){
       
@@ -397,7 +384,7 @@ router.get(`/:id`, userDecoder ,async (req, res)=>{
    
 
   console.log(req.params.id);
-  res.render('product-details', {product: product, rating: rating, reviews: reviews, userReview: reviewExists});
+  res.render('product-details', {product: product, ratingExists: rating, reviews: reviews, userReview: reviewExists});
 })
 /*
 router.get(`/:id`, (req, res)=>{

@@ -15,6 +15,29 @@ const passport = require("../helpers/passport-google");
 const { Review } = require("../models/review");
 //const GoogleStrategy= require('passport-google-oauth20');
 
+
+router.post("/edit-user", userDecoder, async (req, res) => {
+ const user= await user.findById(req.userId);
+
+  user.name = req.body.username;
+  user.email=req.body.email;
+
+  await user.save();
+
+
+  if (await bcrypt.compare(req.body.oldPassword, user.passwordHash)) {
+    user.passwordHash = bcrypt.hashSync(req.body.newPassword, 10);
+    user = await user.save();
+
+    return res.status(200).json({message: 'Changed password.'})
+  }
+  else{
+    return res.status(400).json({message: 'Wrong password'})
+  }
+
+ 
+});
+
 router.get(
   "/google",
   passport.authenticate("google", { scope: ["profile", "email"] })
@@ -65,6 +88,9 @@ router.get("/edit-user", userDecoder, async (req, res) => {
   await user.findById(req.userId);
 
   user.name = req.body.username;
+  user.email= req.body.email;
+  user = await user.save();
+
   if (await bcrypt.compare(req.body.oldPassword, user.passwordHash)) {
     user.passwordHash = bcrypt.hashSync(req.body.newPassword, 10);
     user = await user.save();

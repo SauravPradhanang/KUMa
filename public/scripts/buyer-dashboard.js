@@ -1,4 +1,5 @@
 // Definition of function to remove errors before going through form validation
+
 function clearerrors() {
 
     errors = document.getElementsByClassName('formerror');
@@ -33,6 +34,9 @@ function edit() {
     var edit_address = document.getElementById('email');
     edit_address.removeAttribute("readonly");
 
+    document.getElementById('pwd1').removeAttribute('readonly');
+    document.getElementById('pwd2').removeAttribute('readonly');
+
     var edit_pnum = document.getElementById('usrname');
     edit_pnum.removeAttribute("readonly");
 
@@ -45,7 +49,7 @@ function edit() {
     // zzz.classList.add/remove/toggle("ccc"): helps us add, remove or toggle the class dynamically
 
     button_to_add.innerHTML = `
-            <button onclick="" class="button button-margin" name="save">Save</button>
+            <button onclick="save()" type="submit" class="button button-margin" name="save">Save</button>
             <button onclick="cancel_action()" type="reset" class="button button-bottom" name = "cancel">Cancel</button>
             `;
 }
@@ -53,15 +57,48 @@ function edit() {
 // Function definitions to toggle input type i.e. to show/hide the passwords 
 
 function togglePassword1() {
-    var element_to_change1 = document.getElementById('pwd');
+    var element_to_change1 = document.getElementById('pwd1');
+    var element_to_change2 = document.getElementById('pwd2');
     if (element_to_change1.type === "password") {
         element_to_change1.type = "text";
     }
     else {
         element_to_change1.type = "password";
     }
+    if (element_to_change2.type === "password") {
+        element_to_change2.type = "text";
+    }
+    else {
+        element_to_change2.type = "password";
+    }
 }
 
-function save() {
+async function save() {
+                   
+        const form= document.querySelector('.form-grid');
+        const passwordError= document.querySelector('.password-error');
 
-}
+        const newPassword= form.new-password.value || '';
+        const oldPassword= form.old-password.value || '';
+        const username= form.username.value;
+        const email= form.email.value;
+        //const id= product.getAttribute('id');
+        
+        const res= await fetch(`/users/edit-user`,{
+            method: 'POST',
+            body: JSON.stringify({ oldPassword, username, newPassword, email }),
+            headers: {'Content-Type': 'application/json'}
+        })
+        
+        if(!res.ok){
+            passwordError.innerText = "Enter the correct old password to change it.";
+            passwordError.style.color = "red";
+        }
+        else{
+            passwordError.innerText = "Password changed successfully.";
+            passwordError.style.color = "green";
+        }
+        
+        }
+
+   

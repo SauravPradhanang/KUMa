@@ -84,11 +84,21 @@
                 <img class="col4-img" src="/uploads/<%= (product.images && product.images.length > 0) ? product.images[0].filename : 'no-sign-icon-mobile-concept-600nw-2236399885.webp' %>" alt="men" image-id="<%= product.id %>" >
                 <h4><%= product.name %></h4>
                 <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
+                    <% if (typeof product.rating !== 'undefined'  && product.rating !== null) { %>
+                        <% for (let i = 1; i <= 5; i++) { %>
+                            <% if (i <= product.rating) { %>
+                                <i class="fa fa-star" id="<%= i %>"></i>
+                            <% } else { %>
+                                <i class="fa-regular fa-star" id="<%= i %>"></i>
+                            <% } %>
+                        <% } %>
+                    <% } else { %>
+                        <i class="fa-regular fa-star" id="1"></i>
+                        <i class="fa-regular fa-star" id="2"></i>
+                        <i class="fa-regular fa-star" id="3"></i>
+                        <i class="fa-regular fa-star" id="4"></i>
+                        <i class="fa-regular fa-star" id="5"></i>
+                    <% } %>
                 </div>
                 <p><%= product.price %></p>
                 <h1><%= product.countInStock %></h1>

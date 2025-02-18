@@ -26,6 +26,10 @@ const orderSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    existence:{
+        type: String,
+        default: 'temp'//update to paid
+    },
     status: {
         type: String,
         required: true,

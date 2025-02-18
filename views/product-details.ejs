@@ -135,9 +135,9 @@
     <button type="submit">Submit Review</button>
     </form>
     <div id="user-rating" class="rating" product-id="<%= product.id %>">
-        <% if (typeof rating !== 'undefined'  && rating !== null) { %>
+        <% if (typeof ratingExists !== 'undefined'  && ratingExists !== null) { %>
             <% for (let i = 1; i <= 5; i++) { %>
-                <% if (i <= rating.rating) { %>
+                <% if (i <= ratingExists.rating) { %>
                     <i class="fa fa-star" id="<%= i %>"></i>
                 <% } else { %>
                     <i class="fa-regular fa-star" id="<%= i %>"></i>
@@ -236,7 +236,7 @@ function updateStars(rating) {
                             <i class="fa-regular fa-star" id="<%= i %>"></i>
                         <% } %>
                     <% } else { %>
-                        
+                        <i class="fa-regular fa-star" id="<%= i %>"></i>
                     <% } %>
 
                     

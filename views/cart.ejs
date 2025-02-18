@@ -56,7 +56,7 @@
                  <p>
                      <%= orderedItem.product.name %>
                  </p>
-                 <small>Price: $<span class="item-price" data-price="<%= orderedItem.product.price %>">
+                 <small>Price: Rs.<span class="item-price" data-price="<%= orderedItem.product.price %>">
                     <%= orderedItem.product.price %></span></small>
                  <br>
                  <button type="submit" class="remove" id-data="<%= orderedItem.id %>">Remove</button>
@@ -205,6 +205,11 @@
                 <label for="street">Street:</label>
                 <input type="text" class="orderFormInput" id="street" name="street" required>
             </div>
+            <div class="totaldisplay">
+                <label for="total">Total:</label>
+                Rs.<input type="text" name="totaldisplay" id="totaldisplay" readonly>
+               
+            </div>
             <div class="pay_button">
                 <button class="button1">Pay with <img src="/uploads/khalti_logo.png"
                         alt="khalti logo" width="70"></button>
@@ -215,8 +220,12 @@
 <script>
     const orderPopup= document.getElementById("orderConfirmDiv");
     const orderButton= document.getElementById('orderButton');
+    const totalAmount=  document.querySelector('.total').innerText;
 
         async function OrderFetch() {
+
+        document.getElementById('totaldisplay').value= totalAmount;
+        //document.getElementById('totaldisplay').setAttribute('data-display', "Rs. " + totalAmount);
     
         orderPopup.style.display = "block";
     }
