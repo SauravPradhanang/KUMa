@@ -19,7 +19,7 @@
                 <nav>
                     <ul>
                         <li><a href="/">Home</a></li>
-                        <li><a href="/products/">Product</a></li>
+                        <li><a href="/products/search">Product</a></li>
                         <li><a href="">About</a></li>
                         <li><a href="">Contact</a></li>
                         <li><a href="/users/account">Account</a></li>
@@ -81,6 +81,7 @@
         <div class="row" id="row">
             <% products.forEach((product)=>{ %>
             <div class="col4">
+                <div class="col4-card">
                 <img class="col4-img" src="/uploads/<%= (product.images && product.images.length > 0) ? product.images[0].filename : 'no-sign-icon-mobile-concept-600nw-2236399885.webp' %>" alt="men" image-id="<%= product.id %>" >
                 <h4><%= product.name %></h4>
                 <div class="rating">
@@ -99,6 +100,7 @@
                         <i class="fa-regular fa-star" id="4"></i>
                         <i class="fa-regular fa-star" id="5"></i>
                     <% } %>
+                </div>
                 </div>
                 <p><%= product.price %></p>
                 <h1><%= product.countInStock %></h1>
@@ -176,15 +178,14 @@
 
     //get to respective prodcuts:
     document.addEventListener('DOMContentLoaded', () => {
-        const images = document.querySelectorAll('.col4-img');
+        const cards = document.querySelectorAll('.col4');
 
-        images.forEach(image => {
-            image.addEventListener('click', async (event) => {
+        cards.forEach(card => {
+            card.addEventListener('click', async (event) => {
                 event.stopPropagation(); // Prevent parent handlers from interfering
-                console.log('Image clicked!');
-                const clickedImage = event.target;
-
-                const id = clickedImage.getAttribute('image-id');
+                //console.log('Image clicked!');
+                  
+                const id = card.querySelector('img').getAttribute('image-id');
 
                 /*
                 try {
