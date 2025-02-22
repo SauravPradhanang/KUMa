@@ -1,0 +1,40 @@
+<div class="card">
+    <% order.orderItems.forEach((orderItem)=>{ %>
+        <h3>
+            <%= orderItem.product.name %>
+        </h3>
+        <p>
+            <%= orderItem.product.richDescription %>
+        </p>
+        <h4>
+            <%= orderItem.quantity %>
+        </h4>
+    <% }) %>
+    <h2 class="card-price">
+        <%= order.totalPrice %>
+    </h2>
+    <br>
+    <button class="khalti" type="submit" id="<%= order.id %>">Pay with Khalti</button>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        console.log('Button clicked');
+        document.querySelector('.khalti').addEventListener('click', async function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+
+            const card = this.closest('.card');
+            const clickedButton = e.target;
+            const id = clickedButton.getAttribute('id');
+
+            const price = card.querySelector('.card-price').innerText;
+            const khaltiPrice = price * 100;
+
+            console.log(khaltiPrice);
+            console.log(id);
+
+            
+        });
+    });
+</script>

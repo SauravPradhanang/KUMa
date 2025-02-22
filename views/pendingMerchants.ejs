@@ -1,0 +1,164 @@
+<div class="container">
+    <h1 class="page-title">
+        Merchants to be page
+    </h1>
+
+    <div class="books-container">
+        <% merchantsPending.forEach((user)=>{ %>
+
+            <div class="users">
+
+                <h4 class="user-name">
+                    <%= user.name %>
+                </h4>
+                <h5 class="user-email">
+                    <%= user.email %> </h5>
+
+                    <img src="/uploads/<%= user.merchantProof[0].filename %>" >
+<p><%= user.bankname %></p>
+<p><%= user.banknumber %></p>
+               
+                
+                <button type="submit" name="action" id="<%= user.id %>" value="accept"  class="deliver-button">Make Merchant</button>
+                <button type="submit" name="action" id="<%= user.id %>" value="decline"  class="deliver-button">Decline request</button>
+            </div>
+
+            <% }) %>
+    </div>
+</div>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.deliver-button').forEach(button => {
+            button.addEventListener('click', async function (event) {
+                event.stopPropagation(); // Prevent parent handlers from interfering
+                event.preventDefault(); // Prevent the default form submission
+
+                const clickedButton = event.target; // Get the button that was clicked
+                const id = clickedButton.getAttribute('id');
+                const action = clickedButton.value; // Retrieve the value (accept or decline)
+
+                const response = await fetch('/admin/merchant-requests', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ action, id }) // Send the action value in the body
+                });
+
+                //const result = await response.json();
+                //console.log(result); // Handle response
+                if (res.ok) {
+                    window.location.href = `/admin/merchant-requests`;
+                }
+            });
+        });
+    });
+
+</script>
+<style>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #eee;
+  color: #111;
+  font-family: monospace;
+  padding: 10px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-title {
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  border-bottom: 1px dashed #999;
+  padding-bottom: 5px;
+}
+
+.books-container {
+  margin-top: 10px;
+}
+
+/* Merchant user cards */
+.users {
+  border-left: 4px solid #666;
+  padding: 8px 5px 8px 10px;
+  margin-bottom: 20px;
+  background: #f9f9f9;
+}
+
+.user-name {
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.user-email {
+  font-size: 13px;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+
+ img {
+  display: block;
+  
+  height: 400px;
+  width: 490px;
+ 
+  margin: 10px 0;
+  border: 1px solid #999;
+}
+
+button {
+  font-family: monospace;
+  background: #ddd;
+  border: 1px solid #666;
+  cursor: pointer;
+  padding: 5px 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+  font-size: 12px;
+}
+
+button[value="accept"] {
+  border-left: 4px solid #090;
+}
+
+button[value="decline"] {
+  border-left: 4px solid #900;
+}
+
+button:hover {
+  background: #d5d5d5;
+}
+
+button:active {
+  background: #ccc;
+  transform: translateY(1px);
+}
+
+.deliver-button {
+  font-family: monospace;
+  background: #ddd;
+  border: 1px solid #666;
+  cursor: pointer;
+  padding: 5px 10px;
+  margin-top: 10px;
+  margin-right: 10px;
+  font-size: 12px;
+}
+
+button[value="accept"], button[value="decline"] {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+</style>

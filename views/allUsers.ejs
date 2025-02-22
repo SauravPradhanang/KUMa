@@ -1,0 +1,83 @@
+<link rel="stylesheet" href="/css/admin.css">
+
+<div class="container">
+    <h1 class="page-title">
+        Users page
+    </h1>
+
+
+    <form action="/admin/users-search" method="get" id="searchForm">
+                  
+    </div>
+<div style="position: relative;">
+    <input type="text" name="q" id="searchInput" placeholder="Search users" autocomplete="off"
+    value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>" />
+
+<button type="submit" style="">Search</button>
+</form>
+
+    <form action="/admin/users-flagging" id="usersForm">
+    <div class="books-container">
+
+        <div class="smallcontainer">
+            <div class="row row2">
+                <h2>All Users</h2>
+               
+    </div>
+        
+            
+              
+
+
+
+
+    
+<div class="pagebtn">
+    
+    <% if ( typeof currentPage !== "undefined" && currentPage> 1) { %>
+        <a href="/users/search?q=<%= searchQuery %>&page=<%= currentPage - 1 %>&limit=<%= limit %>">Previous</a>
+        <% } if( typeof currentPage !== "undefined") { %>
+            <span>Page <%= currentPage %> of <%= totalPages %></span>
+            <% } if (typeof currentPage !== "undefined" && currentPage < totalPages) { %>
+                <a
+                    href="/users/search?q=<%= searchQuery %>&page=<%= currentPage + 1 %>&limit=<%= limit %>">Next</a>
+                <% } %>
+</div>
+
+
+
+        <% users.forEach((user)=>{ %>
+            <div class="card">
+               <h3><%= user.name %></h3>
+               <h4><%= user.email %></h4>
+               <button type="submit" name="action" id="<%= user.id %>" value="warning">Send a warning!</button>
+               <button type="submit" name="action" id="<%= user.id %>" value="blacklist">Blacklist</button>
+               <button type="submit" name="action" id="<%= user.id %>" value="remove-ban">Allow back!</button>
+
+            </div>
+            <% }) %>
+    </div>
+    </form>
+</div>
+
+
+<script>
+
+    document.getElementById('usersForm').addEventListener('submit', async function(event) {
+        event.preventDefault(); // Prevent the default form submission
+    
+        const clickedButton = event.submitter; // Get the button that was clicked
+        const id= clickedButton.getAttribute('id');
+        const action = clickedButton.value; // Retrieve the value (accept or decline)
+    
+        const response = await fetch('/admin/users-flagging', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action, id }) // Send the action value in the body
+        });
+    
+        const result = await response.json();
+        console.log(result); // Handle response
+    });
+       
+</script>

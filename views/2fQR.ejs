@@ -1,0 +1,158 @@
+
+
+<style>
+
+    body{
+        background-image: url(https://static.vecteezy.com/system/resources/thumbnails/038/534/942/small_2x/ai-generated-nighttime-football-creative-concept-of-an-empty-stadium-photo.jpg);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+  background-attachment: fixed; 
+  font-family: Arial, sans-serif;
+  height: 100%; 
+  overflow: hidden;
+    }
+
+.words-container{
+    width: 77%;
+    background-color: white;
+    right: 0;
+    position: absolute;
+    top: 0;
+    
+}
+
+.words{
+    margin-left: 3%;
+    margin-bottom: 100%;
+    margin-top: 8%;
+}
+
+.backdrop-container{
+    width: 23%;
+}
+
+h2 {
+    font-size: 25px;
+    margin-bottom: 10px;
+    line-height: 1.8;
+}
+
+.subtext {
+    font-size: 18px;
+    color: #292020;
+    margin-bottom: 15px;
+    line-height: 1.9;
+}
+
+.step {
+    font-size: 14px;
+    text-align: left;
+    color: #7b7575;
+    margin-bottom: 10px;
+    
+}
+
+.qr-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border: 2px;
+    border-radius: 8px;
+    margin: 15px;
+}
+
+img {
+    width: 260px;
+    height: 260px;
+}
+
+.input-box {
+    width: 500px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    margin-top: 15px;
+}
+
+::placeholder{
+    font-size: 13px;
+}
+
+.setup-btn {
+    width: 255px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.complete-btn:hover {
+    background-color: #0056b3;
+}
+
+.value-error{
+    margin-bottom: 5px;
+}
+
+   </style>
+    <div style="display: flex;">
+    <div class="backdrop-container"></div>
+    <div class="words-container">
+        <div class="words">
+        <h2>Set up two factor authentication</h2>
+        <p class="subtext">Great! Let's get started.</p>
+        <p class="step">Step 1: Visit the App Store to get an authenticator app like Google Authenticator or Authy, then follow the app’s instructions to set up an account with them.</p>
+        <p class="step">Step 2: Use your authenticator app to scan the barcode below and enter the displayed code.</p>
+
+        <br>
+        <img src="<%= data %>" />
+        <br>
+
+<form action="" method="post">
+
+    <input type="number" name="qrverify" id="verify" placeholder="6-DIGIT VERIFICATION CODE" min="0" class="input-box">
+    <div class="value-error"></div>
+
+    <button id="<%= user.id %>" type="submit" class="setup-btn">Setup</button>
+</form>
+        
+</div>
+    </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", ()=>{
+
+    const form= document.querySelector('form');
+    const valueError= document.querySelector('.value-error');
+    
+    form.addEventListener('submit', async (e)=>{
+        e.stopPropagation();
+        
+        e.preventDefault();
+
+        const qrverify= form.querySelector('input').value;
+        const id= document.querySelector('button').id;
+
+        const res= await fetch(`/users/verify`,{
+            method: 'POST',
+            body: JSON.stringify({ qrverify, id}),
+            headers: {'Content-Type': 'application/json'}
+        })
+        
+        if(!res.ok){
+            valueError.innerText = "Incorrect 6-digit code. Please enter the one shown on your app.";
+            valueError.style.color = "red";
+        }
+        else{
+            window.location.href="/";
+        }
+
+    })
+})
+    
+</script>

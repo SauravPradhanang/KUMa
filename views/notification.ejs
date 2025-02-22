@@ -1,0 +1,16 @@
+<div class="container">
+    <h1 class="page-title">
+        Messages from the admin:
+    </h1>
+   
+    <div class="books-container">
+        <% notifications.forEach((notification)=>{ %>
+            <div class="card">
+               <h5><%= notification.createdAt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %></h5>
+               <p><%= notification.message %></p>
+               <br>
+
+            </div>
+            <% }) %>
+    </div>
+</div>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=product.name%> | KUMA </title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <img src="https://kuma.io/assets/images/social/og-image-1200-630.jpg?cb=1730815037" alt="Logo"
+                    width="125px"> <!-- Replace with the actual image URL -->
+
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/products/search">Product</a></li>
+                   
+                    <li><a href="/users/account">Account</a></li>
+                </ul>
+            </nav>
+            <a href="/order-items/"><img class="cart"
+                src="https://png.pngtree.com/element_our/20190531/ourmid/pngtree-shopping-cart-convenient-icon-image_1287807.jpg"
+                alt="cart" height="40px" width="40px"></a>
+        </div>
+
+    </div>
+    <!-- --------------------single product details-----------------------------   -->
+
+    <div class="smallcontainer single-product">
+        <div class="row">
+            <div class="col2">
+                <img src="/uploads/<%= (product.images && product.images.length > 0) ? product.images[0].filename : 'no-sign-icon-mobile-concept-600nw-2236399885.webp' %>" width="100%" id="product-img" alt="1">
+                <div class="smallimg-row">
+                    <%product.images.forEach((img)=>{%>
+                    <div class="smallimg-col">
+                        <img src="/uploads/<%=img.filename%>" width="100%" class="small-img" alt="">
+                    </div>
+                    <%})%>
+            </div>
+                <!--
+            <div class="smallimg-row">
+                <div class="smallimg-col">
+                    <img src="https://i.pinimg.com/736x/71/b8/ec/71b8ecbd56f65eff79499da84e1517d5.jpg" width="100%" class="small-img" alt="">
+                </div>
+                <div class="smallimg-col">
+                    <img src="https://i.pinimg.com/474x/3b/59/9d/3b599d391592edd578336c093bb300b5.jpg" width="100%" class="small-img" alt="">
+                </div>
+                <div class="smallimg-col">
+                    <img src="https://i.pinimg.com/474x/24/0c/95/240c95cc145d42271573e3a7a9283a0d.jpg" width="100%" class="small-img" alt="">
+                </div>
+                <div class="smallimg-col">
+                    <img src="https://i.pinimg.com/474x/f8/b6/cf/f8b6cf07978e502e8185b7394e34383d.jpg" width="100%" class="small-img" alt="">
+                </div>
+            </div>-->
+            </div>
+            <div class="col2">
+                <h3><%= (product.rating).toFixed(1) %> out of 5</h3>
+                <p>Home/T-shirt</p>
+
+                <h1>
+                    <%= product.name %>
+                </h1>
+
+                <h4>
+                    Rs. <%= product.price.toLocaleString("en-IN") %>
+                </h4>
+                <select>
+                    <% product.variant.forEach((variant)=>{%>
+                        <option><%=variant%></option>
+                    <%})%>
+                    </select>
+
+                
+                <form class="cart-form" action="" method="">
+                    <input type="number" name="quantity" value="1" min="0">
+                    <div class="cart-error"></div>
+                    <button type="submit" id="<%= product.id %>" class="btn" style="width: 180px; height: 55px">Add to Cart</button>
+                </form>
+                <script>
+                    document.addEventListener("DOMContentLoaded", ()=>{
+
+                   
+                    const form= document.querySelector('.cart-form');
+                    const cartError= document.querySelector('.cart-error');
+                    
+                    form.addEventListener('submit', async (e)=>{
+                        
+                        e.preventDefault();
+
+                        const quantity= form.quantity.value;
+                        const product= form.querySelector('.btn');
+                        const id= product.getAttribute('id');
+
+                    
+                console.log(id);
+
+                        const res= await fetch(`/order-items/${id}`,{
+                            method: 'POST',
+                            body: JSON.stringify({ quantity, id }),
+                            headers: {'Content-Type': 'application/json'}
+                        })
+                        
+                        if(!res.ok){
+                            cartError.innerText = "Insufficient items in store.";
+                            cartError.style.color = "red";
+                        }
+                        else{
+                            window.location.href="/order-items/";
+                        }
+
+                    })
+                })
+                    
+                </script>
+                
+
+                <h3>Product Detail <i class="fa fa-indent"></i></h3>
+                <br>
+                <p>
+                    <%= product.richDescription %>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+
+<br><br>
+
+
+
+    <div id="ReviewDiv">
+
+        
+        <form action="/products/review/<%= product.id %>" method="post">
+            <input id="ReviewInput" type="text" name="review" placeholder="Write your review here." value="<%= (typeof userReview !== 'undefined'  && userReview) ? userReview.review : '' %>">
+            <button type="submit" id="ReviewButton">Submit Review</button>
+        </form>
+        <div id="user-rating" class="rating" product-id="<%= product.id %>">
+            <% if (typeof ratingExists !== 'undefined'  && ratingExists !== null) { %>
+                <% for (let i = 1; i <= 5; i++) { %>
+                    <% if (i <= ratingExists.rating) { %>
+                        <i class="fa fa-star" id="<%= i %>"></i>
+                        <% } else { %>
+                            <i class="fa-regular fa-star" id="<%= i %>"></i>
+                            <% } %>
+                            <% } %>
+                            <% } else { %>
+                                <i class="fa-regular fa-star" id="1"></i>
+                                <i class="fa-regular fa-star" id="2"></i>
+                                <i class="fa-regular fa-star" id="3"></i>
+                                <i class="fa-regular fa-star" id="4"></i>
+                                <i class="fa-regular fa-star" id="5"></i>
+                                <% } %>
+                            </div>
+                            
+                            
+                            <h2><%= product.numberOfReviews %> Reviews</h2>
+                            <% if (typeof reviews !== 'undefined' && reviews !== null && reviews.length>0 ) { %>
+                                <% reviews.forEach((review) => { %>
+                                    
+                                    <div class="card">
+                                        <h5>
+                                            <%= review.updatedAt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %>
+                                        </h5>
+                                        <% if (typeof review.user !== 'undefined' && review.user !== null) { %>
+                                            <h2><%= review.user.name %></h2>
+                                            <% } else { %>
+                                                <h2>Anonymous</h2>
+                                                <% } %>
+                                                <p>
+                                                    <%= review.review %>
+                                                </p>
+                                                
+                                                
+                                                
+                                                <div class="rating">
+                                                    <% for (let i = 1; i <= 5; i++) { %>
+                                                        
+                                                        <% if (typeof review.rating !== 'undefined' && review.rating !== null) { %>
+                                                            <% if (i <= review.rating.rating) { %>
+                                                                <i class="fa fa-star" id="<%= i %>"></i>
+                                                                <% } else { %>
+                                                                    <i class="fa-regular fa-star" id="<%= i %>"></i>
+                                                                    <% } %>
+                                                                    <% } else { %>
+                                                                        <i class="fa-regular fa-star" id="<%= i %>"></i>
+                                                                        <% } %>
+                                                                        
+                                                                        
+                                                                        
+                                                                        <% } %>
+                                                                    </div>
+                                                                    
+                                                                    <% }) %>
+                                                                    <% } else { %>
+                                                                        <p>No reviews available.</p>
+                                                                        <% } %>
+                                                                    </div>
+                                                                </div>
+    
+    
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const userRate= document.getElementById('user-rating')
+    
+            userRate.querySelectorAll('i').forEach(i => {
+            i.addEventListener('click', async function (event) {
+    
+           //event.stopPropagation(); // Prevent parent handlers from interfering
+           //event.preventDefault(); // Prevent the default form submission
+           const id= userRate.getAttribute('product-id');
+           console.log(id);
+    
+           const clickedStar = event.target; // Get the button that was clicked
+           const rating = clickedStar.getAttribute('id');
+           //const action = clickedButton.value; // Retrieve the value (accept or decline)
+    
+           const response = await fetch(`/products/rate/${id}`, {
+               method: 'POST',
+               headers: { 'Content-Type': 'application/json' },
+               body: JSON.stringify({ rating }) // Send the action value in the body
+           });
+    
+           //const result = await response.json();
+           //console.log(result); // Handle response
+           if (response.ok) {
+               console.log('yes.');
+               updateStars(rating);
+           }
+       });
+    });
+    
+    function updateStars(rating) {
+            const stars = userRate.querySelectorAll("i");
+    
+            stars.forEach((star) => {
+                if (parseInt(star.getAttribute("id")) <= rating) {
+                    star.classList.remove("fa-regular");
+                    star.classList.add("fa");
+                } else {
+                    star.classList.remove("fa");
+                    star.classList.add("fa-regular");
+                }
+            });
+        }
+    
+    })
+    
+    
+    </script>
+    
+      
+    
+
+            <!--review sections-->
+
+
+            <!-- --------------title---------- -->
+            <div class="classcontainer">
+                
+            </div>
+
+            <div class="smallcontainer">
+
+               
+                    </div>
+               
+
+            <!-- -------------------java s for product breif--------------- -->
+            <script>
+                var productimg = document.getElementById("product-img");
+                var small_img = document.getElementsByClassName("small-img");
+                //small_img is a array because of  many small imges
+                small_img[0].onclick = function () {
+                    productimg.src = small_img[0].src;
+                }
+                small_img[1].onclick = function () {
+                    productimg.src = small_img[1].src;
+                }
+                small_img[2].onclick = function () {
+                    productimg.src = small_img[2].src;
+                }
+                small_img[3].onclick = function () {
+                    productimg.src = small_img[3].src;
+                }
+
+                //for ratings
+
+                 </script>
+</body>
+
+</html>

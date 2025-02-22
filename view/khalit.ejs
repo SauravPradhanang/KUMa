@@ -1,0 +1,42 @@
+<input type="text" id="amount" name="amount" value="<%= amount %>" required>
+<input type="text" id="tax_amount" name="tax_amount" value="<%= tax_amount %>" required>
+<input type="text" id="total_amount" name="total_amount" value="<%= amount %>" required>
+<input type="text" id="transaction_uuid" name="transaction_uuid" value="<%= transaction_uuid %>" required>
+<input type="text" id="product_code" name="product_code" value="EPAYTEST" required>
+<input type="text" id="product_service_charge" name="product_service_charge" value="<%= product_service_charge %>"
+    required>
+<input type="text" id="product_delivery_charge" name="product_delivery_charge" value="<%= product_delivery_charge %>"
+    required>
+<input type="text" id="success_url" name="success_url" value="http://localhost:3000/success" required>
+<input type="text" id="failure_url" name="failure_url" value="http://localhost:3000/failure" required>
+<input type="text" id="signed_field_names" name="signed_field_names" value="total_amount,transaction_uuid,product_code"
+    required>
+<input type="text" id="signature" name="signature" value="<%= signature %>" required>
+<input value="Submit" type="submit">
+
+
+
+<script>
+    /* document.getElementById("total_amount").addEventListener("input", generateSignature);
+     document.getElementById("transaction_uuid").addEventListener("input", generateSignature);
+     document.getElementById("product_code").addEventListener("input", generateSignature);*/
+
+    fetch('https://dev.khalti.com/api/v2/epayment/initiate/', {
+        method: 'POST',
+        body: JSON.stringify({
+            "return_url": "http://localhost:3000/orders/khalti-done",
+            "website_url": "http://localhost:3000/",
+            "amount": "1000",
+            "purchase_order_id": "Order01",
+            "purchase_order_name": "test",
+            "customer_info": {
+                "name": "Ram Bahadur",
+                "email": "test@khalti.com",
+                "phone": "9800000001"}
+            }),
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Key 4fd1d05d109e4b138311c35712adb552'
+        }
+    })
+</script>

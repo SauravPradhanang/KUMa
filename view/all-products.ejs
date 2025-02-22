@@ -1,0 +1,67 @@
+<div class="container">
+    <h1 class="page-title">
+        Product page
+    </h1>
+    <form action="/order-items/"><button type="submit">Place Order</button></form>
+    <div class="books-container">
+        <% products.forEach((product)=>{ %>
+            <div class="card">
+               <img class="card-img" src="<%= product.image %> " image-id="<%= product.id %>" alt="Picture of the book">
+                <h4 class="card-auhtor">
+                    <%= product.name %>
+                </h4>
+                <h5 class="card-author ">
+                    <%= product.brand %>
+                    
+                </h5>
+                <p class="card-description">
+                    <%= product.richDescription %>
+                </p>
+                <h1><%= product.countInStock %></h1>
+            </div>
+            <% }) %>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const images = document.querySelectorAll('.card-img');
+
+        images.forEach(image => {
+            image.addEventListener('click', async (event) => {
+                event.stopPropagation(); // Prevent parent handlers from interfering
+                console.log('Image clicked!');
+                const clickedImage = event.target;
+
+                const id = clickedImage.getAttribute('image-id');
+
+                /*
+                try {
+                    const res = await fetch(`/products/${id}`, {
+                        method: 'GET',
+                    });
+                    //res.render('product');
+
+                    // Handle the response, e.g. navigate to the book page
+                  if (res.ok) {
+                        window.location.href = `/products/${id}`;
+                    } else {
+                        console.error('Failed to load book details');
+                    }
+
+                */
+
+                try{
+                    window.location.href = `/products/${id}`;
+                }
+                catch (err) {
+                    console.log(err);
+                }
+
+            });
+        });
+
+    });
+
+</script>
